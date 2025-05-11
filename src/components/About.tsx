@@ -56,7 +56,7 @@ const About: React.FC = () => {
             
             <div className="flex flex-wrap gap-4">
               <a 
-                href="https://drive.google.com/file/d/184yidLJMF1gkYQi2qaIYnqo2s3gMYaf_/view?usp=drive_link" 
+                href="https://drive.google.com/file/d/1FBRt1H8V0rDy1B6x70S85B7W4qX701di/view?usp=sharing" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105"
