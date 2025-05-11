@@ -67,7 +67,7 @@ const Certifications: React.FC = () => {
     {
       title: 'Introduction to Cybersecurity',
       issuer: 'Cisco',
-      date: '2022',
+      date: '2024',
       link: 'https://www.credly.com/badges/d9e2cc08-0a5b-4b6d-b294-02856bec858f/print'
     }
   ];
