@@ -27,6 +27,16 @@ const Skills: React.FC = () => {
     { name: 'Flutter', level: 80, category: 'Frameworks' },
     { name: 'TailwindCSS', level: 95, category: 'Frameworks' },
     { name: 'Bootstrap', level: 90, category: 'Frameworks' },
+    { name: 'FastAPI', level: 70, category: 'Frameworks' },
+    { name: 'Scikit-image', level: 80, category: 'Frameworks' },
+    { name: 'Scrapy', level: 85, category: 'Frameworks' },
+    { name: 'TensorFlow', level: 80, category: 'Frameworks' },
+    { name: 'PyTorch', level: 80, category: 'Frameworks' },
+    { name: 'Pandas', level: 80, category: 'Frameworks' },
+    { name: 'Scikit-learn', level: 80, category: 'Frameworks' },
+    { name: 'Pandas', level: 80, category: 'Frameworks' },
+    { name: 'Keras', level: 80, category: 'Frameworks' },
+    { name: 'Matplotlib', level: 80, category: 'Frameworks' },
     
     // Databases
     { name: 'PostgreSQL', level: 85, category: 'Databases' },
