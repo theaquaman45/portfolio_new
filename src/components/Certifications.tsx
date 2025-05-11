@@ -23,7 +23,7 @@ const Certifications: React.FC = () => {
       link: 'https://www.hackerrank.com/certificates/iframe/622e8237ebec'
     },
     {
-      title: 'HackerRank Software Engineer',
+      title: 'Software Engineer',
       issuer: 'HackerRank',
       date: '2025',
       link: 'https://www.hackerrank.com/certificates/iframe/e0c96b2d8e58'
