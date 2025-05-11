@@ -55,7 +55,7 @@ const Certifications: React.FC = () => {
     {
       title: 'Python Essentials 2',
       issuer: 'Cisco',
-      date: '2022',
+      date: '2023',
       link: 'https://www.credly.com/badges/0bd157d7-f2b4-4331-b23e-9dfb842e9ebc/print'
     },
     {
