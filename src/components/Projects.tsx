@@ -19,7 +19,7 @@ const Projects: React.FC = () => {
       description: 'Cloud-based platform for restaurants to manage QR/NFC ordering, UPI payments (Razorpay), and real-time tracking. Features dynamic menus, prepayment options, and subscription model (₹7,000/month). Built with Django, Next.js, AWS.',
       image: 'https://images.pexels.com/photos/6177645/pexels-photo-6177645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['Next.js', 'Django', 'AWS', 'Razorpay', 'PostgreSQL'],
-      demoLink: 'https://spslabs.vercel.app/products/zap-dine',
+      demoLink: 'https://spslabss.vercel.app/products/zapdine',
     },
     {
       title: 'FormGuard',
