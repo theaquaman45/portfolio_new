@@ -40,7 +40,7 @@ const Projects: React.FC = () => {
       description: 'Chrome extension transforming coding challenges into visual experiences with flowcharts and decision trees. Features NLP-powered algorithmic insights, gamified learning, and premium subscription model. Built with React.js, D3.js, and Node.js.',
       image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['React.js', 'D3.js', 'Node.js', 'Chrome API', 'NLP'],
-      demoLink: 'https://spslabss.vercel.app/products/algosphere',
+      demoLink: 'https://spslabs.vercel.app/products/algo-sphere',
     },
     {
       title: 'Logify',
