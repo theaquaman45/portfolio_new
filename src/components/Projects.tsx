@@ -54,7 +54,7 @@ const Projects: React.FC = () => {
       description: 'Mobile app for real-time price comparison across Zomato, Swiggy, Uber, and Ola. Features unified search, geolocation-based results, and personalized filters. Monetized through affiliate links and premium features like price alerts and historical tracking.',
       image: 'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['React Native', 'Node.js', 'MongoDB', 'Redis', 'Google Maps API'],
-      demoLink: 'https://spslabss.vercel.app/products/pricescout',
+      demoLink: 'https://spslabs.vercel.app/products/price-scout',
     },
     // {
     //   title: 'Couple Dare',
@@ -68,7 +68,7 @@ const Projects: React.FC = () => {
       description: 'Centralized app aggregating notifications from Uber, Zomato, Swiggy, etc. Offers route optimization, earnings tracking, and task management to streamline workflows. Freemium model with premium features like advanced analytics.',
       image: 'https://images.pexels.com/photos/7709285/pexels-photo-7709285.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['React Native', 'Node.js', 'Express', 'MongoDB', 'Google Maps API'],
-      demoLink: 'https://spslabss.vercel.app/products/partnerhub',
+      demoLink: 'https://spslabs.vercel.app/products/partner-hub',
     }
   ];
 
