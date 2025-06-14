@@ -26,35 +26,35 @@ const Projects: React.FC = () => {
       description: 'AI-powered mobile app using pose estimation (MediaPipe / TensorFlow) to analyze exercise form in real-time, track reps, and prevent injuries via audio/visual feedback. Offers freemium model with cloud analytics and personalized plans.',
       image: 'https://images.pexels.com/photos/4162451/pexels-photo-4162451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['Flutter', 'TensorFlow', 'MediaPipe', 'Firebase', 'Python'],
-      demoLink: 'https://spslabs.vercel.app/products/formguard',
+      demoLink: 'https://spslabss.vercel.app/products/formguard',
     },
     {
       title: 'Cross Share',
       description: 'High-speed file sharing solution for PC and mobile devices over local Wi-Fi. Features QR code connectivity, encrypted transfers, and real-time progress tracking. Freemium model with premium features for faster transfers and larger file limits.',
       image: 'https://images.pexels.com/photos/7014766/pexels-photo-7014766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['React Native', 'Node.js', 'WebSocket', 'QR Code', 'Encryption'],
-      demoLink: 'https://spslabs.vercel.app/products/crossshare',
+      demoLink: 'https://spslabss.vercel.app/products/crossshare',
     },
     {
       title: 'Algo Sphere',
       description: 'Chrome extension transforming coding challenges into visual experiences with flowcharts and decision trees. Features NLP-powered algorithmic insights, gamified learning, and premium subscription model. Built with React.js, D3.js, and Node.js.',
       image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['React.js', 'D3.js', 'Node.js', 'Chrome API', 'NLP'],
-      demoLink: 'https://spslabs.vercel.app/products/algosphere',
+      demoLink: 'https://spslabss.vercel.app/products/algosphere',
     },
     {
       title: 'Logify',
       description: 'Universal chat exporter Chrome extension for WhatsApp, Messenger, Slack, Discord, and ChatGPT. Features draggable floating button, local processing for privacy, and subscription model (₹68.5/month). Supports PDF, TXT, and DOCX exports.',
       image: 'https://images.pexels.com/photos/4126724/pexels-photo-4126724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['JavaScript', 'Chrome API', 'jsPDF', 'FileSaver.js', 'Razorpay'],
-      demoLink: 'https://spslabs.vercel.app/products/logify',
+      demoLink: 'https://spslabss.vercel.app/products/logify',
     },
     {
       title: 'Price Scout',
       description: 'Mobile app for real-time price comparison across Zomato, Swiggy, Uber, and Ola. Features unified search, geolocation-based results, and personalized filters. Monetized through affiliate links and premium features like price alerts and historical tracking.',
       image: 'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['React Native', 'Node.js', 'MongoDB', 'Redis', 'Google Maps API'],
-      demoLink: 'https://spslabs.vercel.app/products/pricescout',
+      demoLink: 'https://spslabss.vercel.app/products/pricescout',
     },
     // {
     //   title: 'Couple Dare',
@@ -68,7 +68,7 @@ const Projects: React.FC = () => {
       description: 'Centralized app aggregating notifications from Uber, Zomato, Swiggy, etc. Offers route optimization, earnings tracking, and task management to streamline workflows. Freemium model with premium features like advanced analytics.',
       image: 'https://images.pexels.com/photos/7709285/pexels-photo-7709285.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['React Native', 'Node.js', 'Express', 'MongoDB', 'Google Maps API'],
-      demoLink: 'https://spslabs.vercel.app/products/partnerhub',
+      demoLink: 'https://spslabss.vercel.app/products/partnerhub',
     }
   ];
 
