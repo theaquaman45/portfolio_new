@@ -47,7 +47,7 @@ const Projects: React.FC = () => {
       description: 'Universal chat exporter Chrome extension for WhatsApp, Messenger, Slack, Discord, and ChatGPT. Features draggable floating button, local processing for privacy, and subscription model (₹68.5/month). Supports PDF, TXT, and DOCX exports.',
       image: 'https://images.pexels.com/photos/4126724/pexels-photo-4126724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['JavaScript', 'Chrome API', 'jsPDF', 'FileSaver.js', 'Razorpay'],
-      demoLink: 'https://spslabss.vercel.app/products/logify',
+      demoLink: 'https://spslabs.vercel.app/products/logify',
     },
     {
       title: 'Price Scout',
