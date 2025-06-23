@@ -1,157 +1,289 @@
-import React from 'react';
-import { Award, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Award, ExternalLink, Trophy, Star, Medal, Crown, Zap, Target } from 'lucide-react';
 
 interface Certification {
   title: string;
   issuer: string;
   date: string;
   link: string;
+  category: 'technical' | 'platform' | 'academic';
 }
 
 interface Achievement {
   title: string;
   description: string;
   link?: string;
+  metric?: string;
+  icon: any;
 }
 
 const Certifications: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState('certifications');
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const certifications: Certification[] = [
     {
       title: 'Rest API (Intermediate)',
       issuer: 'HackerRank',
       date: '2023',
-      link: 'https://www.hackerrank.com/certificates/iframe/622e8237ebec'
+      link: 'https://www.hackerrank.com/certificates/iframe/622e8237ebec',
+      category: 'technical'
     },
     {
       title: 'Software Engineer',
       issuer: 'HackerRank',
       date: '2025',
-      link: 'https://www.hackerrank.com/certificates/iframe/e0c96b2d8e58'
+      link: 'https://www.hackerrank.com/certificates/iframe/e0c96b2d8e58',
+      category: 'platform'
     },
     {
       title: 'SQL (Intermediate)',
       issuer: 'HackerRank',
       date: '2025',
-      link: 'https://www.hackerrank.com/certificates/iframe/0ed1852a45af'
+      link: 'https://www.hackerrank.com/certificates/iframe/0ed1852a45af',
+      category: 'technical'
     },
     {
       title: 'Problem Solving (Intermediate)',
       issuer: 'HackerRank',
       date: '2025',
-      link: 'https://www.hackerrank.com/certificates/iframe/b00153df24ac'
+      link: 'https://www.hackerrank.com/certificates/iframe/b00153df24ac',
+      category: 'platform'
     },
     {
       title: 'Software Engineer Intern',
       issuer: 'HackerRank',
       date: '2025',
-      link: 'https://www.hackerrank.com/certificates/iframe/f49f9cdf5dff'
+      link: 'https://www.hackerrank.com/certificates/iframe/f49f9cdf5dff',
+      category: 'platform'
     },
     {
       title: 'JavaScript',
       issuer: 'HackerRank',
       date: '2023',
-      link: 'https://www.hackerrank.com/certificates/iframe/a2b94ccb4bfe'
+      link: 'https://www.hackerrank.com/certificates/iframe/a2b94ccb4bfe',
+      category: 'technical'
     },
     {
       title: 'Python Essentials 2',
       issuer: 'Cisco',
       date: '2023',
-      link: 'https://www.credly.com/badges/0bd157d7-f2b4-4331-b23e-9dfb842e9ebc/print'
+      link: 'https://www.credly.com/badges/0bd157d7-f2b4-4331-b23e-9dfb842e9ebc/print',
+      category: 'academic'
     },
     {
       title: 'Introduction to Data Science',
       issuer: 'Cisco',
       date: '2025',
-      link: 'https://www.credly.com/badges/22956d7b-f5ac-49a6-800e-e6f68ab93e2a'
+      link: 'https://www.credly.com/badges/22956d7b-f5ac-49a6-800e-e6f68ab93e2a',
+      category: 'academic'
     },
     {
       title: 'Introduction to Cybersecurity',
       issuer: 'Cisco',
       date: '2024',
-      link: 'https://www.credly.com/badges/d9e2cc08-0a5b-4b6d-b294-02856bec858f/print'
+      link: 'https://www.credly.com/badges/d9e2cc08-0a5b-4b6d-b294-02856bec858f/print',
+      category: 'academic'
     }
   ];
 
   const achievements: Achievement[] = [
     {
       title: '100+ LeetCode DSA Solutions',
-      description: 'Demonstrating problem-solving and algorithmic efficiency skills',
-      link: 'https://leetcode.com/u/sohardpratapsingh346'
+      description: 'Demonstrating problem-solving and algorithmic efficiency skills across data structures and algorithms',
+      link: 'https://leetcode.com/u/sohardpratapsingh346',
+      metric: '100+',
+      icon: Target
     },
     {
       title: 'Global Rank #337 in HackerRank Python',
-      description: 'Showcasing algorithmic efficiency and coding expertise',
-      link: 'https://www.linkedin.com/posts/sohard-pratap-singh_hackerrank-projecteuler-rank337-activity-7117137189389414400-7VJr?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnc6FcBOyj_Hi3Kouaanw0eF1s06ZCw4z4'
+      description: 'Showcasing algorithmic efficiency and coding expertise in competitive programming',
+      link: 'https://www.linkedin.com/posts/sohard-pratap-singh_hackerrank-projecteuler-rank337-activity-7117137189389414400-7VJr?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnc6FcBOyj_Hi3Kouaanw0eF1s06ZCw4z4',
+      metric: '#337',
+      icon: Crown
     }
   ];
 
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case 'technical': return 'from-blue-500 to-cyan-500';
+      case 'platform': return 'from-purple-500 to-pink-500';
+      case 'academic': return 'from-emerald-500 to-teal-500';
+      default: return 'from-gray-500 to-gray-600';
+    }
+  };
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'technical': return Zap;
+      case 'platform': return Trophy;
+      case 'academic': return Medal;
+      default: return Award;
+    }
+  };
+
   return (
-    <section id="certifications" className="py-20 bg-white dark:bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            Certifications & Achievements
+    <section ref={sectionRef} id="certifications" className="py-20 bg-gradient-to-br from-white via-amber-50/30 to-orange-50/30 dark:from-slate-900 dark:via-amber-900/10 dark:to-orange-900/10 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-amber-400/10 to-orange-400/10 rounded-full filter blur-3xl floating"></div>
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-yellow-400/10 to-amber-400/10 rounded-full filter blur-3xl floating-delayed"></div>
+        
+        {/* Floating Achievement Icons */}
+        <div className="absolute top-40 left-40 floating">
+          <Trophy className="text-amber-400/20 dark:text-amber-500/20" size={64} />
+        </div>
+        <div className="absolute bottom-40 right-40 floating-delayed">
+          <Crown className="text-orange-400/20 dark:text-orange-500/20" size={56} />
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className={`text-center mb-16 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 text-gradient bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent" style={{ fontFamily: 'Inter, sans-serif', fontWeight: '800' }}>
+            Achievements & Recognition
           </h2>
-          <div className="w-20 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-            Professional certifications and noteworthy achievements that highlight my expertise.
+          <div className="w-24 h-1 bg-gradient-to-r from-amber-600 to-orange-600 mx-auto mb-6 rounded-full"></div>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto font-medium">
+            Professional certifications and noteworthy achievements that showcase expertise and dedication
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
-              <Award className="mr-3 text-indigo-600 dark:text-indigo-400" size={24} />
-              Certifications
-            </h3>
-            
-            <div className="space-y-6">
-              {certifications.map((cert, index) => (
-                <div 
-                  key={index} 
-                  className="group bg-white dark:bg-slate-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-l-4 border-indigo-600 dark:border-indigo-500"
+        {/* Tab Navigation */}
+        <div className={`flex justify-center mb-12 transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <div className="glass-effect rounded-2xl p-2">
+            <div className="flex space-x-2">
+              {[
+                { id: 'certifications', label: 'Certifications', icon: Award },
+                { id: 'achievements', label: 'Achievements', icon: Trophy }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                    activeTab === tab.id
+                      ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-amber-100 dark:hover:bg-amber-900/20'
+                  }`}
                 >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{cert.title}</h4>
-                      <p className="text-indigo-600 dark:text-indigo-400">{cert.issuer}</p>
-                      <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{cert.date}</p>
-                      <a 
-                        href={cert.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center mt-3 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors"
-                      >
-                        View Certificate
-                        <ExternalLink size={16} className="ml-2" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                  <tab.icon size={18} className="mr-2" />
+                  {tab.label}
+                </button>
               ))}
             </div>
           </div>
+        </div>
 
-          <div>
-            <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
-              <Award className="mr-3 text-indigo-600 dark:text-indigo-400" size={24} />
-              Achievements
-            </h3>
-
-            <div className="space-y-6">
+        {/* Content */}
+        <div className={`transition-all duration-1000 delay-500 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          {activeTab === 'certifications' ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {certifications.map((cert, index) => {
+                const CategoryIcon = getCategoryIcon(cert.category);
+                return (
+                  <div 
+                    key={index} 
+                    className={`group glass-effect rounded-2xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 cursor-pointer ${
+                      hoveredCard === index ? 'ring-2 ring-amber-500/50' : ''
+                    }`}
+                    onMouseEnter={() => setHoveredCard(index)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    {/* Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className={`w-12 h-12 bg-gradient-to-r ${getCategoryColor(cert.category)} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                        <CategoryIcon size={20} className="text-white" />
+                      </div>
+                      <span className={`px-3 py-1 bg-gradient-to-r ${getCategoryColor(cert.category)} text-white rounded-full text-xs font-semibold`}>
+                        {cert.category}
+                      </span>
+                    </div>
+                    
+                    {/* Content */}
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-300">
+                      {cert.title}
+                    </h4>
+                    <p className="text-amber-600 dark:text-amber-400 font-semibold mb-1">{cert.issuer}</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">{cert.date}</p>
+                    
+                    <a 
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-sm font-medium text-amber-600 dark:text-amber-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors group-hover:translate-x-1 duration-300"
+                    >
+                      View Certificate
+                      <ExternalLink size={14} className="ml-2" />
+                    </a>
+                    
+                    {/* Hover Effect */}
+                    <div className={`absolute inset-0 bg-gradient-to-r ${getCategoryColor(cert.category)} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300 pointer-events-none`}></div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {achievements.map((achievement, index) => (
                 <div 
                   key={index} 
-                  className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300"
+                  className="group glass-effect rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-2"
+                  style={{ animationDelay: `${index * 0.2}s` }}
                 >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{achievement.title}</h4>
-                      <p className="text-gray-700 dark:text-gray-300">{achievement.description}</p>
+                  <div className="flex items-start space-x-6">
+                    {/* Icon & Metric */}
+                    <div className="flex-shrink-0">
+                      <div className="w-20 h-20 bg-gradient-to-r from-amber-500 to-orange-500 rounded-3xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-2xl">
+                        <achievement.icon size={32} className="text-white" />
+                      </div>
+                      {achievement.metric && (
+                        <div className="text-center">
+                          <div className="text-2xl font-black text-gradient bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                            {achievement.metric}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="flex-1">
+                      <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-300" style={{ fontFamily: 'Inter, sans-serif' }}>
+                        {achievement.title}
+                      </h4>
+                      <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                        {achievement.description}
+                      </p>
                       {achievement.link && (
                         <a 
                           href={achievement.link} 
-                          className="inline-flex items-center mt-3 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors"
+                          className="inline-flex items-center font-medium text-amber-600 dark:text-amber-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors group-hover:translate-x-1 duration-300"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -161,9 +293,43 @@ const Certifications: React.FC = () => {
                       )}
                     </div>
                   </div>
+                  
+                  {/* Decorative Elements */}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Star className="text-amber-400" size={24} />
+                  </div>
                 </div>
               ))}
             </div>
+          )}
+        </div>
+
+        {/* Stats Section */}
+        <div className={`mt-20 transition-all duration-1000 delay-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { icon: Award, label: 'Certifications', value: '9', color: 'from-blue-500 to-cyan-500' },
+              { icon: Trophy, label: 'Major Achievements', value: '2', color: 'from-amber-500 to-orange-500' },
+              { icon: Star, label: 'Recognition Level', value: 'Global', color: 'from-purple-500 to-pink-500' }
+            ].map((stat, index) => (
+              <div 
+                key={stat.label}
+                className="group glass-effect rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-500 transform hover:scale-105"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <stat.icon size={24} className="text-white" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2" style={{ fontFamily: 'Inter, sans-serif' }}>
+                  {stat.value}
+                </div>
+                <div className="text-gray-600 dark:text-gray-400 font-medium">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
