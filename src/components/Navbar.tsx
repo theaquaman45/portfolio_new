@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun, Code2, Sparkles } from 'lucide-react';
+import { Menu, X, Moon, Sun, Terminal } from 'lucide-react';
 
 interface NavbarProps {
   toggleTheme: () => void;
@@ -59,21 +59,22 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
           <div className="flex-shrink-0">
             <a 
               href="#hero" 
-              className="flex items-center space-x-2 group"
+              className="flex items-center space-x-3 group"
             >
               <div className="relative">
-                <Code2 
+                <Terminal 
                   size={32} 
-                  className="text-purple-600 dark:text-purple-400 group-hover:text-pink-500 dark:group-hover:text-pink-400 transition-colors duration-300" 
-                />
-                <Sparkles 
-                  size={16} 
-                  className="absolute -top-1 -right-1 text-pink-500 dark:text-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                  className="text-indigo-600 dark:text-indigo-400 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors duration-300" 
                 />
               </div>
-              <span className="text-xl font-bold text-gradient-exotic">
-                SPS
-              </span>
+              <div className="flex flex-col">
+                <span className="text-lg font-bold text-gray-900 dark:text-white">
+                  Sohard Pratap Singh
+                </span>
+                <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                  Full Stack Developer
+                </span>
+              </div>
             </a>
           </div>
           
@@ -86,12 +87,12 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
                   href={item.href}
                   className={`relative px-4 py-2 rounded-full font-medium transition-all duration-300 group ${
                     activeSection === item.href.slice(1)
-                      ? 'text-white bg-gradient-to-r from-purple-600 to-pink-600 shadow-lg'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'
+                      ? 'text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
                   }`}
                 >
                   {item.label}
-                  <span className={`absolute inset-0 rounded-full bg-gradient-to-r from-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                  <span className={`absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
                     activeSection === item.href.slice(1) ? 'opacity-0' : ''
                   }`}></span>
                 </a>
@@ -100,14 +101,14 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
               {/* Theme Toggle */}
               <button 
                 onClick={toggleTheme} 
-                className="ml-4 p-3 rounded-full glass-effect hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all duration-300 group"
+                className="ml-4 p-3 rounded-full glass-effect hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-all duration-300 group"
                 aria-label="Toggle theme"
               >
                 <div className="relative">
                   {isDarkMode ? (
                     <Sun size={20} className="text-yellow-500 group-hover:rotate-180 transition-transform duration-500" />
                   ) : (
-                    <Moon size={20} className="text-purple-600 group-hover:rotate-12 transition-transform duration-300" />
+                    <Moon size={20} className="text-indigo-600 group-hover:rotate-12 transition-transform duration-300" />
                   )}
                 </div>
               </button>
@@ -118,19 +119,19 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
           <div className="md:hidden flex items-center space-x-2">
             <button 
               onClick={toggleTheme} 
-              className="p-2 rounded-full glass-effect hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all duration-300"
+              className="p-2 rounded-full glass-effect hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-all duration-300"
               aria-label="Toggle theme"
             >
               {isDarkMode ? (
                 <Sun size={18} className="text-yellow-500" />
               ) : (
-                <Moon size={18} className="text-purple-600" />
+                <Moon size={18} className="text-indigo-600" />
               )}
             </button>
             
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-full glass-effect hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all duration-300"
+              className="p-2 rounded-full glass-effect hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-all duration-300"
               aria-expanded="false"
             >
               <div className="relative w-6 h-6">
@@ -165,8 +166,8 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
               href={item.href}
               className={`block px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
                 activeSection === item.href.slice(1)
-                  ? 'text-white bg-gradient-to-r from-purple-600 to-pink-600 shadow-lg'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/30'
+                  ? 'text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg'
+                  : 'text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/30'
               }`}
               onClick={() => setIsMenuOpen(false)}
               style={{ animationDelay: `${index * 0.1}s` }}

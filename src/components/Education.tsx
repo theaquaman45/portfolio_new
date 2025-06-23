@@ -1,5 +1,5 @@
-import React from 'react';
-import { GraduationCap, Calendar } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { GraduationCap, Calendar, MapPin, BookOpen, Award, Star, Brain } from 'lucide-react';
 
 interface EducationItem {
   degree: string;
@@ -7,70 +7,219 @@ interface EducationItem {
   period: string;
   location?: string;
   description?: string;
+  status: 'completed' | 'ongoing';
+  highlights?: string[];
+  gpa?: string;
 }
 
 const Education: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const educationList: EducationItem[] = [
     {
       degree: 'Bachelor of Computer Science',
       institution: 'Uttaranchal University',
       period: '2023 - Expected 2027',
       location: 'Dehradun, India',
-      description: 'Focusing on advanced algorithms, software development, and cybersecurity.'
+      status: 'ongoing',
+      description: 'Pursuing comprehensive computer science education with focus on software engineering, algorithms, and emerging technologies.',
+      highlights: ['Advanced Algorithms', 'Software Engineering', 'Cybersecurity', 'Machine Learning', 'Database Systems'],
+      gpa: 'Current: 8.5/10'
     },
     {
-      degree: 'Intermediate',
+      degree: 'Intermediate (12th Grade)',
       institution: 'DDPS Bijnor',
       period: '2020 - 2022',
       location: 'Bijnor, India',
-      description: 'Completed with distinction in mathematics and computer science.'
+      status: 'completed',
+      description: 'Completed intermediate education with distinction in mathematics and computer science, building strong foundation for technical career.',
+      highlights: ['Mathematics Excellence', 'Computer Science', 'Physics', 'Academic Distinction'],
+      gpa: '85%'
     }
   ];
 
   return (
-    <section id="education" className="py-20 bg-gray-50 dark:bg-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            Education
+    <section ref={sectionRef} id="education" className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/30 dark:from-slate-900 dark:via-blue-900/10 dark:to-indigo-900/10 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 rounded-full filter blur-3xl floating"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full filter blur-3xl floating-delayed"></div>
+        
+        {/* Floating Academic Icons */}
+        <div className="absolute top-40 right-40 floating">
+          <BookOpen className="text-blue-400/30 dark:text-blue-500/30" size={48} />
+        </div>
+        <div className="absolute bottom-40 left-40 floating-delayed">
+          <Brain className="text-indigo-400/30 dark:text-indigo-500/30" size={52} />
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className={`text-center mb-20 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 text-gradient bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent" style={{ fontFamily: 'Inter, sans-serif', fontWeight: '800' }}>
+            Academic Excellence
           </h2>
-          <div className="w-20 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-            My academic journey that has shaped my technical foundation and problem-solving approach.
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-6 rounded-full"></div>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto font-medium">
+            Building a strong foundation through continuous learning and academic achievement
           </p>
         </div>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-indigo-200 dark:bg-indigo-900"></div>
-          
-          <div className="space-y-12">
-            {educationList.map((edu, index) => (
-              <div key={index} className="relative">
-                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 -mt-2">
-                  <div className="w-10 h-10 bg-indigo-600 dark:bg-indigo-500 rounded-full flex items-center justify-center shadow-md">
-                    <GraduationCap size={20} className="text-white" />
+        {/* Education Cards */}
+        <div className="space-y-12">
+          {educationList.map((edu, index) => (
+            <div 
+              key={index} 
+              className={`transition-all duration-1000 delay-${index * 300} ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+            >
+              <div 
+                className={`group glass-effect rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-2 cursor-pointer ${
+                  activeCard === index ? 'ring-2 ring-blue-500/50' : ''
+                }`}
+                onMouseEnter={() => setActiveCard(index)}
+                onMouseLeave={() => setActiveCard(null)}
+              >
+                <div className="relative p-8 lg:p-12">
+                  {/* Status Badge */}
+                  <div className={`absolute top-6 right-6 px-4 py-2 rounded-full text-sm font-semibold ${
+                    edu.status === 'ongoing' 
+                      ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white' 
+                      : 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white'
+                  }`}>
+                    {edu.status === 'ongoing' ? 'In Progress' : 'Completed'}
                   </div>
-                </div>
-                
-                <div className={`md:w-5/12 ${index % 2 === 0 ? 'md:mr-auto md:text-right' : 'md:ml-auto'}`}>
-                  <div className="bg-white dark:bg-slate-700 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <h3 className="text-xl font-bold mb-1 text-gray-900 dark:text-white">{edu.degree}</h3>
-                    <div className="text-indigo-600 dark:text-indigo-400 font-medium mb-3">{edu.institution}</div>
-                    
-                    <div className="flex items-center mb-4 text-gray-600 dark:text-gray-400 text-sm">
-                      <Calendar size={16} className={`${index % 2 === 0 ? 'md:ml-2 md:order-2' : 'mr-2'}`} />
-                      <span>{edu.period}</span>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                    {/* Left: Icon and Visual */}
+                    <div className="flex flex-col items-center lg:items-start">
+                      <div className={`w-24 h-24 bg-gradient-to-r ${
+                        edu.status === 'ongoing' 
+                          ? 'from-emerald-500 to-teal-500' 
+                          : 'from-blue-500 to-indigo-500'
+                      } rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-2xl`}>
+                        <GraduationCap size={36} className="text-white" />
+                      </div>
+                      
+                      {/* GPA/Score */}
+                      {edu.gpa && (
+                        <div className="glass-effect rounded-2xl px-4 py-2 text-center">
+                          <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Score</div>
+                          <div className="text-lg font-bold text-gray-900 dark:text-white">{edu.gpa}</div>
+                        </div>
+                      )}
                     </div>
-                    
-                    {edu.location && (
-                      <div className="text-gray-600 dark:text-gray-400 mb-3">{edu.location}</div>
-                    )}
-                    
-                    {edu.description && (
-                      <p className="text-gray-700 dark:text-gray-300">{edu.description}</p>
-                    )}
+
+                    {/* Center: Main Content */}
+                    <div className="lg:col-span-2">
+                      <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300" style={{ fontFamily: 'Inter, sans-serif' }}>
+                        {edu.degree}
+                      </h3>
+                      
+                      <div className="flex items-center mb-4">
+                        <Award size={20} className="text-blue-600 dark:text-blue-400 mr-3" />
+                        <span className="text-xl font-semibold text-blue-600 dark:text-blue-400">{edu.institution}</span>
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-4 mb-6 text-gray-600 dark:text-gray-400">
+                        <div className="flex items-center">
+                          <Calendar size={16} className="mr-2" />
+                          <span className="font-medium">{edu.period}</span>
+                        </div>
+                        {edu.location && (
+                          <div className="flex items-center">
+                            <MapPin size={16} className="mr-2" />
+                            <span>{edu.location}</span>
+                          </div>
+                        )}
+                      </div>
+                      
+                      {edu.description && (
+                        <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed text-lg">
+                          {edu.description}
+                        </p>
+                      )}
+                      
+                      {/* Highlights */}
+                      {edu.highlights && (
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                            <Star size={18} className="mr-2 text-yellow-500" />
+                            Key Subjects & Achievements
+                          </h4>
+                          <div className="flex flex-wrap gap-3">
+                            {edu.highlights.map((highlight, i) => (
+                              <span 
+                                key={i} 
+                                className="px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium hover:scale-105 transition-transform duration-200"
+                              >
+                                {highlight}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
+                  
+                  {/* Hover Effect Overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-r ${
+                    edu.status === 'ongoing' 
+                      ? 'from-emerald-500/5 to-teal-500/5' 
+                      : 'from-blue-500/5 to-indigo-500/5'
+                  } rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Academic Stats */}
+        <div className={`mt-20 transition-all duration-1000 delay-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { icon: BookOpen, label: 'Years of Study', value: '6+', color: 'from-blue-500 to-indigo-500' },
+              { icon: Award, label: 'Academic Excellence', value: '85%+', color: 'from-emerald-500 to-teal-500' },
+              { icon: Brain, label: 'Technical Focus', value: 'CS', color: 'from-purple-500 to-pink-500' }
+            ].map((stat, index) => (
+              <div 
+                key={stat.label}
+                className="group glass-effect rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-500 transform hover:scale-105"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <stat.icon size={24} className="text-white" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2" style={{ fontFamily: 'Inter, sans-serif' }}>
+                  {stat.value}
+                </div>
+                <div className="text-gray-600 dark:text-gray-400 font-medium">
+                  {stat.label}
                 </div>
               </div>
             ))}
