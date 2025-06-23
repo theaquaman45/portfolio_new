@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="hero" className="min-h-screen flex flex-col justify-center items-center relative px-4 overflow-hidden">
+    <section id="hero" className="min-h-screen flex flex-col justify-center items-center relative px-4 overflow-hidden pt-20">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full filter blur-3xl opacity-20 animate-blob floating"></div>

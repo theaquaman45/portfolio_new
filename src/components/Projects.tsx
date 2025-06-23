@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Github, Sparkles, Zap, Star, ArrowRight } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, Zap, Star, ArrowRight, Video, Users, BookOpen, Smartphone } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -37,6 +37,15 @@ const Projects: React.FC = () => {
 
   const projects: Project[] = [
     {
+      title: 'TutorBox',
+      description: 'Next-generation mobile application for educators to record professional-quality teaching sessions. Features split-screen interface with front camera and interactive whiteboard, multi-slide scene management, real-time recording with auto-subtitles, and comprehensive branding tools.',
+      image: 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+      technologies: ['Flutter', 'FFmpeg', 'OpenAI Whisper', 'Firebase', 'Razorpay'],
+      demoLink: 'https://spslabs.vercel.app/products/tutorbox',
+      featured: true,
+      category: 'Mobile App'
+    },
+    {
       title: 'Zap-Dine',
       description: 'Revolutionary cloud-based restaurant management platform featuring QR/NFC ordering, seamless UPI payments via Razorpay, and real-time order tracking. Includes dynamic menu management and subscription-based revenue model.',
       image: 'https://images.pexels.com/photos/6177645/pexels-photo-6177645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
@@ -51,7 +60,6 @@ const Projects: React.FC = () => {
       image: 'https://images.pexels.com/photos/4162451/pexels-photo-4162451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['Flutter', 'TensorFlow', 'MediaPipe', 'Firebase', 'Python'],
       demoLink: 'https://spslabs.vercel.app/products/formguard',
-      featured: true,
       category: 'Mobile App'
     },
     {
@@ -141,7 +149,7 @@ const Projects: React.FC = () => {
               <span className="flex items-center">
                 {category === 'All' && <Star size={18} className="mr-2" />}
                 {category === 'Web App' && <Zap size={18} className="mr-2" />}
-                {category === 'Mobile App' && <Sparkles size={18} className="mr-2" />}
+                {category === 'Mobile App' && <Smartphone size={18} className="mr-2" />}
                 {category === 'Extension' && <ExternalLink size={18} className="mr-2" />}
                 {category}
               </span>
@@ -169,6 +177,14 @@ const Projects: React.FC = () => {
                   <div className="absolute top-4 left-4 z-20 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">
                     <Star size={14} className="mr-1" />
                     Featured
+                  </div>
+                )}
+
+                {/* Special Badge for TutorBox */}
+                {project.title === 'TutorBox' && (
+                  <div className="absolute top-4 right-4 z-20 bg-gradient-to-r from-emerald-400 to-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">
+                    <Video size={14} className="mr-1" />
+                    EdTech
                   </div>
                 )}
 
