@@ -1,6 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
 
 @layer utilities {
   .animation-delay-2000 {
@@ -9,44 +32,138 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+  .animation-delay-6000 {
+    animation-delay: 6s;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-exotic {
+    @apply bg-gradient-to-r from-emerald-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent;
+  }
+  
+  .bg-gradient-exotic {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .bg-gradient-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .dark .glass-effect {
+    background: rgba(15, 23, 42, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .floating {
+    animation: floating 6s ease-in-out infinite;
+  }
+  
+  .floating-delayed {
+    animation: floating 6s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  
+  .rotate-slow {
+    animation: rotate-slow 20s linear infinite;
+  }
+  
+  .scale-on-hover {
+    transition: transform 0.3s ease;
+  }
+  
+  .scale-on-hover:hover {
+    transform: scale(1.05);
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+  100% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
+  background: linear-gradient(180deg, #8b5cf6 0%, #a855f7 100%);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: linear-gradient(180deg, #7c3aed 0%, #9333ea 100%);
 }
 
-/* Dark mode scrollbar */
 .dark ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: linear-gradient(180deg, #8b5cf6 0%, #a855f7 100%);
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+/* Smooth transitions for all elements */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: inherit;
+}
+
+.dark ::selection {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+/* Focus styles */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid rgba(139, 92, 246, 0.5);
+  outline-offset: 2px;
 }

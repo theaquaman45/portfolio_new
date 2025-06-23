@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from 'react';
-import { ArrowDown, Github, Linkedin, Code } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowDown, Github, Linkedin, Code, Download, Mail, Sparkles, Zap } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
+    setIsVisible(true);
+    
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let interval: number | null = null;
     
@@ -38,89 +41,151 @@ const Hero: React.FC = () => {
       }
     };
     
-    startAnimation();
+    const timer = setTimeout(startAnimation, 1000);
     
     return () => {
       if (interval) clearInterval(interval);
+      clearTimeout(timer);
     };
   }, []);
 
   return (
-    <section id="hero" className="min-h-screen flex flex-col justify-center items-center relative px-4 bg-gradient-to-br from-white to-indigo-50 dark:from-slate-900 dark:to-slate-800">
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-        <div className="absolute -top-36 -left-36 w-96 h-96 bg-indigo-300 dark:bg-indigo-700 rounded-full filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-60 -right-20 w-80 h-80 bg-purple-300 dark:bg-purple-700 rounded-full filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-24 left-24 w-72 h-72 bg-blue-300 dark:bg-blue-700 rounded-full filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+    <section id="hero" className="min-h-screen flex flex-col justify-center items-center relative px-4 overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full filter blur-3xl opacity-20 animate-blob floating"></div>
+        <div className="absolute top-60 -right-32 w-96 h-96 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full filter blur-3xl opacity-20 animate-blob animation-delay-2000 floating-delayed"></div>
+        <div className="absolute bottom-32 left-32 w-72 h-72 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full filter blur-3xl opacity-20 animate-blob animation-delay-4000 floating"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-violet-400 to-purple-400 rounded-full filter blur-3xl opacity-10 animate-pulse"></div>
       </div>
       
-      <div className="text-center max-w-5xl mx-auto z-10">
-        <h1 
-          ref={titleRef}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400"
-        >
-          SOHARD PRATAP SINGH
-        </h1>
+      <div className={`text-center max-w-6xl mx-auto z-10 transition-all duration-1000 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}>
+        {/* Floating Icons */}
+        <div className="absolute -top-20 left-10 floating">
+          <Sparkles className="text-purple-400 opacity-60" size={24} />
+        </div>
+        <div className="absolute -top-16 right-16 floating-delayed">
+          <Zap className="text-pink-400 opacity-60" size={20} />
+        </div>
+        <div className="absolute top-20 -left-8 floating">
+          <Code className="text-cyan-400 opacity-60" size={28} />
+        </div>
         
-        <h2 className="text-xl md:text-2xl font-medium mb-8 text-gray-700 dark:text-gray-300">
-          Full-Stack Developer & Security Enthusiast
-        </h2>
+        {/* Main Title */}
+        <div className="relative mb-8">
+          <h1 
+            ref={titleRef}
+            className="text-4xl md:text-6xl lg:text-8xl font-black mb-4 text-gradient-exotic tracking-tight"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            SOHARD PRATAP SINGH
+          </h1>
+          <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 via-pink-600/20 to-cyan-600/20 blur-2xl -z-10 animate-pulse"></div>
+        </div>
         
-        <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-gray-600 dark:text-gray-400 leading-relaxed">
-          Building exceptional digital experiences with Next.js, Django, and Flutter.
-          Passionate about creating scalable, secure, and user-friendly applications.
+        {/* Subtitle with Typewriter Effect */}
+        <div className="relative mb-8">
+          <h2 className="text-xl md:text-3xl lg:text-4xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+            <span className="text-gradient">Full-Stack Developer</span>
+            <span className="mx-4 text-purple-500">&</span>
+            <span className="text-gradient-exotic">Security Enthusiast</span>
+          </h2>
+          <div className="flex justify-center items-center space-x-2 text-sm md:text-base text-gray-600 dark:text-gray-400">
+            <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 rounded-full">Next.js</span>
+            <span className="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 rounded-full">Django</span>
+            <span className="px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 rounded-full">Flutter</span>
+          </div>
+        </div>
+        
+        {/* Description */}
+        <p className={`text-lg md:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto text-gray-700 dark:text-gray-300 leading-relaxed transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+        }`}>
+          Crafting <span className="text-gradient font-semibold">exceptional digital experiences</span> with cutting-edge technologies.
+          Passionate about building <span className="text-gradient-exotic font-semibold">scalable, secure, and beautiful</span> applications 
+          that make a difference.
         </p>
         
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {/* CTA Buttons */}
+        <div className={`flex flex-wrap justify-center gap-6 mb-16 transition-all duration-1000 delay-500 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+        }`}>
           <a 
             href="#contact" 
-            className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-purple-500/25"
           >
-            Get in Touch
+            <span className="relative z-10 flex items-center">
+              <Mail size={20} className="mr-2" />
+              Let's Connect
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </a>
+          
           <a 
             href="#projects" 
-            className="px-8 py-3 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 border border-indigo-600 dark:border-indigo-400 font-medium rounded-full hover:bg-indigo-50 dark:hover:bg-slate-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            className="group px-8 py-4 glass-effect text-purple-600 dark:text-purple-400 font-bold rounded-full hover:bg-purple-50 dark:hover:bg-purple-900/20 transform hover:scale-105 transition-all duration-300 shadow-xl"
           >
-            View Projects
+            <span className="flex items-center">
+              <Code size={20} className="mr-2" />
+              View Projects
+            </span>
+          </a>
+          
+          <a 
+            href="https://drive.google.com/file/d/1FBRt1H8V0rDy1B6x70S85B7W4qX701di/view?usp=sharing" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold rounded-full transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-emerald-500/25"
+          >
+            <span className="flex items-center">
+              <Download size={20} className="mr-2" />
+              Resume
+            </span>
           </a>
         </div>
         
-        <div className="flex justify-center gap-6 mb-16">
-          <a 
-            href="https://github.com/sohardpratap" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-            aria-label="GitHub"
-          >
-            <Github size={24} />
-          </a>
-          <a 
-            href="https://linkedin.com/in/sohard-pratap-singh/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-            aria-label="LinkedIn"
-          >
-            <Linkedin size={24} />
-          </a>
-          <a 
-            href="https://leetcode.com/u/sohardpratapsingh346" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-            aria-label="LeetCode"
-          >
-            <Code size={24} />
-          </a>
+        {/* Social Links */}
+        <div className={`flex justify-center gap-8 mb-16 transition-all duration-1000 delay-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+        }`}>
+          {[
+            { href: "https://github.com/sohardpratap", icon: Github, label: "GitHub", color: "hover:text-gray-800 dark:hover:text-white" },
+            { href: "https://linkedin.com/in/sohard-pratap-singh/", icon: Linkedin, label: "LinkedIn", color: "hover:text-blue-600" },
+            { href: "https://leetcode.com/u/sohardpratapsingh346", icon: Code, label: "LeetCode", color: "hover:text-yellow-600" }
+          ].map((social, index) => (
+            <a
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group p-4 glass-effect rounded-full ${social.color} transition-all duration-300 transform hover:scale-110 hover:shadow-xl`}
+              aria-label={social.label}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <social.icon size={24} />
+              <span className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {social.label}
+              </span>
+            </a>
+          ))}
         </div>
         
-        <div className="animate-bounce">
+        {/* Scroll Indicator */}
+        <div className={`transition-all duration-1000 delay-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+        }`}>
           <a 
             href="#about"
-            className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
+            className="group inline-flex flex-col items-center text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300"
           >
-            <ArrowDown size={24} />
+            <span className="text-sm font-medium mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              Discover More
+            </span>
+            <div className="animate-bounce">
+              <ArrowDown size={24} className="group-hover:scale-110 transition-transform duration-300" />
+            </div>
           </a>
         </div>
       </div>
