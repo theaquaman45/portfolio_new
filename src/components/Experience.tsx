@@ -70,7 +70,7 @@ const Experience: React.FC = () => {
     },
     {
       title: 'Founder & Backend Developer',
-      company: 'SPSCreators',
+      company: 'SPS Creators',
       period: 'Jan 2022 – Dec 2022',
       location: 'Remote',
       type: 'founder',
