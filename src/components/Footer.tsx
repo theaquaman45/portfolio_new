@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
 
   const stats = [
     { icon: Code, label: 'Lines of Code', value: '50K+' },
-    { icon: Coffee, label: 'Cups of Coffee', value: '∞' },
+    { icon: Coffee, label: 'Cups of Tea', value: '∞' },
     { icon: Star, label: 'GitHub Stars', value: '100+' },
     { icon: Zap, label: 'Projects Built', value: '50+' }
   ];
@@ -223,7 +223,7 @@ const Footer: React.FC = () => {
             }`}>
               <div className="flex items-center mb-4 md:mb-0">
                 <p className="text-gray-400 text-sm">
-                  &copy; {currentYear} Sohard Pratap Singh. Made with 
+                  &copy; {currentYear} Sohard Pratap Singh.
                 </p>
                 <Heart size={16} className="mx-2 text-red-500 animate-pulse" />
                 <p className="text-gray-400 text-sm">
