@@ -37,16 +37,16 @@ const Projects: React.FC = () => {
 
   const projects: Project[] = [
     {
-      title: 'TutorBox',
+      title: 'Tutor Box',
       description: 'Next-generation mobile application for educators to record professional-quality teaching sessions. Features split-screen interface with front camera and interactive whiteboard, multi-slide scene management, real-time recording with auto-subtitles, and comprehensive branding tools.',
       image: 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['Flutter', 'FFmpeg', 'OpenAI Whisper', 'Firebase', 'Razorpay'],
       demoLink: 'https://spslabs.vercel.app/products/tutor-box',
       featured: true,
-      category: 'Mobile App'
+      category: 'Mobile App & Web App'
     },
     {
-      title: 'Zap-Dine',
+      title: 'Zap Dine',
       description: 'Revolutionary cloud-based restaurant management platform featuring QR/NFC ordering, seamless UPI payments via Razorpay, and real-time order tracking. Includes dynamic menu management and subscription-based revenue model.',
       image: 'https://images.pexels.com/photos/6177645/pexels-photo-6177645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['Next.js', 'Django', 'AWS', 'Razorpay', 'PostgreSQL'],
@@ -55,7 +55,7 @@ const Projects: React.FC = () => {
       category: 'Web App'
     },
     {
-      title: 'FormGuard',
+      title: 'Form Guard',
       description: 'AI-powered fitness companion using advanced pose estimation with MediaPipe and TensorFlow. Provides real-time exercise form analysis, rep counting, and injury prevention through intelligent audio/visual feedback.',
       image: 'https://images.pexels.com/photos/4162451/pexels-photo-4162451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['Flutter', 'TensorFlow', 'MediaPipe', 'Firebase', 'Python'],
@@ -68,7 +68,7 @@ const Projects: React.FC = () => {
       image: 'https://images.pexels.com/photos/7014766/pexels-photo-7014766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['React Native', 'Node.js', 'WebSocket', 'QR Code', 'Encryption'],
       demoLink: 'https://spslabs.vercel.app/products/cross-share',
-      category: 'Mobile App'
+      category: 'PC Software'
     },
     {
       title: 'Algo Sphere',
@@ -92,7 +92,7 @@ const Projects: React.FC = () => {
       image: 'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       technologies: ['React Native', 'Node.js', 'MongoDB', 'Redis', 'Google Maps API'],
       demoLink: 'https://spslabs.vercel.app/products/price-scout',
-      category: 'Mobile App'
+      category: 'Mobile App & Web App'
     },
     {
       title: 'PartnerHub',
