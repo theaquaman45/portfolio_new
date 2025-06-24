@@ -41,7 +41,7 @@ const Projects: React.FC = () => {
       description: 'Next-generation mobile application for educators to record professional-quality teaching sessions. Features split-screen interface with front camera and interactive whiteboard, multi-slide scene management, real-time recording with auto-subtitles, and comprehensive branding tools.',
       image: 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['Flutter', 'FFmpeg', 'OpenAI Whisper', 'Firebase', 'Razorpay'],
-      demoLink: 'https://spslabs.vercel.app/products/tutorbox',
+      demoLink: 'https://spslabs.vercel.app/products/tutor-box',
       featured: true,
       category: 'Mobile App'
     },
