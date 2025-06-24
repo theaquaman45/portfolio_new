@@ -233,9 +233,7 @@ const Footer: React.FC = () => {
               </div>
               
               <div className="flex items-center space-x-4">
-                <p className="text-gray-400 text-sm">
-                  Built with React, TypeScript & Three.js
-                </p>
+                
                 
                 <button 
                   onClick={scrollToTop}
