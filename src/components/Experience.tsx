@@ -44,7 +44,7 @@ const Experience: React.FC = () => {
       type: 'founder',
       achievements: ['Founded tech startup', '8+ products launched', 'SaaS revenue model'],
       description: [
-        'Co-founded SPSLabs, a technology solutions provider specializing in full-stack web and mobile application development.',
+        'Founded SPSLabs, a technology solutions provider specializing in full-stack web and mobile application development.',
         'Led the design and development of SaaS products and custom applications using React.js, Django, Flutter, and Python.',
         'Managed end-to-end project lifecycles, including requirement analysis, architecture design, development, deployment, and maintenance.',
         'Deployed applications on scalable cloud infrastructure, ensuring high availability and performance.',
@@ -54,7 +54,7 @@ const Experience: React.FC = () => {
     },
     {
       title: 'Full Stack Developer',
-      company: 'Spelll.in',
+      company: 'Spelll',
       period: 'Jan 2023 – Dec 2024',
       location: 'Remote',
       type: 'developer',
