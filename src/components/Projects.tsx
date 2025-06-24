@@ -52,7 +52,7 @@ const Projects: React.FC = () => {
       technologies: ['Next.js', 'Django', 'AWS', 'Razorpay', 'PostgreSQL'],
       demoLink: 'https://spslabs.vercel.app/products/zap-dine',
       featured: true,
-      category: 'Web App'
+      category: 'Web App & Mobile App'
     },
     {
       title: 'Form Guard',
@@ -95,7 +95,7 @@ const Projects: React.FC = () => {
       category: 'Mobile App & Web App'
     },
     {
-      title: 'PartnerHub',
+      title: 'Partner Hub',
       description: 'Centralized notification aggregator for delivery partners across multiple platforms. Features intelligent route optimization, comprehensive earnings tracking, and advanced task management capabilities.',
       image: 'https://images.pexels.com/photos/7709285/pexels-photo-7709285.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['React Native', 'Node.js', 'Express', 'MongoDB', 'Google Maps API'],
