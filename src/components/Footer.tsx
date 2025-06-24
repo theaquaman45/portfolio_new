@@ -225,16 +225,14 @@ const Footer: React.FC = () => {
                 <p className="text-gray-400 text-sm">
                   &copy; {currentYear} Sohard Pratap Singh.
                 </p>
-                <Heart size={16} className="mx-2 text-red-500 animate-pulse" />
+                
                 <p className="text-gray-400 text-sm">
                 
                 </p>
-                <Coffee size={16} className="mx-2 text-amber-500" />
+              
               </div>
               
               <div className="flex items-center space-x-4">
-                
-                
                 <button 
                   onClick={scrollToTop}
                   className="group p-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-xl"
