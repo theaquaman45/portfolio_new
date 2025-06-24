@@ -227,7 +227,7 @@ const Footer: React.FC = () => {
                 </p>
                 <Heart size={16} className="mx-2 text-red-500 animate-pulse" />
                 <p className="text-gray-400 text-sm">
-                  and lots of 
+                
                 </p>
                 <Coffee size={16} className="mx-2 text-amber-500" />
               </div>
