@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import DraggableControl from './DraggableControl';
 
 interface PhysicsObject {
   id: number;
@@ -453,24 +454,33 @@ const PhysicsEngine: React.FC = () => {
         style={{ zIndex: 2 }}
       />
       
-      {/* Physics Controls */}
-      <div className="fixed top-24 right-4 z-50 glass-card rounded-2xl p-4 space-y-2">
+      {/* Draggable Physics Controls */}
+      <DraggableControl 
+        initialPosition={{ x: 20, y: 120 }}
+        className="glass-card rounded-2xl p-4 space-y-2"
+      >
+        <div className="flex items-center mb-2">
+          <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-2"></div>
+          <span className="text-xs text-gray-600 dark:text-gray-400">Physics Controls</span>
+        </div>
+        
         <button
           onClick={() => setIsActive(!isActive)}
-          className={`w-full px-4 py-2 rounded-xl font-semibold apple-transition ${
+          className={`w-full px-4 py-2 rounded-xl font-semibold apple-transition apple-hover ${
             isActive 
               ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white' 
               : 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
           }`}
         >
-          {isActive ? 'Pause Physics' : 'Start Physics'}
+          {isActive ? '⏸️ Pause' : '▶️ Start'}
         </button>
         
-        <div className="text-xs text-gray-600 dark:text-gray-400 text-center">
+        <div className="text-xs text-gray-600 dark:text-gray-400 text-center leading-tight">
           Click to add particles<br/>
-          Drag to interact
+          Drag to interact<br/>
+          <span className="text-blue-500">🟢 Attractors</span> | <span className="text-red-500">🔴 Repulsors</span>
         </div>
-      </div>
+      </DraggableControl>
     </>
   );
 };

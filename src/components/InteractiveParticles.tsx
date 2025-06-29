@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import DraggableControl from './DraggableControl';
 
 interface Particle {
   x: number;
@@ -271,18 +272,33 @@ const InteractiveParticles: React.FC = () => {
         style={{ zIndex: 1 }}
       />
       
-      <div className="fixed top-24 left-4 z-50 glass-card rounded-2xl p-4">
+      {/* Draggable Connections Control */}
+      <DraggableControl 
+        initialPosition={{ x: 20, y: 120 }}
+        className="glass-card rounded-2xl p-4"
+      >
+        <div className="flex items-center mb-3">
+          <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-2"></div>
+          <span className="text-xs text-gray-600 dark:text-gray-400">Particle Controls</span>
+        </div>
+        
         <button
           onClick={() => setShowConnections(!showConnections)}
-          className={`px-4 py-2 rounded-xl font-semibold apple-transition ${
+          className={`w-full px-4 py-2 rounded-xl font-semibold apple-transition apple-hover ${
             showConnections 
-              ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white' 
+              ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg' 
               : 'glass-button text-gray-700 dark:text-gray-300'
           }`}
         >
-          {showConnections ? 'Hide Connections' : 'Show Connections'}
+          {showConnections ? '🔗 Hide Lines' : '🔗 Show Lines'}
         </button>
-      </div>
+        
+        <div className="text-xs text-gray-600 dark:text-gray-400 text-center mt-2 leading-tight">
+          Click for particle burst<br/>
+          Hold & drag to attract<br/>
+          Move for orbital motion
+        </div>
+      </DraggableControl>
     </>
   );
 };

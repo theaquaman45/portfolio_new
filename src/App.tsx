@@ -13,6 +13,7 @@ import LiquidFlowEffect from './components/LiquidFlowEffect';
 import PhysicsEngine from './components/PhysicsEngine';
 import FloatingElements from './components/FloatingElements';
 import InteractiveParticles from './components/InteractiveParticles';
+import DraggableControl from './components/DraggableControl';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
@@ -77,10 +78,14 @@ function App() {
       {physicsMode === 'particles' && <InteractiveParticles />}
       <FloatingElements />
       
-      {/* Physics Mode Switcher */}
-      <div className="fixed bottom-4 right-4 z-50 glass-card rounded-2xl p-4">
+      {/* Draggable Physics Mode Switcher */}
+      <DraggableControl 
+        initialPosition={{ x: window.innerWidth - 200, y: 100 }}
+        className="glass-card rounded-2xl p-4"
+      >
         <div className="flex flex-col space-y-2">
-          <div className="text-xs text-gray-600 dark:text-gray-400 text-center mb-2">
+          <div className="text-xs text-gray-600 dark:text-gray-400 text-center mb-2 flex items-center">
+            <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-2"></div>
             Physics Mode
           </div>
           {[
@@ -91,7 +96,7 @@ function App() {
             <button
               key={mode}
               onClick={() => setPhysicsMode(mode as any)}
-              className={`px-3 py-2 rounded-xl text-sm font-semibold apple-transition ${
+              className={`px-3 py-2 rounded-xl text-sm font-semibold apple-transition apple-hover ${
                 physicsMode === mode
                   ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
                   : 'glass-button text-gray-700 dark:text-gray-300'
@@ -102,7 +107,7 @@ function App() {
             </button>
           ))}
         </div>
-      </div>
+      </DraggableControl>
       
       <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <Hero />
