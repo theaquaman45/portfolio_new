@@ -46,11 +46,11 @@ const LiquidFlowEffect: React.FC = () => {
         this.maxLife = Math.random() * 300 + 200;
         this.type = type;
         
-        // Color based on type
+        // Updated color palette - soft blues, purples, and warm tones
         const colors = {
-          bubble: ['rgba(79, 70, 229, ', 'rgba(139, 92, 246, ', 'rgba(168, 85, 247, '],
-          flow: ['rgba(6, 182, 212, ', 'rgba(14, 165, 233, ', 'rgba(59, 130, 246, '],
-          wave: ['rgba(16, 185, 129, ', 'rgba(34, 197, 94, ', 'rgba(101, 163, 13, ']
+          bubble: ['rgba(99, 102, 241, ', 'rgba(139, 92, 246, ', 'rgba(168, 85, 247, '],
+          flow: ['rgba(59, 130, 246, ', 'rgba(147, 197, 253, ', 'rgba(191, 219, 254, '],
+          wave: ['rgba(129, 140, 248, ', 'rgba(165, 180, 252, ', 'rgba(196, 181, 253, ']
         };
         
         this.color = colors[type][Math.floor(Math.random() * colors[type].length)];
@@ -157,13 +157,13 @@ const LiquidFlowEffect: React.FC = () => {
     const drawFlowLines = (ctx: CanvasRenderingContext2D, time: number) => {
       ctx.save();
       
-      // Create flowing lines across the screen
+      // Create flowing lines across the screen with updated colors
       for (let i = 0; i < 5; i++) {
         const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-        gradient.addColorStop(0, 'rgba(79, 70, 229, 0)');
+        gradient.addColorStop(0, 'rgba(99, 102, 241, 0)');
         gradient.addColorStop(0.3, 'rgba(139, 92, 246, 0.1)');
         gradient.addColorStop(0.7, 'rgba(168, 85, 247, 0.1)');
-        gradient.addColorStop(1, 'rgba(79, 70, 229, 0)');
+        gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
         
         ctx.strokeStyle = gradient;
         ctx.lineWidth = 2;
@@ -189,14 +189,14 @@ const LiquidFlowEffect: React.FC = () => {
       ctx.restore();
     };
 
-    // Liquid waves
+    // Liquid waves with updated colors
     const drawLiquidWaves = (ctx: CanvasRenderingContext2D, time: number) => {
       ctx.save();
       
       // Bottom wave
       const gradient1 = ctx.createLinearGradient(0, canvas.height - 200, 0, canvas.height);
-      gradient1.addColorStop(0, 'rgba(6, 182, 212, 0.05)');
-      gradient1.addColorStop(1, 'rgba(14, 165, 233, 0.15)');
+      gradient1.addColorStop(0, 'rgba(59, 130, 246, 0.05)');
+      gradient1.addColorStop(1, 'rgba(147, 197, 253, 0.15)');
       
       ctx.fillStyle = gradient1;
       ctx.beginPath();
@@ -213,8 +213,8 @@ const LiquidFlowEffect: React.FC = () => {
       
       // Top wave
       const gradient2 = ctx.createLinearGradient(0, 0, 0, 200);
-      gradient2.addColorStop(0, 'rgba(16, 185, 129, 0.15)');
-      gradient2.addColorStop(1, 'rgba(34, 197, 94, 0.05)');
+      gradient2.addColorStop(0, 'rgba(129, 140, 248, 0.15)');
+      gradient2.addColorStop(1, 'rgba(165, 180, 252, 0.05)');
       
       ctx.fillStyle = gradient2;
       ctx.beginPath();

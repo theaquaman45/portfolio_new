@@ -112,7 +112,7 @@ const Experience: React.FC = () => {
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'founder': return 'from-yellow-500 to-orange-500';
-      case 'senior': return 'from-emerald-500 to-teal-500';
+      case 'senior': return 'from-blue-500 to-purple-500';
       default: return 'from-blue-500 to-indigo-500';
     }
   };
@@ -260,7 +260,7 @@ const Experience: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: Award, label: 'Companies Founded', value: '2', color: 'from-yellow-500 to-orange-500' },
-              { icon: Users, label: 'Years Experience', value: '4+', color: 'from-emerald-500 to-teal-500' },
+              { icon: Users, label: 'Years Experience', value: '4+', color: 'from-blue-500 to-purple-500' },
               { icon: TrendingUp, label: 'Projects Delivered', value: '50+', color: 'from-blue-500 to-indigo-500' }
             ].map((stat, index) => (
               <div 

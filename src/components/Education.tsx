@@ -108,7 +108,7 @@ const Education: React.FC = () => {
                   {/* Status Badge */}
                   <div className={`absolute top-6 right-6 px-4 py-2 rounded-full text-sm font-semibold ${
                     edu.status === 'ongoing' 
-                      ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white' 
+                      ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white' 
                       : 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white'
                   }`}>
                     {edu.status === 'ongoing' ? 'In Progress' : 'Completed'}
@@ -119,7 +119,7 @@ const Education: React.FC = () => {
                     <div className="flex flex-col items-center lg:items-start">
                       <div className={`w-24 h-24 bg-gradient-to-r ${
                         edu.status === 'ongoing' 
-                          ? 'from-emerald-500 to-teal-500' 
+                          ? 'from-blue-500 to-purple-500' 
                           : 'from-blue-500 to-indigo-500'
                       } rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 apple-transition shadow-2xl`}>
                         <GraduationCap size={36} className="text-white" />
@@ -198,7 +198,7 @@ const Education: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: BookOpen, label: 'Years of Study', value: '6+', color: 'from-blue-500 to-indigo-500' },
-              { icon: Award, label: 'Academic Excellence', value: '85%+', color: 'from-emerald-500 to-teal-500' },
+              { icon: Award, label: 'Academic Excellence', value: '85%+', color: 'from-blue-500 to-purple-500' },
               { icon: Brain, label: 'Technical Focus', value: 'CS', color: 'from-purple-500 to-pink-500' }
             ].map((stat, index) => (
               <div 

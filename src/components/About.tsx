@@ -76,7 +76,7 @@ const About: React.FC = () => {
                 { icon: Calendar, label: "Education", value: "Computer Science (Expected 2027)", color: "text-purple-500" },
                 { icon: MapPin, label: "Location", value: "Dehradun, India", color: "text-pink-500" },
                 { icon: Mail, label: "Email", value: "sohardpratapsingh346@gmail.com", color: "text-cyan-500" },
-                { icon: Phone, label: "Phone", value: "+91 9997697716", color: "text-emerald-500" }
+                { icon: Phone, label: "Phone", value: "+91 9997697716", color: "text-blue-500" }
               ].map((item, index) => (
                 <div 
                   key={item.label}
@@ -146,7 +146,7 @@ const About: React.FC = () => {
               <div className="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl flex items-center justify-center shadow-xl floating glass-card">
                 <Zap className="text-white" size={24} />
               </div>
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center shadow-xl floating-delayed glass-card">
+              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center shadow-xl floating-delayed glass-card">
                 <Heart className="text-white" size={24} />
               </div>
             </div>
