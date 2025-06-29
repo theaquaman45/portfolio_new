@@ -64,7 +64,7 @@ const LiquidFlowEffect: React.FC = () => {
         const dy = mouseY - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         
-        if (distance < 150) {
+        if (distance > 0 && distance < 150) {
           const force = (150 - distance) / 150;
           this.vx += (dx / distance) * force * 0.5;
           this.vy += (dy / distance) * force * 0.5;
