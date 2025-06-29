@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import DraggableControl from './DraggableControl';
+import React, { useEffect, useRef } from 'react';
 
 interface Particle {
   x: number;
@@ -13,12 +12,17 @@ interface Particle {
   connections: number[];
 }
 
-const InteractiveParticles: React.FC = () => {
+interface InteractiveParticlesProps {
+  showConnections?: boolean;
+}
+
+const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({ 
+  showConnections = true 
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: 0, y: 0, isPressed: false });
-  const [showConnections, setShowConnections] = useState(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -265,41 +269,11 @@ const InteractiveParticles: React.FC = () => {
   }, [showConnections]);
 
   return (
-    <>
-      <canvas
-        ref={canvasRef}
-        className="fixed top-0 left-0 w-full h-full pointer-events-auto opacity-60 dark:opacity-80"
-        style={{ zIndex: 1 }}
-      />
-      
-      {/* Draggable Connections Control */}
-      <DraggableControl 
-        initialPosition={{ x: 20, y: 120 }}
-        className="glass-card rounded-2xl p-4"
-      >
-        <div className="flex items-center mb-3">
-          <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-2"></div>
-          <span className="text-xs text-gray-600 dark:text-gray-400">Particle Controls</span>
-        </div>
-        
-        <button
-          onClick={() => setShowConnections(!showConnections)}
-          className={`w-full px-4 py-2 rounded-xl font-semibold apple-transition apple-hover ${
-            showConnections 
-              ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg' 
-              : 'glass-button text-gray-700 dark:text-gray-300'
-          }`}
-        >
-          {showConnections ? '🔗 Hide Lines' : '🔗 Show Lines'}
-        </button>
-        
-        <div className="text-xs text-gray-600 dark:text-gray-400 text-center mt-2 leading-tight">
-          Click for particle burst<br/>
-          Hold & drag to attract<br/>
-          Move for orbital motion
-        </div>
-      </DraggableControl>
-    </>
+    <canvas
+      ref={canvasRef}
+      className="fixed top-0 left-0 w-full h-full pointer-events-auto opacity-60 dark:opacity-80"
+      style={{ zIndex: 1 }}
+    />
   );
 };
 

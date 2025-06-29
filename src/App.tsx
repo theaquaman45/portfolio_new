@@ -13,11 +13,11 @@ import LiquidFlowEffect from './components/LiquidFlowEffect';
 import PhysicsEngine from './components/PhysicsEngine';
 import FloatingElements from './components/FloatingElements';
 import InteractiveParticles from './components/InteractiveParticles';
-import DraggableControl from './components/DraggableControl';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [physicsMode, setPhysicsMode] = useState<'liquid' | 'physics' | 'particles'>('liquid');
+  const [showConnections, setShowConnections] = useState<boolean>(true);
 
   useEffect(() => {
     // Check user's preference from localStorage or system preference
@@ -70,46 +70,30 @@ function App() {
     }
   };
 
+  const handlePhysicsModeChange = (mode: 'liquid' | 'physics' | 'particles') => {
+    setPhysicsMode(mode);
+  };
+
+  const toggleConnections = () => {
+    setShowConnections(!showConnections);
+  };
+
   return (
     <div className="min-h-screen bg-white/80 dark:bg-slate-900/80 text-gray-800 dark:text-gray-200 apple-transition relative overflow-x-hidden">
       {/* Background Effects */}
       {physicsMode === 'liquid' && <LiquidFlowEffect />}
       {physicsMode === 'physics' && <PhysicsEngine />}
-      {physicsMode === 'particles' && <InteractiveParticles />}
+      {physicsMode === 'particles' && <InteractiveParticles showConnections={showConnections} />}
       <FloatingElements />
       
-      {/* Draggable Physics Mode Switcher */}
-      <DraggableControl 
-        initialPosition={{ x: window.innerWidth - 200, y: 100 }}
-        className="glass-card rounded-2xl p-4"
-      >
-        <div className="flex flex-col space-y-2">
-          <div className="text-xs text-gray-600 dark:text-gray-400 text-center mb-2 flex items-center">
-            <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-2"></div>
-            Physics Mode
-          </div>
-          {[
-            { mode: 'liquid', label: '🌊 Liquid', desc: 'Liquid Flow' },
-            { mode: 'physics', label: '⚛️ Physics', desc: 'Physics Engine' },
-            { mode: 'particles', label: '✨ Particles', desc: 'Interactive Particles' }
-          ].map(({ mode, label, desc }) => (
-            <button
-              key={mode}
-              onClick={() => setPhysicsMode(mode as any)}
-              className={`px-3 py-2 rounded-xl text-sm font-semibold apple-transition apple-hover ${
-                physicsMode === mode
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
-                  : 'glass-button text-gray-700 dark:text-gray-300'
-              }`}
-              title={desc}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </DraggableControl>
-      
-      <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+      <Navbar 
+        toggleTheme={toggleTheme} 
+        isDarkMode={isDarkMode}
+        physicsMode={physicsMode}
+        onPhysicsModeChange={handlePhysicsModeChange}
+        showConnections={showConnections}
+        onToggleConnections={toggleConnections}
+      />
       <Hero />
       <About />
       <Skills />

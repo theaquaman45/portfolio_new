@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun, Terminal } from 'lucide-react';
+import { Menu, X, Moon, Sun, Terminal, Zap, Eye, EyeOff } from 'lucide-react';
 
 interface NavbarProps {
   toggleTheme: () => void;
   isDarkMode: boolean;
+  physicsMode?: 'liquid' | 'physics' | 'particles';
+  onPhysicsModeChange?: (mode: 'liquid' | 'physics' | 'particles') => void;
+  showConnections?: boolean;
+  onToggleConnections?: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
+const Navbar: React.FC<NavbarProps> = ({ 
+  toggleTheme, 
+  isDarkMode, 
+  physicsMode = 'liquid',
+  onPhysicsModeChange,
+  showConnections = true,
+  onToggleConnections
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [showPhysicsMenu, setShowPhysicsMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +55,12 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
     { href: '#experience', label: 'Experience' },
     { href: '#projects', label: 'Projects' },
     { href: '#contact', label: 'Contact' }
+  ];
+
+  const physicsOptions = [
+    { mode: 'liquid', label: '🌊', title: 'Liquid Flow' },
+    { mode: 'physics', label: '⚛️', title: 'Physics Engine' },
+    { mode: 'particles', label: '✨', title: 'Interactive Particles' }
   ];
 
   return (
@@ -98,6 +116,71 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
                 </a>
               ))}
               
+              {/* Physics Mode Selector */}
+              <div className="relative ml-4">
+                <button
+                  onClick={() => setShowPhysicsMenu(!showPhysicsMenu)}
+                  className="p-3 rounded-full glass-button apple-hover apple-transition group flex items-center space-x-2"
+                  title="Physics Mode"
+                >
+                  <Zap size={18} className="text-blue-600 dark:text-blue-400" />
+                  <span className="text-lg">
+                    {physicsOptions.find(opt => opt.mode === physicsMode)?.label}
+                  </span>
+                </button>
+                
+                {/* Physics Dropdown */}
+                {showPhysicsMenu && (
+                  <div className="absolute top-full right-0 mt-2 glass-card rounded-2xl p-3 shadow-2xl min-w-[200px]">
+                    <div className="text-xs text-gray-600 dark:text-gray-400 mb-3 font-semibold">
+                      Background Effects
+                    </div>
+                    <div className="space-y-2">
+                      {physicsOptions.map((option) => (
+                        <button
+                          key={option.mode}
+                          onClick={() => {
+                            onPhysicsModeChange?.(option.mode as any);
+                            setShowPhysicsMenu(false);
+                          }}
+                          className={`w-full flex items-center space-x-3 px-3 py-2 rounded-xl apple-transition apple-hover ${
+                            physicsMode === option.mode
+                              ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                              : 'glass-button text-gray-700 dark:text-gray-300'
+                          }`}
+                        >
+                          <span className="text-lg">{option.label}</span>
+                          <span className="text-sm font-medium">{option.title}</span>
+                        </button>
+                      ))}
+                    </div>
+                    
+                    {/* Connection Toggle for Particles Mode */}
+                    {physicsMode === 'particles' && (
+                      <>
+                        <div className="border-t border-gray-200 dark:border-gray-700 my-3"></div>
+                        <button
+                          onClick={() => {
+                            onToggleConnections?.();
+                            setShowPhysicsMenu(false);
+                          }}
+                          className={`w-full flex items-center space-x-3 px-3 py-2 rounded-xl apple-transition apple-hover ${
+                            showConnections
+                              ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg'
+                              : 'glass-button text-gray-700 dark:text-gray-300'
+                          }`}
+                        >
+                          {showConnections ? <Eye size={16} /> : <EyeOff size={16} />}
+                          <span className="text-sm font-medium">
+                            {showConnections ? 'Hide Connections' : 'Show Connections'}
+                          </span>
+                        </button>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+              
               {/* Theme Toggle */}
               <button 
                 onClick={toggleTheme} 
@@ -117,6 +200,17 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
           
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
+            {/* Mobile Physics Toggle */}
+            <button
+              onClick={() => setShowPhysicsMenu(!showPhysicsMenu)}
+              className="p-2 rounded-full glass-button apple-hover apple-transition"
+              title="Physics Mode"
+            >
+              <span className="text-lg">
+                {physicsOptions.find(opt => opt.mode === physicsMode)?.label}
+              </span>
+            </button>
+            
             <button 
               onClick={toggleTheme} 
               className="p-2 rounded-full glass-button apple-hover apple-transition"
@@ -175,8 +269,105 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
               {item.label}
             </a>
           ))}
+          
+          {/* Mobile Physics Controls */}
+          <div className="border-t border-gray-200 dark:border-gray-700 my-3"></div>
+          <div className="px-4 py-2">
+            <div className="text-xs text-gray-600 dark:text-gray-400 mb-3 font-semibold">
+              Background Effects
+            </div>
+            <div className="space-y-2">
+              {physicsOptions.map((option) => (
+                <button
+                  key={option.mode}
+                  onClick={() => {
+                    onPhysicsModeChange?.(option.mode as any);
+                    setIsMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center space-x-3 px-3 py-2 rounded-xl apple-transition apple-hover ${
+                    physicsMode === option.mode
+                      ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                      : 'glass-button text-gray-700 dark:text-gray-300'
+                  }`}
+                >
+                  <span className="text-lg">{option.label}</span>
+                  <span className="text-sm font-medium">{option.title}</span>
+                </button>
+              ))}
+            </div>
+            
+            {/* Mobile Connection Toggle */}
+            {physicsMode === 'particles' && (
+              <button
+                onClick={() => {
+                  onToggleConnections?.();
+                  setIsMenuOpen(false);
+                }}
+                className={`w-full flex items-center space-x-3 px-3 py-2 rounded-xl apple-transition apple-hover mt-2 ${
+                  showConnections
+                    ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg'
+                    : 'glass-button text-gray-700 dark:text-gray-300'
+                }`}
+              >
+                {showConnections ? <Eye size={16} /> : <EyeOff size={16} />}
+                <span className="text-sm font-medium">
+                  {showConnections ? 'Hide Connections' : 'Show Connections'}
+                </span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
+
+      {/* Mobile Physics Dropdown */}
+      {showPhysicsMenu && (
+        <div className="md:hidden fixed top-20 right-4 glass-card rounded-2xl p-3 shadow-2xl min-w-[200px] z-50">
+          <div className="text-xs text-gray-600 dark:text-gray-400 mb-3 font-semibold">
+            Background Effects
+          </div>
+          <div className="space-y-2">
+            {physicsOptions.map((option) => (
+              <button
+                key={option.mode}
+                onClick={() => {
+                  onPhysicsModeChange?.(option.mode as any);
+                  setShowPhysicsMenu(false);
+                }}
+                className={`w-full flex items-center space-x-3 px-3 py-2 rounded-xl apple-transition apple-hover ${
+                  physicsMode === option.mode
+                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                    : 'glass-button text-gray-700 dark:text-gray-300'
+                }`}
+              >
+                <span className="text-lg">{option.label}</span>
+                <span className="text-sm font-medium">{option.title}</span>
+              </button>
+            ))}
+          </div>
+          
+          {physicsMode === 'particles' && (
+            <>
+              <div className="border-t border-gray-200 dark:border-gray-700 my-3"></div>
+              <button
+                onClick={() => {
+                  onToggleConnections?.();
+                  setShowPhysicsMenu(false);
+                }}
+                className={`w-full flex items-center space-x-3 px-3 py-2 rounded-xl apple-transition apple-hover ${
+                  showConnections
+                    ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg'
+                    : 'glass-button text-gray-700 dark:text-gray-300'
+                }`}
+              >
+                {showConnections ? <Eye size={16} /> : <EyeOff size={16} />}
+                <span className="text-sm font-medium">
+                  {showConnections ? 'Hide Connections' : 'Show Connections'}
+                </span>
+              </button>
+            </>
+          )}
+        </div>
+      )}
     </nav>
   );
 };
