@@ -60,7 +60,7 @@
     border: 1px solid rgba(255,255,255,0.1);
   }
   
-  /* ULTIMATE Apple Liquid Glass Effect - OPTIMIZED */
+  /* ULTIMATE LIQUID GLASS EFFECT */
   .glass-effect {
     background: rgba(255, 255, 255, 0.45);
     backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
@@ -85,7 +85,7 @@
       0 0 0 1px rgba(255, 255, 255, 0.08);
   }
 
-  /* Enhanced Glass Variants - OPTIMIZED */
+  /* Enhanced Liquid Glass Variants */
   .glass-card {
     background: rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(35px) saturate(220%) brightness(1.15);
@@ -176,58 +176,25 @@
       inset 0 -1px 0 rgba(255, 255, 255, 0.06);
   }
   
-  /* ULTIMATE GRAVITY EFFECTS */
-  .gravity-card {
-    animation: gravity-float 4s ease-in-out infinite;
-    transform-style: preserve-3d;
-    will-change: transform;
+  /* LIQUID FLOW ANIMATIONS */
+  .liquid-flow {
+    animation: liquid-flow 8s ease-in-out infinite;
   }
   
-  .gravity-float {
-    animation: gravity-float 4s ease-in-out infinite;
+  .liquid-bubble {
+    animation: liquid-bubble 6s ease-in-out infinite;
   }
   
-  .gravity-float-delayed {
-    animation: gravity-float 4s ease-in-out infinite;
-    animation-delay: -2s;
+  .liquid-wave {
+    animation: liquid-wave 10s ease-in-out infinite;
   }
   
-  .gravity-float-right {
-    animation: gravity-float-right 4s ease-in-out infinite;
+  .liquid-ripple {
+    animation: liquid-ripple 4s ease-in-out infinite;
   }
   
-  .gravity-bounce {
-    animation: gravity-bounce 2s ease-in-out infinite;
-  }
-  
-  .gravity-text {
-    animation: gravity-text-float 3s ease-in-out infinite;
-  }
-  
-  .gravity-number {
-    animation: gravity-number-pulse 2s ease-in-out infinite;
-    transform-origin: center;
-  }
-  
-  .gravity-title {
-    animation: gravity-title-wave 3s ease-in-out infinite;
-  }
-  
-  .gravity-subtitle {
-    animation: gravity-subtitle-sway 2.5s ease-in-out infinite;
-  }
-  
-  .gravity-portal {
-    animation: gravity-portal-spin 6s ease-in-out infinite;
-  }
-  
-  .gravity-message {
-    animation: gravity-message-bounce 3s ease-in-out infinite;
-  }
-  
-  .gravity-message-delayed {
-    animation: gravity-message-bounce 3s ease-in-out infinite;
-    animation-delay: -1.5s;
+  .liquid-glow {
+    animation: liquid-glow 3s ease-in-out infinite alternate;
   }
   
   .floating {
@@ -255,7 +222,7 @@
     transform: scale(1.05);
   }
 
-  /* Apple-style smooth transitions - OPTIMIZED */
+  /* Apple-style smooth transitions with liquid feel */
   .apple-transition {
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
@@ -266,7 +233,8 @@
       0 20px 60px rgba(31, 38, 135, 0.25),
       inset 0 2px 0 rgba(255, 255, 255, 0.8),
       inset 0 -2px 0 rgba(255, 255, 255, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.2);
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      0 0 30px rgba(6, 182, 212, 0.2);
   }
 
   .dark .apple-hover:hover {
@@ -274,113 +242,84 @@
       0 20px 60px rgba(0, 0, 0, 0.5),
       inset 0 2px 0 rgba(255, 255, 255, 0.2),
       inset 0 -2px 0 rgba(255, 255, 255, 0.1),
-      0 0 0 1px rgba(255, 255, 255, 0.12);
+      0 0 0 1px rgba(255, 255, 255, 0.12),
+      0 0 30px rgba(6, 182, 212, 0.3);
   }
 }
 
-/* ULTIMATE GRAVITY ANIMATIONS */
-@keyframes gravity-float {
+/* LIQUID FLOW ANIMATIONS */
+@keyframes liquid-flow {
   0%, 100% { 
-    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-  }
-  25% { 
-    transform: translateY(-8px) rotateX(2deg) rotateY(1deg);
-  }
-  50% { 
-    transform: translateY(-12px) rotateX(0deg) rotateY(-1deg);
-  }
-  75% { 
-    transform: translateY(-6px) rotateX(-1deg) rotateY(0.5deg);
-  }
-}
-
-@keyframes gravity-float-right {
-  0%, 100% { 
-    transform: translateY(0px) rotateX(0deg) rotateZ(0deg);
-  }
-  33% { 
-    transform: translateY(-10px) rotateX(1deg) rotateZ(-1deg);
-  }
-  66% { 
-    transform: translateY(-5px) rotateX(-0.5deg) rotateZ(0.5deg);
-  }
-}
-
-@keyframes gravity-bounce {
-  0%, 100% { 
-    transform: scale(1) translateY(0px);
-  }
-  50% { 
-    transform: scale(1.1) translateY(-3px);
-  }
-}
-
-@keyframes gravity-text-float {
-  0%, 100% { 
-    transform: translateY(0px);
-    opacity: 1;
-  }
-  50% { 
-    transform: translateY(-2px);
-    opacity: 0.8;
-  }
-}
-
-@keyframes gravity-number-pulse {
-  0%, 100% { 
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  50% { 
-    transform: scale(1.05);
-    filter: brightness(1.2);
-  }
-}
-
-@keyframes gravity-title-wave {
-  0%, 100% { 
-    transform: translateY(0px) rotateZ(0deg);
-  }
-  25% { 
-    transform: translateY(-3px) rotateZ(0.5deg);
-  }
-  75% { 
-    transform: translateY(-1px) rotateZ(-0.3deg);
-  }
-}
-
-@keyframes gravity-subtitle-sway {
-  0%, 100% { 
-    transform: translateX(0px) rotateZ(0deg);
-  }
-  33% { 
-    transform: translateX(-2px) rotateZ(0.3deg);
-  }
-  66% { 
-    transform: translateX(2px) rotateZ(-0.3deg);
-  }
-}
-
-@keyframes gravity-portal-spin {
-  0%, 100% { 
-    transform: scale(1) rotateZ(0deg);
+    transform: translateX(0px) translateY(0px) scale(1);
     filter: hue-rotate(0deg);
   }
+  25% { 
+    transform: translateX(10px) translateY(-5px) scale(1.05);
+    filter: hue-rotate(90deg);
+  }
   50% { 
-    transform: scale(1.05) rotateZ(180deg);
+    transform: translateX(-5px) translateY(-10px) scale(0.95);
     filter: hue-rotate(180deg);
+  }
+  75% { 
+    transform: translateX(-10px) translateY(5px) scale(1.02);
+    filter: hue-rotate(270deg);
   }
 }
 
-@keyframes gravity-message-bounce {
+@keyframes liquid-bubble {
   0%, 100% { 
     transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: translateY(-20px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes liquid-wave {
+  0%, 100% { 
+    transform: translateX(0px) rotateZ(0deg);
+    border-radius: 50%;
   }
   25% { 
-    transform: translateY(-5px) scale(1.02);
+    transform: translateX(15px) rotateZ(5deg);
+    border-radius: 60% 40% 30% 70%;
+  }
+  50% { 
+    transform: translateX(-10px) rotateZ(-3deg);
+    border-radius: 30% 60% 70% 40%;
   }
   75% { 
-    transform: translateY(-2px) scale(0.98);
+    transform: translateX(8px) rotateZ(2deg);
+    border-radius: 40% 30% 60% 70%;
+  }
+}
+
+@keyframes liquid-ripple {
+  0% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% { 
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes liquid-glow {
+  0% { 
+    box-shadow: 
+      0 0 20px rgba(6, 182, 212, 0.3),
+      0 0 40px rgba(14, 165, 233, 0.2),
+      inset 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  100% { 
+    box-shadow: 
+      0 0 40px rgba(6, 182, 212, 0.6),
+      0 0 80px rgba(14, 165, 233, 0.4),
+      inset 0 0 40px rgba(255, 255, 255, 0.2);
   }
 }
 
@@ -410,7 +349,7 @@
   50% { background-position: 100% 50%; }
 }
 
-/* Custom scrollbar with OPTIMIZED glass effect */
+/* Custom scrollbar with liquid glass effect */
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -423,19 +362,19 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(79, 70, 229, 0.4);
+  background: linear-gradient(45deg, rgba(6, 182, 212, 0.4), rgba(79, 70, 229, 0.4));
   backdrop-filter: blur(15px);
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 
-    0 3px 10px rgba(79, 70, 229, 0.2),
+    0 3px 10px rgba(6, 182, 212, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(79, 70, 229, 0.6);
+  background: linear-gradient(45deg, rgba(6, 182, 212, 0.6), rgba(79, 70, 229, 0.6));
   box-shadow: 
-    0 4px 12px rgba(79, 70, 229, 0.3),
+    0 4px 12px rgba(6, 182, 212, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
@@ -446,14 +385,14 @@
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(79, 70, 229, 0.5);
+  background: linear-gradient(45deg, rgba(6, 182, 212, 0.5), rgba(79, 70, 229, 0.5));
   border: 2px solid rgba(255, 255, 255, 0.08);
   box-shadow: 
     0 3px 10px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* OPTIMIZED smooth transitions for all elements */
+/* Smooth transitions for all elements with liquid feel */
 * {
   transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
               background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
@@ -464,29 +403,30 @@
               box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Selection styling with OPTIMIZED glass effect */
+/* Selection styling with liquid glass effect */
 ::selection {
-  background: rgba(79, 70, 229, 0.3);
+  background: rgba(6, 182, 212, 0.3);
   backdrop-filter: blur(15px);
   color: inherit;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .dark ::selection {
-  background: rgba(79, 70, 229, 0.5);
+  background: rgba(6, 182, 212, 0.5);
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
-/* Focus styles with OPTIMIZED glass effect */
+/* Focus styles with liquid glass effect */
 button:focus,
 a:focus,
 input:focus,
 textarea:focus {
   outline: none;
   box-shadow: 
-    0 0 0 3px rgba(79, 70, 229, 0.3),
+    0 0 0 3px rgba(6, 182, 212, 0.3),
     0 6px 20px rgba(31, 38, 135, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 0 30px rgba(6, 182, 212, 0.2);
 }
 
 /* Professional typography improvements */
@@ -526,4 +466,32 @@ html, body {
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
+}
+
+/* Liquid morphing effects for interactive elements */
+.liquid-morph {
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.liquid-morph:hover {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  transform: scale(1.05) rotate(1deg);
+}
+
+/* Liquid background patterns */
+.liquid-bg {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(14, 165, 233, 0.1) 0%, transparent 50%);
+  animation: liquid-bg-flow 15s ease-in-out infinite;
+}
+
+@keyframes liquid-bg-flow {
+  0%, 100% { 
+    background-position: 0% 0%, 100% 100%, 50% 50%;
+  }
+  50% { 
+    background-position: 100% 100%, 0% 0%, 25% 75%;
+  }
 }

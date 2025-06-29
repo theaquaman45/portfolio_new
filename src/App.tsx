@@ -11,7 +11,7 @@ import Education from './components/Education';
 import Certifications from './components/Certifications';
 import Background3D from './components/Background3D';
 import BatmanJokerBattle from './components/BatmanJokerBattle';
-import SpiderEcosystem from './components/SpiderEcosystem';
+import LiquidFlowEffect from './components/LiquidFlowEffect';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
@@ -71,7 +71,7 @@ function App() {
     <div className="min-h-screen bg-white/80 dark:bg-slate-900/80 text-gray-800 dark:text-gray-200 apple-transition relative overflow-x-hidden">
       <Background3D />
       <BatmanJokerBattle />
-      <SpiderEcosystem />
+      <LiquidFlowEffect />
       <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <Hero />
       <About />
