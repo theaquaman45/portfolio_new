@@ -465,72 +465,13 @@ const BatmanJokerBattle: React.FC = () => {
         style={{ zIndex: -1 }}
       />
       
-      {/* GRAVITY-ENHANCED REALITY STATUS */}
-      <div className="fixed top-4 left-4 z-50 space-y-4 pointer-events-none">
-        <div className="gravity-card glass-card rounded-2xl p-4 gravity-float">
-          <div className="text-sm font-bold text-white mb-2 flex items-center">
-            🌌 REALITY STATUS
-          </div>
-          <div className="flex space-x-2">
-            {[0, 1, 2, 3].map((level) => (
-              <div
-                key={level}
-                className={`w-4 h-4 rounded-full transition-all duration-500 gravity-bounce ${
-                  realityBreakLevel >= level 
-                    ? 'bg-gradient-to-r from-red-500 to-purple-500 shadow-lg animate-pulse' 
-                    : 'bg-gray-600'
-                }`}
-                style={{ animationDelay: `${level * 0.1}s` }}
-              />
-            ))}
-          </div>
-          <div className="text-xs text-gray-300 mt-2 gravity-text">
-            {realityBreakLevel === 0 && "Reality Stable"}
-            {realityBreakLevel === 1 && "Minor Distortions"}
-            {realityBreakLevel === 2 && "Reality Fracturing"}
-            {realityBreakLevel === 3 && "REALITY COLLAPSED"}
-          </div>
-        </div>
-        
-        <div className="gravity-card glass-card rounded-2xl p-4 gravity-float-delayed">
-          <div className="text-sm font-bold text-white mb-2">🎭 BATTLE PHASE</div>
-          <div className="flex space-x-2">
-            {[0, 1, 2, 3, 4].map((phase) => (
-              <div
-                key={phase}
-                className={`w-3 h-3 rounded-full transition-all duration-500 gravity-bounce ${
-                  battlePhase >= phase 
-                    ? 'bg-gradient-to-r from-yellow-400 to-red-500 shadow-lg' 
-                    : 'bg-gray-600'
-                }`}
-                style={{ animationDelay: `${phase * 0.1}s` }}
-              />
-            ))}
-          </div>
-          <div className="text-xs text-gray-300 mt-2 gravity-text">
-            {battlePhase === 0 && "Standoff"}
-            {battlePhase === 1 && "Aerial Combat"}
-            {battlePhase === 2 && "Close Combat"}
-            {battlePhase === 3 && "Reality Breaking"}
-            {battlePhase === 4 && "Ultimate Showdown"}
-          </div>
-        </div>
-      </div>
-
-      {/* GRAVITY-ENHANCED INTERACTION COUNTER */}
-      <div className="fixed top-4 right-4 z-50 gravity-card glass-card rounded-2xl p-4 pointer-events-none gravity-float-right">
-        <div className="text-sm font-bold text-white mb-2">👁️ AWARENESS LEVEL</div>
-        <div className="text-2xl font-bold text-gradient-exotic gravity-number">{userInteractionCount}</div>
-        <div className="text-xs text-gray-300 gravity-text">Mouse movements detected</div>
-      </div>
-
       {/* Enhanced Portal Activation */}
       {isPortalOpen && (
         <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none">
-          <div className="gravity-card glass-card rounded-3xl p-8 text-center animate-pulse border-4 border-purple-500 gravity-portal">
-            <div className="text-4xl font-bold text-white mb-4 gravity-title">🌀 PORTAL ACTIVATED 🌀</div>
-            <div className="text-xl text-purple-300 mb-4 gravity-subtitle">Reality has been breached!</div>
-            <div className="text-gray-300 gravity-text">The characters are now aware of your presence</div>
+          <div className="glass-card rounded-3xl p-8 text-center animate-pulse border-4 border-purple-500">
+            <div className="text-4xl font-bold text-white mb-4">🌀 PORTAL ACTIVATED 🌀</div>
+            <div className="text-xl text-purple-300 mb-4">Reality has been breached!</div>
+            <div className="text-gray-300">The characters are now aware of your presence</div>
           </div>
         </div>
       )}
@@ -538,20 +479,39 @@ const BatmanJokerBattle: React.FC = () => {
       {/* Enhanced Battle Messages */}
       {battlePhase === 2 && (
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none">
-          <div className="gravity-card glass-card rounded-3xl p-8 text-center animate-bounce border-2 border-yellow-500 gravity-message">
-            <div className="text-3xl font-bold text-white mb-4 gravity-title">🦇 BATMAN SENSES YOU! 🦇</div>
-            <div className="text-xl text-yellow-300 mb-2 gravity-subtitle">He's looking directly at your cursor!</div>
-            <div className="text-gray-300 gravity-text">Move your mouse to control his attention</div>
+          <div className="glass-card rounded-3xl p-8 text-center animate-bounce border-2 border-yellow-500">
+            <div className="text-3xl font-bold text-white mb-4">🦇 BATMAN SENSES YOU! 🦇</div>
+            <div className="text-xl text-yellow-300 mb-2">He's looking directly at your cursor!</div>
+            <div className="text-gray-300">Move your mouse to control his attention</div>
           </div>
         </div>
       )}
 
       {battlePhase === 3 && realityBreakLevel >= 2 && (
         <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
-          <div className="gravity-card glass-card rounded-3xl p-8 text-center animate-pulse border-2 border-green-500 gravity-message-delayed">
-            <div className="text-3xl font-bold text-white mb-4 gravity-title">🃏 JOKER'S CHAOS UNLEASHED! 🃏</div>
-            <div className="text-xl text-green-300 mb-2 gravity-subtitle">Reality is bending to his will!</div>
-            <div className="text-gray-300 gravity-text">Double-click to break reality further!</div>
+          <div className="glass-card rounded-3xl p-8 text-center animate-pulse border-2 border-green-500">
+            <div className="text-3xl font-bold text-white mb-4">🃏 JOKER'S CHAOS UNLEASHED! 🃏</div>
+            <div className="text-xl text-green-300 mb-2">Reality is bending to his will!</div>
+            <div className="text-gray-300">Double-click to break reality further!</div>
+          </div>
+        </div>
+      )}
+
+      {battlePhase === 4 && (
+        <div className="fixed top-1/4 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
+          <div className="glass-card rounded-3xl p-8 text-center animate-pulse border-4 border-red-500">
+            <div className="text-4xl font-bold text-white mb-4">⚡ ULTIMATE SHOWDOWN! ⚡</div>
+            <div className="text-xl text-red-300 mb-2">The fabric of reality is tearing!</div>
+            <div className="text-gray-300">You are now part of the battle!</div>
+          </div>
+        </div>
+      )}
+
+      {userInteractionCount > 1000 && (
+        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
+          <div className="glass-card rounded-2xl p-4 text-center animate-pulse">
+            <div className="text-lg font-bold text-white">🎉 EASTER EGG UNLOCKED! 🎉</div>
+            <div className="text-sm text-purple-300">You've discovered the secret interaction level!</div>
           </div>
         </div>
       )}
