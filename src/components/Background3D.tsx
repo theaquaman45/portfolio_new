@@ -7,17 +7,18 @@ const Background3D: React.FC = () => {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const particlesRef = useRef<THREE.Points | null>(null);
   const geometryRef = useRef<THREE.BufferGeometry | null>(null);
-  const haloRef = useRef<THREE.Mesh | null>(null);
-  const ringsRef = useRef<THREE.Group | null>(null);
-  const globeRef = useRef<THREE.Mesh | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Scene setup
+    // Enhanced scene setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({ 
+      alpha: true, 
+      antialias: true,
+      powerPreference: "high-performance"
+    });
     
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
@@ -27,137 +28,99 @@ const Background3D: React.FC = () => {
     sceneRef.current = scene;
     rendererRef.current = renderer;
 
-    // Create Halo Effect
-    const createHalo = () => {
-      const haloGeometry = new THREE.RingGeometry(2, 3, 32);
-      const haloMaterial = new THREE.MeshBasicMaterial({
-        color: 0x8b5cf6,
-        transparent: true,
-        opacity: 0.1,
-        side: THREE.DoubleSide
-      });
-      const halo = new THREE.Mesh(haloGeometry, haloMaterial);
-      halo.position.set(-5, 2, -8);
-      halo.rotation.x = Math.PI / 4;
-      scene.add(halo);
-      haloRef.current = halo;
-      return halo;
-    };
-
-    // Create Rings
-    const createRings = () => {
-      const ringsGroup = new THREE.Group();
-      
-      for (let i = 0; i < 3; i++) {
-        const ringGeometry = new THREE.TorusGeometry(1 + i * 0.5, 0.02, 8, 100);
-        const ringMaterial = new THREE.MeshBasicMaterial({
-          color: new THREE.Color().setHSL(0.7 + i * 0.1, 0.8, 0.6),
-          transparent: true,
-          opacity: 0.3
-        });
-        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-        ring.rotation.x = Math.PI / 2 + i * 0.2;
-        ring.rotation.y = i * 0.3;
-        ringsGroup.add(ring);
-      }
-      
-      ringsGroup.position.set(6, -3, -10);
-      scene.add(ringsGroup);
-      ringsRef.current = ringsGroup;
-      return ringsGroup;
-    };
-
-    // Create Globe
-    const createGlobe = () => {
-      const globeGeometry = new THREE.SphereGeometry(1.5, 32, 32);
-      const globeMaterial = new THREE.MeshBasicMaterial({
-        color: 0x4f46e5,
-        transparent: true,
-        opacity: 0.15,
-        wireframe: true
-      });
-      const globe = new THREE.Mesh(globeGeometry, globeMaterial);
-      globe.position.set(0, 0, -12);
-      scene.add(globe);
-      globeRef.current = globe;
-      return globe;
-    };
-
-    // Create floating geometric shapes
-    const createFloatingShapes = () => {
-      const shapes = [];
-      const shapeCount = 20;
-
-      for (let i = 0; i < shapeCount; i++) {
-        const geometries = [
-          new THREE.BoxGeometry(0.1, 0.1, 0.1),
-          new THREE.SphereGeometry(0.05, 8, 6),
-          new THREE.ConeGeometry(0.05, 0.1, 6),
-          new THREE.OctahedronGeometry(0.06),
-          new THREE.TetrahedronGeometry(0.07),
-        ];
-
-        const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-        const material = new THREE.MeshBasicMaterial({
-          color: new THREE.Color().setHSL(Math.random() * 0.3 + 0.6, 0.7, 0.6),
-          transparent: true,
-          opacity: 0.4,
-          wireframe: Math.random() > 0.6
-        });
-
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(
-          (Math.random() - 0.5) * 15,
-          (Math.random() - 0.5) * 10,
-          (Math.random() - 0.5) * 15
-        );
-        mesh.rotation.set(
-          Math.random() * Math.PI,
-          Math.random() * Math.PI,
-          Math.random() * Math.PI
-        );
-
-        scene.add(mesh);
-        shapes.push(mesh);
-      }
-
-      return shapes;
-    };
-
-    // Create enhanced particle system
-    const createParticles = () => {
+    // QUANTUM PARTICLE SYSTEM
+    const createQuantumParticles = () => {
       const particlesGeometry = new THREE.BufferGeometry();
-      const particlesCount = 4000;
+      const particlesCount = 8000;
       const posArray = new Float32Array(particlesCount * 3);
       const colorArray = new Float32Array(particlesCount * 3);
       const sizeArray = new Float32Array(particlesCount);
+      const velocityArray = new Float32Array(particlesCount * 3);
 
       for (let i = 0; i < particlesCount * 3; i += 3) {
-        posArray[i] = (Math.random() - 0.5) * 25;
-        posArray[i + 1] = (Math.random() - 0.5) * 25;
-        posArray[i + 2] = (Math.random() - 0.5) * 25;
+        // Create galaxy-like distribution
+        const radius = Math.random() * 30;
+        const angle = Math.random() * Math.PI * 2;
+        const height = (Math.random() - 0.5) * 20;
+        
+        posArray[i] = Math.cos(angle) * radius;
+        posArray[i + 1] = height;
+        posArray[i + 2] = Math.sin(angle) * radius;
 
-        // Create gradient colors
-        const hue = (Math.random() * 0.4) + 0.5; // Purple to blue range
-        const color = new THREE.Color().setHSL(hue, 0.8, 0.7);
+        // Velocity for orbital motion
+        velocityArray[i] = -Math.sin(angle) * 0.01;
+        velocityArray[i + 1] = (Math.random() - 0.5) * 0.005;
+        velocityArray[i + 2] = Math.cos(angle) * 0.01;
+
+        // Quantum color spectrum
+        const hue = (Math.random() * 0.6) + 0.4; // Purple to cyan range
+        const saturation = 0.8 + Math.random() * 0.2;
+        const lightness = 0.5 + Math.random() * 0.5;
+        const color = new THREE.Color().setHSL(hue, saturation, lightness);
+        
         colorArray[i] = color.r;
         colorArray[i + 1] = color.g;
         colorArray[i + 2] = color.b;
 
-        sizeArray[i / 3] = Math.random() * 0.03 + 0.01;
+        sizeArray[i / 3] = Math.random() * 0.05 + 0.02;
       }
 
       particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
       particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
       particlesGeometry.setAttribute('size', new THREE.BufferAttribute(sizeArray, 1));
+      particlesGeometry.setAttribute('velocity', new THREE.BufferAttribute(velocityArray, 3));
 
-      const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.02,
-        vertexColors: true,
+      // Advanced particle material with custom shader
+      const particlesMaterial = new THREE.ShaderMaterial({
+        uniforms: {
+          time: { value: 0 },
+          pixelRatio: { value: Math.min(window.devicePixelRatio, 2) }
+        },
+        vertexShader: `
+          attribute float size;
+          attribute vec3 velocity;
+          varying vec3 vColor;
+          uniform float time;
+          uniform float pixelRatio;
+          
+          void main() {
+            vColor = color;
+            
+            vec3 pos = position;
+            pos += velocity * time * 10.0;
+            
+            // Quantum fluctuation
+            pos.x += sin(time * 2.0 + position.y * 0.1) * 0.5;
+            pos.z += cos(time * 1.5 + position.x * 0.1) * 0.5;
+            
+            vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+            gl_Position = projectionMatrix * mvPosition;
+            gl_PointSize = size * pixelRatio * (300.0 / -mvPosition.z);
+          }
+        `,
+        fragmentShader: `
+          varying vec3 vColor;
+          uniform float time;
+          
+          void main() {
+            vec2 center = gl_PointCoord - vec2(0.5);
+            float dist = length(center);
+            
+            if (dist > 0.5) discard;
+            
+            float alpha = 1.0 - smoothstep(0.0, 0.5, dist);
+            alpha *= 0.8 + 0.2 * sin(time * 5.0);
+            
+            // Quantum glow effect
+            vec3 glow = vColor * (1.0 + sin(time * 3.0 + dist * 10.0) * 0.3);
+            
+            gl_FragColor = vec4(glow, alpha);
+          }
+        `,
         transparent: true,
-        opacity: 0.6,
+        vertexColors: true,
         blending: THREE.AdditiveBlending,
-        sizeAttenuation: true
+        depthWrite: false
       });
 
       const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -166,18 +129,189 @@ const Background3D: React.FC = () => {
       geometryRef.current = particlesGeometry;
       particlesRef.current = particlesMesh;
 
-      return particlesMesh;
+      return { particlesMesh, particlesMaterial };
     };
 
-    const shapes = createFloatingShapes();
-    const particles = createParticles();
-    const halo = createHalo();
-    const rings = createRings();
-    const globe = createGlobe();
+    // DIMENSIONAL RIFTS
+    const createDimensionalRifts = () => {
+      const rifts = [];
+      
+      for (let i = 0; i < 5; i++) {
+        const riftGeometry = new THREE.TorusGeometry(2 + i, 0.1, 16, 100);
+        const riftMaterial = new THREE.ShaderMaterial({
+          uniforms: {
+            time: { value: 0 },
+            color1: { value: new THREE.Color(0x8b5cf6) },
+            color2: { value: new THREE.Color(0x06b6d4) }
+          },
+          vertexShader: `
+            varying vec2 vUv;
+            varying vec3 vPosition;
+            uniform float time;
+            
+            void main() {
+              vUv = uv;
+              vPosition = position;
+              
+              vec3 pos = position;
+              pos.x += sin(time * 2.0 + position.y * 5.0) * 0.1;
+              pos.y += cos(time * 1.5 + position.z * 5.0) * 0.1;
+              
+              gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+            }
+          `,
+          fragmentShader: `
+            uniform float time;
+            uniform vec3 color1;
+            uniform vec3 color2;
+            varying vec2 vUv;
+            varying vec3 vPosition;
+            
+            void main() {
+              float wave = sin(vUv.x * 20.0 - time * 5.0) * 0.5 + 0.5;
+              vec3 color = mix(color1, color2, wave);
+              
+              float alpha = 0.7 + 0.3 * sin(time * 3.0 + vPosition.x * 10.0);
+              
+              gl_FragColor = vec4(color, alpha);
+            }
+          `,
+          transparent: true,
+          side: THREE.DoubleSide
+        });
+        
+        const rift = new THREE.Mesh(riftGeometry, riftMaterial);
+        rift.position.set(
+          (Math.random() - 0.5) * 40,
+          (Math.random() - 0.5) * 20,
+          (Math.random() - 0.5) * 30
+        );
+        rift.rotation.set(
+          Math.random() * Math.PI,
+          Math.random() * Math.PI,
+          Math.random() * Math.PI
+        );
+        
+        scene.add(rift);
+        rifts.push({ mesh: rift, material: riftMaterial });
+      }
+      
+      return rifts;
+    };
 
-    camera.position.z = 5;
+    // FLOATING GEOMETRIC ENTITIES
+    const createGeometricEntities = () => {
+      const entities = [];
+      const geometries = [
+        new THREE.OctahedronGeometry(0.3),
+        new THREE.IcosahedronGeometry(0.25),
+        new THREE.TetrahedronGeometry(0.35),
+        new THREE.DodecahedronGeometry(0.2)
+      ];
 
-    // Mouse interaction
+      for (let i = 0; i < 30; i++) {
+        const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+        const material = new THREE.MeshPhysicalMaterial({
+          color: new THREE.Color().setHSL(Math.random() * 0.4 + 0.5, 0.8, 0.6),
+          metalness: 0.8,
+          roughness: 0.2,
+          transparent: true,
+          opacity: 0.7,
+          transmission: 0.3,
+          thickness: 0.5,
+          emissive: new THREE.Color().setHSL(Math.random() * 0.4 + 0.5, 0.5, 0.1),
+          emissiveIntensity: 0.5
+        });
+
+        const entity = new THREE.Mesh(geometry, material);
+        entity.position.set(
+          (Math.random() - 0.5) * 50,
+          (Math.random() - 0.5) * 30,
+          (Math.random() - 0.5) * 40
+        );
+        entity.rotation.set(
+          Math.random() * Math.PI,
+          Math.random() * Math.PI,
+          Math.random() * Math.PI
+        );
+
+        scene.add(entity);
+        entities.push(entity);
+      }
+
+      return entities;
+    };
+
+    // ENERGY FIELDS
+    const createEnergyFields = () => {
+      const fields = [];
+      
+      for (let i = 0; i < 3; i++) {
+        const fieldGeometry = new THREE.SphereGeometry(5 + i * 2, 32, 32);
+        const fieldMaterial = new THREE.ShaderMaterial({
+          uniforms: {
+            time: { value: 0 },
+            opacity: { value: 0.1 }
+          },
+          vertexShader: `
+            varying vec3 vPosition;
+            varying vec3 vNormal;
+            uniform float time;
+            
+            void main() {
+              vPosition = position;
+              vNormal = normal;
+              
+              vec3 pos = position;
+              pos += normal * sin(time * 2.0 + position.x * 0.5) * 0.3;
+              
+              gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+            }
+          `,
+          fragmentShader: `
+            uniform float time;
+            uniform float opacity;
+            varying vec3 vPosition;
+            varying vec3 vNormal;
+            
+            void main() {
+              float fresnel = pow(1.0 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+              
+              vec3 color = vec3(0.5 + 0.5 * sin(time + vPosition.x * 0.1),
+                               0.5 + 0.5 * sin(time * 1.3 + vPosition.y * 0.1),
+                               0.5 + 0.5 * sin(time * 1.7 + vPosition.z * 0.1));
+              
+              float alpha = fresnel * opacity * (0.5 + 0.5 * sin(time * 3.0));
+              
+              gl_FragColor = vec4(color, alpha);
+            }
+          `,
+          transparent: true,
+          side: THREE.BackSide
+        });
+        
+        const field = new THREE.Mesh(fieldGeometry, fieldMaterial);
+        field.position.set(
+          (Math.random() - 0.5) * 30,
+          (Math.random() - 0.5) * 20,
+          (Math.random() - 0.5) * 25
+        );
+        
+        scene.add(field);
+        fields.push({ mesh: field, material: fieldMaterial });
+      }
+      
+      return fields;
+    };
+
+    const { particlesMesh, particlesMaterial } = createQuantumParticles();
+    const dimensionalRifts = createDimensionalRifts();
+    const geometricEntities = createGeometricEntities();
+    const energyFields = createEnergyFields();
+
+    camera.position.z = 15;
+
+    // Advanced mouse interaction
     let mouseX = 0;
     let mouseY = 0;
     let targetX = 0;
@@ -190,7 +324,7 @@ const Background3D: React.FC = () => {
 
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Animation loop
+    // Ultimate animation loop
     const clock = new THREE.Clock();
     
     const animate = () => {
@@ -198,69 +332,75 @@ const Background3D: React.FC = () => {
       const elapsedTime = clock.getElapsedTime();
 
       // Smooth mouse following
-      targetX += (mouseX - targetX) * 0.02;
-      targetY += (mouseY - targetY) * 0.02;
+      targetX += (mouseX - targetX) * 0.03;
+      targetY += (mouseY - targetY) * 0.03;
 
-      // Animate particles
-      if (particles) {
-        particles.rotation.y += 0.001;
-        particles.rotation.x += 0.0005;
-        
-        // Mouse interaction with particles
-        particles.position.x = targetX * 0.3;
-        particles.position.y = targetY * 0.3;
+      // Update particle system
+      if (particlesMaterial) {
+        particlesMaterial.uniforms.time.value = elapsedTime;
       }
 
-      // Animate halo
-      if (halo) {
-        halo.rotation.z += 0.005;
-        halo.material.opacity = 0.1 + Math.sin(elapsedTime * 0.5) * 0.05;
-      }
-
-      // Animate rings
-      if (rings) {
-        rings.rotation.x += 0.003;
-        rings.rotation.y += 0.002;
-        rings.children.forEach((ring, index) => {
-          ring.rotation.z += 0.01 + index * 0.002;
-        });
-      }
-
-      // Animate globe
-      if (globe) {
-        globe.rotation.y += 0.004;
-        globe.rotation.x += 0.002;
-        globe.position.y = Math.sin(elapsedTime * 0.3) * 0.5;
-      }
-
-      // Animate floating shapes
-      shapes.forEach((shape, index) => {
-        shape.rotation.x += 0.008 + index * 0.001;
-        shape.rotation.y += 0.008 + index * 0.001;
-        shape.rotation.z += 0.004 + index * 0.0005;
-        
-        // Floating motion
-        shape.position.y += Math.sin(elapsedTime + index) * 0.002;
-        shape.position.x += Math.cos(elapsedTime + index * 0.5) * 0.001;
+      // Animate particles with quantum behavior
+      if (particlesRef.current) {
+        particlesRef.current.rotation.y += 0.002;
+        particlesRef.current.rotation.x += 0.001;
         
         // Mouse interaction
+        particlesRef.current.position.x = targetX * 2;
+        particlesRef.current.position.y = targetY * 2;
+      }
+
+      // Animate dimensional rifts
+      dimensionalRifts.forEach((rift, index) => {
+        rift.material.uniforms.time.value = elapsedTime;
+        rift.mesh.rotation.x += 0.005 + index * 0.001;
+        rift.mesh.rotation.y += 0.003 + index * 0.0005;
+        rift.mesh.rotation.z += 0.002 + index * 0.0003;
+        
+        // Floating motion
+        rift.mesh.position.y += Math.sin(elapsedTime * 0.5 + index) * 0.01;
+        rift.mesh.position.x += Math.cos(elapsedTime * 0.3 + index) * 0.005;
+      });
+
+      // Animate geometric entities
+      geometricEntities.forEach((entity, index) => {
+        entity.rotation.x += 0.01 + index * 0.001;
+        entity.rotation.y += 0.008 + index * 0.0008;
+        entity.rotation.z += 0.006 + index * 0.0006;
+        
+        // Quantum fluctuation
+        entity.position.y += Math.sin(elapsedTime * 2 + index) * 0.003;
+        entity.position.x += Math.cos(elapsedTime * 1.5 + index * 0.5) * 0.002;
+        
+        // Mouse interaction with quantum entanglement
         const distance = Math.sqrt(
-          Math.pow(shape.position.x - targetX * 2, 2) + 
-          Math.pow(shape.position.y - targetY * 2, 2)
+          Math.pow(entity.position.x - targetX * 5, 2) + 
+          Math.pow(entity.position.y - targetY * 5, 2)
         );
         
-        if (distance < 1.5) {
-          shape.scale.setScalar(1 + (1.5 - distance) * 0.3);
-          (shape.material as THREE.MeshBasicMaterial).opacity = 0.4 + (1.5 - distance) * 0.2;
+        if (distance < 3) {
+          entity.scale.setScalar(1 + (3 - distance) * 0.2);
+          (entity.material as THREE.MeshPhysicalMaterial).emissiveIntensity = 0.5 + (3 - distance) * 0.3;
         } else {
-          shape.scale.setScalar(1);
-          (shape.material as THREE.MeshBasicMaterial).opacity = 0.4;
+          entity.scale.setScalar(1);
+          (entity.material as THREE.MeshPhysicalMaterial).emissiveIntensity = 0.5;
         }
       });
 
-      // Camera movement
-      camera.position.x += (targetX * 0.2 - camera.position.x) * 0.03;
-      camera.position.y += (targetY * 0.2 - camera.position.y) * 0.03;
+      // Animate energy fields
+      energyFields.forEach((field, index) => {
+        field.material.uniforms.time.value = elapsedTime;
+        field.mesh.rotation.x += 0.002 + index * 0.0005;
+        field.mesh.rotation.y += 0.003 + index * 0.0007;
+        
+        // Pulsing effect
+        const scale = 1 + Math.sin(elapsedTime * 1.5 + index * 2) * 0.1;
+        field.mesh.scale.setScalar(scale);
+      });
+
+      // Dynamic camera movement
+      camera.position.x += (targetX * 3 - camera.position.x) * 0.02;
+      camera.position.y += (targetY * 2 - camera.position.y) * 0.02;
       camera.lookAt(scene.position);
 
       renderer.render(scene, camera);
@@ -287,9 +427,19 @@ const Background3D: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       
       // Dispose of Three.js objects
-      shapes.forEach(shape => {
-        shape.geometry.dispose();
-        (shape.material as THREE.Material).dispose();
+      geometricEntities.forEach(entity => {
+        entity.geometry.dispose();
+        (entity.material as THREE.Material).dispose();
+      });
+      
+      dimensionalRifts.forEach(rift => {
+        rift.mesh.geometry.dispose();
+        rift.material.dispose();
+      });
+      
+      energyFields.forEach(field => {
+        field.mesh.geometry.dispose();
+        field.material.dispose();
       });
       
       if (geometryRef.current) {
@@ -300,23 +450,6 @@ const Background3D: React.FC = () => {
         (particlesRef.current.material as THREE.Material).dispose();
       }
       
-      if (haloRef.current) {
-        haloRef.current.geometry.dispose();
-        (haloRef.current.material as THREE.Material).dispose();
-      }
-      
-      if (ringsRef.current) {
-        ringsRef.current.children.forEach(ring => {
-          (ring as THREE.Mesh).geometry.dispose();
-          ((ring as THREE.Mesh).material as THREE.Material).dispose();
-        });
-      }
-      
-      if (globeRef.current) {
-        globeRef.current.geometry.dispose();
-        (globeRef.current.material as THREE.Material).dispose();
-      }
-      
       renderer.dispose();
     };
   }, []);
@@ -324,7 +457,7 @@ const Background3D: React.FC = () => {
   return (
     <div 
       ref={containerRef} 
-      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-30 dark:opacity-50"
+      className="fixed top-0 left-0 w-full h-full -z-20 pointer-events-none opacity-40 dark:opacity-60"
     />
   );
 };
