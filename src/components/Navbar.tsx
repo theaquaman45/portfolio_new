@@ -147,52 +147,32 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
                   })}
                 </div>
                 
-                {/* Enhanced Theme Toggle */}
+                {/* Dark Mode Indicator (No Toggle) */}
                 <div className="ml-4 relative">
-                  <button 
-                    onClick={toggleTheme} 
-                    className="group relative p-3 premium-glass-button rounded-2xl apple-hover apple-transition overflow-hidden"
-                    aria-label="Toggle theme"
-                  >
+                  <div className="group relative p-3 premium-glass-button rounded-2xl overflow-hidden">
                     {/* Animated background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 group-hover:opacity-20 apple-transition rounded-2xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-500 opacity-20 rounded-2xl"></div>
                     
                     {/* Icon container */}
                     <div className="relative z-10">
-                      {isDarkMode ? (
-                        <Sun size={20} className="text-yellow-500 group-hover:rotate-180 group-hover:scale-110 apple-transition" />
-                      ) : (
-                        <Moon size={20} className="text-indigo-600 group-hover:rotate-12 group-hover:scale-110 apple-transition" />
-                      )}
+                      <Moon size={20} className="text-indigo-400 animate-pulse" />
                     </div>
                     
                     {/* Glow effect */}
-                    <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 apple-transition ${
-                      isDarkMode 
-                        ? 'shadow-lg shadow-yellow-500/25' 
-                        : 'shadow-lg shadow-indigo-500/25'
-                    }`}></div>
-                  </button>
+                    <div className="absolute inset-0 rounded-2xl shadow-lg shadow-indigo-500/25"></div>
+                  </div>
                 </div>
               </div>
             </div>
             
             {/* Mobile Controls */}
             <div className="md:hidden flex items-center space-x-3">
-              {/* Mobile Theme Toggle */}
-              <button 
-                onClick={toggleTheme} 
-                className="group p-2.5 premium-glass-button rounded-xl apple-hover apple-transition"
-                aria-label="Toggle theme"
-              >
+              {/* Mobile Dark Mode Indicator */}
+              <div className="group p-2.5 premium-glass-button rounded-xl">
                 <div className="relative">
-                  {isDarkMode ? (
-                    <Sun size={18} className="text-yellow-500 group-hover:rotate-180 apple-transition" />
-                  ) : (
-                    <Moon size={18} className="text-indigo-600 group-hover:rotate-12 apple-transition" />
-                  )}
+                  <Moon size={18} className="text-indigo-400 animate-pulse" />
                 </div>
-              </button>
+              </div>
               
               {/* Enhanced Mobile Menu Button */}
               <button
@@ -271,8 +251,8 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
             <div className="pt-4 mt-4 border-t border-gray-200/20 dark:border-gray-700/20">
               <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
                 <Sparkles size={14} className="text-purple-500" />
-                <span>Crafted with passion</span>
-                <Sparkles size={14} className="text-pink-500" />
+                <span>Always Dark Mode</span>
+                <Moon size={14} className="text-indigo-400" />
               </div>
             </div>
           </div>
