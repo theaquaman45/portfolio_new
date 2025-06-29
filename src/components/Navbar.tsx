@@ -88,12 +88,12 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
                   className={`relative px-4 py-2 rounded-full font-medium apple-transition group ${
                     activeSection === item.href.slice(1)
                       ? 'text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg'
-                      : 'text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400'
+                      : 'text-gray-800 dark:text-gray-200 hover:text-white'
                   }`}
                 >
                   {item.label}
                   {activeSection !== item.href.slice(1) && (
-                    <span className="absolute inset-0 rounded-full glass-button opacity-0 group-hover:opacity-100 apple-transition"></span>
+                    <span className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 apple-transition"></span>
                   )}
                 </a>
               ))}
@@ -167,7 +167,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
               className={`block px-4 py-3 rounded-xl font-medium apple-transition apple-hover ${
                 activeSection === item.href.slice(1)
                   ? 'text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg'
-                  : 'text-gray-800 dark:text-gray-200 glass-button'
+                  : 'text-gray-800 dark:text-gray-200 glass-button hover:text-white'
               }`}
               onClick={() => setIsMenuOpen(false)}
               style={{ animationDelay: `${index * 0.1}s` }}
