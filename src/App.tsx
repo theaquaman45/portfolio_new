@@ -10,9 +10,13 @@ import Footer from './components/Footer';
 import Education from './components/Education';
 import Certifications from './components/Certifications';
 import LiquidFlowEffect from './components/LiquidFlowEffect';
+import PhysicsEngine from './components/PhysicsEngine';
+import FloatingElements from './components/FloatingElements';
+import InteractiveParticles from './components/InteractiveParticles';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [physicsMode, setPhysicsMode] = useState<'liquid' | 'physics' | 'particles'>('liquid');
 
   useEffect(() => {
     // Check user's preference from localStorage or system preference
@@ -67,7 +71,39 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white/80 dark:bg-slate-900/80 text-gray-800 dark:text-gray-200 apple-transition relative overflow-x-hidden">
-      <LiquidFlowEffect />
+      {/* Background Effects */}
+      {physicsMode === 'liquid' && <LiquidFlowEffect />}
+      {physicsMode === 'physics' && <PhysicsEngine />}
+      {physicsMode === 'particles' && <InteractiveParticles />}
+      <FloatingElements />
+      
+      {/* Physics Mode Switcher */}
+      <div className="fixed bottom-4 right-4 z-50 glass-card rounded-2xl p-4">
+        <div className="flex flex-col space-y-2">
+          <div className="text-xs text-gray-600 dark:text-gray-400 text-center mb-2">
+            Physics Mode
+          </div>
+          {[
+            { mode: 'liquid', label: '🌊 Liquid', desc: 'Liquid Flow' },
+            { mode: 'physics', label: '⚛️ Physics', desc: 'Physics Engine' },
+            { mode: 'particles', label: '✨ Particles', desc: 'Interactive Particles' }
+          ].map(({ mode, label, desc }) => (
+            <button
+              key={mode}
+              onClick={() => setPhysicsMode(mode as any)}
+              className={`px-3 py-2 rounded-xl text-sm font-semibold apple-transition ${
+                physicsMode === mode
+                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                  : 'glass-button text-gray-700 dark:text-gray-300'
+              }`}
+              title={desc}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+      
       <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <Hero />
       <About />
