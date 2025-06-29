@@ -88,13 +88,13 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
                   className={`relative px-4 py-2 rounded-full font-medium apple-transition group ${
                     activeSection === item.href.slice(1)
                       ? 'text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
+                      : 'text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400'
                   }`}
                 >
                   {item.label}
-                  <span className={`absolute inset-0 rounded-full glass-button opacity-0 group-hover:opacity-100 apple-transition ${
-                    activeSection === item.href.slice(1) ? 'opacity-0' : ''
-                  }`}></span>
+                  {activeSection !== item.href.slice(1) && (
+                    <span className="absolute inset-0 rounded-full glass-button opacity-0 group-hover:opacity-100 apple-transition"></span>
+                  )}
                 </a>
               ))}
               
@@ -137,13 +137,13 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
               <div className="relative w-6 h-6">
                 <Menu 
                   size={24} 
-                  className={`absolute inset-0 apple-transition ${
+                  className={`absolute inset-0 apple-transition text-gray-800 dark:text-gray-200 ${
                     isMenuOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'
                   }`} 
                 />
                 <X 
                   size={24} 
-                  className={`absolute inset-0 apple-transition ${
+                  className={`absolute inset-0 apple-transition text-gray-800 dark:text-gray-200 ${
                     isMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-180'
                   }`} 
                 />
@@ -167,7 +167,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
               className={`block px-4 py-3 rounded-xl font-medium apple-transition apple-hover ${
                 activeSection === item.href.slice(1)
                   ? 'text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg'
-                  : 'text-gray-700 dark:text-gray-300 glass-button'
+                  : 'text-gray-800 dark:text-gray-200 glass-button'
               }`}
               onClick={() => setIsMenuOpen(false)}
               style={{ animationDelay: `${index * 0.1}s` }}
