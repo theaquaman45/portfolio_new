@@ -12,13 +12,17 @@ import Certifications from './components/Certifications';
 import LiquidFlowEffect from './components/LiquidFlowEffect';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true); // Always start with dark mode
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
-    // Force dark mode always
-    setIsDarkMode(true);
-    document.documentElement.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
+    // Check user's preference from localStorage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      setIsDarkMode(true);
+      document.documentElement.classList.add('dark');
+    }
 
     // Add schema markup for SEO
     const schemaScript = document.createElement('script');
@@ -49,10 +53,16 @@ function App() {
   }, []);
 
   const toggleTheme = () => {
-    // Keep dark mode always - no actual toggle
-    setIsDarkMode(true);
-    document.documentElement.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    
+    if (newMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
   };
 
   return (
