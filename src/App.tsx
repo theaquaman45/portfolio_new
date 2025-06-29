@@ -66,7 +66,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white/80 dark:bg-slate-900/80 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <div className="min-h-screen bg-white/80 dark:bg-slate-900/80 text-gray-800 dark:text-gray-200 apple-transition">
       <Background3D />
       <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <Hero />

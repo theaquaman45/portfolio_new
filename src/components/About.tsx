@@ -39,7 +39,7 @@ const About: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${
+        <div className={`text-center mb-20 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-gradient-exotic" style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -53,7 +53,7 @@ const About: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
-          <div className={`order-2 lg:order-1 transition-all duration-1000 delay-300 ${
+          <div className={`order-2 lg:order-1 apple-transition ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
           }`}>
             <div className="prose prose-lg dark:prose-invert max-w-none">
@@ -80,11 +80,11 @@ const About: React.FC = () => {
               ].map((item, index) => (
                 <div 
                   key={item.label}
-                  className="group p-4 glass-effect rounded-2xl hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  className="group p-4 glass-card rounded-2xl apple-hover apple-transition shadow-xl"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 flex items-center justify-center ${item.color} group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 flex items-center justify-center ${item.color} group-hover:scale-110 apple-transition`}>
                       <item.icon size={20} />
                     </div>
                     <div>
@@ -102,16 +102,16 @@ const About: React.FC = () => {
                 href="https://drive.google.com/file/d/1FBRt1H8V0rDy1B6x70S85B7W4qX701di/view?usp=sharing" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-purple-500/25"
+                className="group px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full apple-transition apple-hover shadow-xl"
               >
                 <span className="flex items-center">
                   View Resume
-                  <Heart size={18} className="ml-2 group-hover:scale-110 transition-transform duration-300" />
+                  <Heart size={18} className="ml-2 group-hover:scale-110 apple-transition" />
                 </span>
               </a>
               <a 
                 href="#contact" 
-                className="px-8 py-3 glass-effect text-purple-600 dark:text-purple-400 font-semibold rounded-full hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-300 transform hover:scale-105"
+                className="px-8 py-3 glass-card text-purple-600 dark:text-purple-400 font-semibold rounded-full apple-hover apple-transition"
               >
                 Contact Me
               </a>
@@ -119,12 +119,12 @@ const About: React.FC = () => {
           </div>
           
           {/* Visual Element */}
-          <div className={`order-1 lg:order-2 flex justify-center transition-all duration-1000 delay-500 ${
+          <div className={`order-1 lg:order-2 flex justify-center apple-transition ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
           }`}>
             <div className="relative">
               {/* Main Avatar */}
-              <div className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500 group">
+              <div className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-2xl apple-hover apple-transition group glass-card">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-600 to-cyan-600 opacity-90"></div>
                 <div className="absolute inset-0 flex items-center justify-center text-white text-center p-8">
                   <div>
@@ -139,14 +139,14 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 apple-transition"></div>
               </div>
               
               {/* Floating Elements */}
-              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl flex items-center justify-center shadow-xl floating">
+              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl flex items-center justify-center shadow-xl floating glass-card">
                 <Zap className="text-white" size={24} />
               </div>
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center shadow-xl floating-delayed">
+              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center shadow-xl floating-delayed glass-card">
                 <Heart className="text-white" size={24} />
               </div>
             </div>
@@ -154,18 +154,18 @@ const About: React.FC = () => {
         </div>
 
         {/* Stats Section */}
-        <div className={`mt-20 transition-all duration-1000 delay-700 ${
+        <div className={`mt-20 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div 
                 key={stat.label}
-                className="group text-center p-6 glass-effect rounded-2xl hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="group text-center p-6 glass-card rounded-2xl apple-hover apple-transition shadow-xl"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex justify-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 apple-transition">
                     <stat.icon size={24} />
                   </div>
                 </div>

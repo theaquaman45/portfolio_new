@@ -88,7 +88,7 @@ const Footer: React.FC = () => {
       <div className="relative z-10">
         {/* Main Footer Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className={`transition-all duration-1000 ${
+          <div className={`apple-transition ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             {/* Top Section */}
@@ -120,12 +120,12 @@ const Footer: React.FC = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`group relative p-3 bg-gray-800 rounded-xl ${social.color} ${social.bgColor} transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-xl`}
+                      className={`group relative p-3 glass-button rounded-xl ${social.color} ${social.bgColor} apple-transition apple-hover shadow-lg`}
                       aria-label={social.label}
                       style={{ animationDelay: `${index * 0.1}s` }}
                     >
                       <social.icon size={20} />
-                      <span className="absolute -top-12 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="absolute -top-12 left-1/2 transform -translate-x-1/2 px-2 py-1 glass-button text-white text-xs rounded opacity-0 group-hover:opacity-100 apple-transition">
                         {social.label}
                       </span>
                     </a>
@@ -144,11 +144,11 @@ const Footer: React.FC = () => {
                     <li key={link.href}>
                       <a 
                         href={link.href} 
-                        className="group flex items-center text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                        className="group flex items-center text-gray-400 hover:text-indigo-400 apple-transition"
                         style={{ animationDelay: `${index * 0.1}s` }}
                       >
                         <span className="mr-3 text-lg">{link.icon}</span>
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">{link.label}</span>
+                        <span className="group-hover:translate-x-1 apple-transition">{link.label}</span>
                       </a>
                     </li>
                   ))}
@@ -166,7 +166,7 @@ const Footer: React.FC = () => {
                     <p className="text-gray-400 text-sm mb-1">Email</p>
                     <a 
                       href="mailto:sohardpratapsingh346@gmail.com" 
-                      className="text-indigo-400 hover:text-indigo-300 transition-colors duration-300 break-all"
+                      className="text-indigo-400 hover:text-indigo-300 apple-transition break-all"
                     >
                       sohardpratapsingh346@gmail.com
                     </a>
@@ -175,7 +175,7 @@ const Footer: React.FC = () => {
                     <p className="text-gray-400 text-sm mb-1">Phone</p>
                     <a 
                       href="tel:+919997697716" 
-                      className="text-indigo-400 hover:text-indigo-300 transition-colors duration-300"
+                      className="text-indigo-400 hover:text-indigo-300 apple-transition"
                     >
                       +91 9997697716
                     </a>
@@ -189,17 +189,17 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Stats Section */}
-            <div className={`mb-16 transition-all duration-1000 delay-300 ${
+            <div className={`mb-16 apple-transition ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {stats.map((stat, index) => (
                   <div 
                     key={stat.label}
-                    className="group text-center p-6 glass-effect rounded-2xl hover:bg-gray-800/50 transition-all duration-300 transform hover:scale-105"
+                    className="group text-center p-6 glass-card rounded-2xl apple-hover apple-transition"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 apple-transition">
                       <stat.icon size={20} className="text-white" />
                     </div>
                     <div className="text-2xl font-bold text-white mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -218,27 +218,22 @@ const Footer: React.FC = () => {
         {/* Bottom Section */}
         <div className="border-t border-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className={`flex flex-col md:flex-row justify-between items-center transition-all duration-1000 delay-500 ${
+            <div className={`flex flex-col md:flex-row justify-between items-center apple-transition ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               <div className="flex items-center mb-4 md:mb-0">
                 <p className="text-gray-400 text-sm">
                   &copy; {currentYear} Sohard Pratap Singh.
                 </p>
-                
-                <p className="text-gray-400 text-sm">
-                
-                </p>
-              
               </div>
               
               <div className="flex items-center space-x-4">
                 <button 
                   onClick={scrollToTop}
-                  className="group p-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-xl"
+                  className="group p-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full apple-transition apple-hover shadow-lg"
                   aria-label="Scroll to top"
                 >
-                  <ArrowUp size={20} className="group-hover:scale-110 transition-transform duration-300" />
+                  <ArrowUp size={20} className="group-hover:scale-110 apple-transition" />
                 </button>
               </div>
             </div>

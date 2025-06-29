@@ -96,7 +96,7 @@ const Contact: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${
+        <div className={`text-center mb-20 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-gradient bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent" style={{ fontFamily: 'Inter, sans-serif', fontWeight: '800' }}>
@@ -110,10 +110,10 @@ const Contact: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Contact Form */}
-          <div className={`lg:col-span-3 transition-all duration-1000 delay-300 ${
+          <div className={`lg:col-span-3 apple-transition ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
           }`}>
-            <div className="glass-effect rounded-3xl p-8 shadow-2xl">
+            <div className="glass-card rounded-3xl p-8 shadow-2xl">
               <div className="flex items-center mb-8">
                 <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center mr-4">
                   <Send size={24} className="text-white" />
@@ -124,7 +124,7 @@ const Contact: React.FC = () => {
               </div>
               
               {formStatus && (
-                <div className={`mb-6 p-4 rounded-2xl ${formStatus.success ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300' : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300'}`}>
+                <div className={`mb-6 p-4 rounded-2xl glass-card ${formStatus.success ? 'text-emerald-800 dark:text-emerald-300' : 'text-red-800 dark:text-red-300'}`}>
                   <div className="flex items-start">
                     {formStatus.success ? (
                       <Send className="flex-shrink-0 w-5 h-5 mr-3 mt-0.5" />
@@ -137,7 +137,7 @@ const Contact: React.FC = () => {
               )}
               
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="gri d grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       Your Name
@@ -149,7 +149,7 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 rounded-xl glass-input text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 focus:border-transparent apple-transition"
                       placeholder="John Doe"
                     />
                   </div>
@@ -165,7 +165,7 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 rounded-xl glass-input text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 focus:border-transparent apple-transition"
                       placeholder="john@example.com"
                     />
                   </div>
@@ -182,7 +182,7 @@ const Contact: React.FC = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 rounded-xl glass-input text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 focus:border-transparent apple-transition"
                     placeholder="Project Inquiry"
                   />
                 </div>
@@ -198,24 +198,24 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 focus:border-transparent transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 rounded-xl glass-input text-gray-900 dark:text-white focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 focus:border-transparent apple-transition resize-none"
                     placeholder="Tell me about your project or inquiry..."
                   ></textarea>
                 </div>
                 
                 <button
                   type="submit"
-                  className="group w-full px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-blue-600 hover:to-indigo-600 text-white font-bold rounded-xl shadow-2xl transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-1 flex items-center justify-center"
+                  className="group w-full px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-blue-600 hover:to-indigo-600 text-white font-bold rounded-xl shadow-2xl apple-transition apple-hover flex items-center justify-center"
                 >
                   <span>Send Message</span>
-                  <Send size={20} className="ml-3 group-hover:translate-x-1 transition-transform duration-300" />
+                  <Send size={20} className="ml-3 group-hover:translate-x-1 apple-transition" />
                 </button>
               </form>
             </div>
           </div>
           
           {/* Contact Information */}
-          <div className={`lg:col-span-2 transition-all duration-1000 delay-500 ${
+          <div className={`lg:col-span-2 apple-transition ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
           }`}>
             <div className="space-y-8">
@@ -246,11 +246,11 @@ const Contact: React.FC = () => {
                 ].map((item, index) => (
                   <div 
                     key={item.title}
-                    className="group glass-effect rounded-2xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1"
+                    className="group glass-card rounded-2xl p-6 apple-hover apple-transition shadow-xl"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="flex items-start space-x-4">
-                      <div className={`flex-shrink-0 w-14 h-14 bg-gradient-to-r ${item.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <div className={`flex-shrink-0 w-14 h-14 bg-gradient-to-r ${item.color} rounded-2xl flex items-center justify-center group-hover:scale-110 apple-transition`}>
                         <item.icon size={24} className="text-white" />
                       </div>
                       <div className="flex-1">
@@ -258,7 +258,7 @@ const Contact: React.FC = () => {
                         {item.href ? (
                           <a 
                             href={item.href}
-                            className="text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-300 break-all"
+                            className="text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 apple-transition break-all"
                           >
                             {item.content}
                           </a>
@@ -272,7 +272,7 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Availability Card */}
-              <div className="glass-effect rounded-2xl p-6">
+              <div className="glass-card rounded-2xl p-6">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mr-4">
                     <Clock size={20} className="text-white" />
@@ -296,7 +296,7 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Social Links */}
-              <div className="glass-effect rounded-2xl p-6">
+              <div className="glass-card rounded-2xl p-6">
                 <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                   <Sparkles size={20} className="mr-2 text-cyan-500" />
                   Connect With Me
@@ -328,7 +328,7 @@ const Contact: React.FC = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`group relative p-4 bg-gradient-to-r ${social.color} rounded-xl text-white text-center hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl`}
+                      className={`group relative p-4 bg-gradient-to-r ${social.color} rounded-xl text-white text-center apple-hover apple-transition shadow-lg`}
                       aria-label={social.label}
                     >
                       <div className="text-2xl mb-2">{social.icon}</div>

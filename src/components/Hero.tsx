@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-violet-400 to-purple-400 rounded-full filter blur-3xl opacity-10 animate-pulse"></div>
       </div>
       
-      <div className={`text-center max-w-6xl mx-auto z-10 transition-all duration-1000 ${
+      <div className={`text-center max-w-6xl mx-auto z-10 apple-transition ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
         {/* Floating Icons */}
@@ -93,14 +93,14 @@ const Hero: React.FC = () => {
             <span className="text-gradient-exotic">Security Enthusiast</span>
           </h2>
           <div className="flex justify-center items-center space-x-2 text-sm md:text-base text-gray-600 dark:text-gray-400">
-            <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 rounded-full">Next.js</span>
-            <span className="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 rounded-full">Django</span>
-            <span className="px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 rounded-full">Flutter</span>
+            <span className="px-3 py-1 glass-button rounded-full">Next.js</span>
+            <span className="px-3 py-1 glass-button rounded-full">Django</span>
+            <span className="px-3 py-1 glass-button rounded-full">Flutter</span>
           </div>
         </div>
         
         {/* Description */}
-        <p className={`text-lg md:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto text-gray-700 dark:text-gray-300 leading-relaxed transition-all duration-1000 delay-300 ${
+        <p className={`text-lg md:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto text-gray-700 dark:text-gray-300 leading-relaxed apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
         }`}>
           Crafting <span className="text-gradient font-semibold">exceptional digital experiences</span> with cutting-edge technologies.
@@ -109,23 +109,23 @@ const Hero: React.FC = () => {
         </p>
         
         {/* CTA Buttons */}
-        <div className={`flex flex-wrap justify-center gap-6 mb-16 transition-all duration-1000 delay-500 ${
+        <div className={`flex flex-wrap justify-center gap-6 mb-16 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
         }`}>
           <a 
             href="#contact" 
-            className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-purple-500/25"
+            className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full overflow-hidden apple-hover apple-transition shadow-2xl"
           >
             <span className="relative z-10 flex items-center">
               <Mail size={20} className="mr-2" />
               Let's Connect
             </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 apple-transition"></div>
           </a>
           
           <a 
             href="#projects" 
-            className="group px-8 py-4 glass-effect text-purple-600 dark:text-purple-400 font-bold rounded-full hover:bg-purple-50 dark:hover:bg-purple-900/20 transform hover:scale-105 transition-all duration-300 shadow-xl"
+            className="group px-8 py-4 glass-card text-purple-600 dark:text-purple-400 font-bold rounded-full apple-hover apple-transition shadow-xl"
           >
             <span className="flex items-center">
               <Code size={20} className="mr-2" />
@@ -137,7 +137,7 @@ const Hero: React.FC = () => {
             href="https://drive.google.com/file/d/1FBRt1H8V0rDy1B6x70S85B7W4qX701di/view?usp=sharing" 
             target="_blank"
             rel="noopener noreferrer"
-            className="group px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold rounded-full transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-emerald-500/25"
+            className="group px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold rounded-full apple-hover apple-transition shadow-xl"
           >
             <span className="flex items-center">
               <Download size={20} className="mr-2" />
@@ -147,7 +147,7 @@ const Hero: React.FC = () => {
         </div>
         
         {/* Social Links */}
-        <div className={`flex justify-center gap-8 mb-16 transition-all duration-1000 delay-700 ${
+        <div className={`flex justify-center gap-8 mb-16 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
         }`}>
           {[
@@ -160,12 +160,12 @@ const Hero: React.FC = () => {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group p-4 glass-effect rounded-full ${social.color} transition-all duration-300 transform hover:scale-110 hover:shadow-xl`}
+              className={`group p-4 glass-card rounded-full ${social.color} apple-transition apple-hover shadow-xl`}
               aria-label={social.label}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <social.icon size={24} />
-              <span className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 px-2 py-1 glass-button text-xs rounded opacity-0 group-hover:opacity-100 apple-transition">
                 {social.label}
               </span>
             </a>
@@ -173,18 +173,18 @@ const Hero: React.FC = () => {
         </div>
         
         {/* Scroll Indicator */}
-        <div className={`transition-all duration-1000 delay-1000 ${
+        <div className={`apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
         }`}>
           <a 
             href="#about"
-            className="group inline-flex flex-col items-center text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300"
+            className="group inline-flex flex-col items-center text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 apple-transition"
           >
-            <span className="text-sm font-medium mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span className="text-sm font-medium mb-2 opacity-0 group-hover:opacity-100 apple-transition">
               Discover More
             </span>
             <div className="animate-bounce">
-              <ArrowDown size={24} className="group-hover:scale-110 transition-transform duration-300" />
+              <ArrowDown size={24} className="group-hover:scale-110 apple-transition" />
             </div>
           </a>
         </div>

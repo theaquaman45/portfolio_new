@@ -127,7 +127,7 @@ const Experience: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${
+        <div className={`text-center mb-20 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-gradient bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent" style={{ fontFamily: 'Inter, sans-serif', fontWeight: '800' }}>
@@ -152,13 +152,14 @@ const Experience: React.FC = () => {
               return (
                 <div 
                   key={index} 
-                  className={`relative transition-all duration-1000 delay-${index * 200} ${
+                  className={`relative apple-transition ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
+                  style={{ transitionDelay: `${index * 200}ms` }}
                 >
                   {/* Timeline Node */}
                   <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 -translate-y-4">
-                    <div className={`w-16 h-16 bg-gradient-to-r ${getTypeColor(exp.type)} rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300`}>
+                    <div className={`w-16 h-16 bg-gradient-to-r ${getTypeColor(exp.type)} rounded-2xl flex items-center justify-center shadow-2xl apple-hover apple-transition`}>
                       <TypeIcon size={24} className="text-white" />
                     </div>
                   </div>
@@ -166,7 +167,7 @@ const Experience: React.FC = () => {
                   {/* Experience Card */}
                   <div className={`lg:w-5/12 ${isLeft ? 'lg:mr-auto lg:pr-16' : 'lg:ml-auto lg:pl-16'}`}>
                     <div 
-                      className={`group glass-effect rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-2 cursor-pointer ${
+                      className={`group glass-card rounded-3xl p-8 shadow-xl apple-hover apple-transition cursor-pointer ${
                         activeCard === index ? 'ring-2 ring-indigo-500/50' : ''
                       }`}
                       onMouseEnter={() => setActiveCard(index)}
@@ -179,7 +180,7 @@ const Experience: React.FC = () => {
                             <div className={`lg:hidden w-10 h-10 bg-gradient-to-r ${getTypeColor(exp.type)} rounded-xl flex items-center justify-center mr-3`}>
                               <TypeIcon size={18} className="text-white" />
                             </div>
-                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300" style={{ fontFamily: 'Inter, sans-serif' }}>
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 apple-transition" style={{ fontFamily: 'Inter, sans-serif' }}>
                               {exp.title}
                             </h3>
                           </div>
@@ -191,7 +192,7 @@ const Experience: React.FC = () => {
                                 href={exp.companyLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-indigo-600 dark:text-indigo-400 font-semibold hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300 flex items-center"
+                                className="text-indigo-600 dark:text-indigo-400 font-semibold hover:text-purple-600 dark:hover:text-purple-400 apple-transition flex items-center"
                               >
                                 {exp.company}
                                 <ExternalLink size={14} className="ml-1" />
@@ -226,7 +227,7 @@ const Experience: React.FC = () => {
                             {exp.achievements.map((achievement, i) => (
                               <span 
                                 key={i} 
-                                className="px-3 py-1 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium"
+                                className="px-3 py-1 glass-button text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium"
                               >
                                 {achievement}
                               </span>
@@ -244,9 +245,6 @@ const Experience: React.FC = () => {
                           </div>
                         ))}
                       </div>
-                      
-                      {/* Hover Effect Overlay */}
-                      <div className={`absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}></div>
                     </div>
                   </div>
                 </div>
@@ -256,7 +254,7 @@ const Experience: React.FC = () => {
         </div>
 
         {/* Stats Section */}
-        <div className={`mt-20 transition-all duration-1000 delay-1000 ${
+        <div className={`mt-20 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -267,10 +265,10 @@ const Experience: React.FC = () => {
             ].map((stat, index) => (
               <div 
                 key={stat.label}
-                className="group glass-effect rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-500 transform hover:scale-105"
+                className="group glass-card rounded-2xl p-8 text-center apple-hover apple-transition shadow-xl"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 apple-transition`}>
                   <stat.icon size={24} className="text-white" />
                 </div>
                 <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2" style={{ fontFamily: 'Inter, sans-serif' }}>

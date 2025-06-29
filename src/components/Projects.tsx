@@ -119,7 +119,7 @@ const Projects: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+        <div className={`text-center mb-16 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-gradient-exotic" style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -132,17 +132,17 @@ const Projects: React.FC = () => {
         </div>
 
         {/* Filter Tabs */}
-        <div className={`flex flex-wrap justify-center gap-4 mb-12 transition-all duration-1000 delay-300 ${
+        <div className={`flex flex-wrap justify-center gap-4 mb-12 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           {categories.map((category, index) => (
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`group relative px-6 py-3 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 ${
+              className={`group relative px-6 py-3 rounded-2xl font-semibold apple-transition apple-hover ${
                 activeFilter === category
                   ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-xl'
-                  : 'glass-effect text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20'
+                  : 'glass-card text-gray-700 dark:text-gray-300'
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -158,14 +158,14 @@ const Projects: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className={`transition-all duration-1000 delay-500 ${
+        <div className={`apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {filteredProjects.map((project, index) => (
               <div 
                 key={project.title}
-                className={`group relative glass-effect rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-2 ${
+                className={`group relative glass-card rounded-3xl overflow-hidden shadow-xl apple-hover apple-transition ${
                   project.featured ? 'ring-2 ring-purple-500/50' : ''
                 }`}
                 onMouseEnter={() => setHoveredIndex(index)}
@@ -193,32 +193,32 @@ const Projects: React.FC = () => {
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover apple-transition group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 apple-transition"></div>
                   
                   {/* Hover Overlay */}
-                  <div className={`absolute inset-0 flex items-center justify-center space-x-4 transition-all duration-300 ${
+                  <div className={`absolute inset-0 flex items-center justify-center space-x-4 apple-transition ${
                     hoveredIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}>
                     <a 
                       href={project.demoLink} 
-                      className="group/btn p-4 bg-white/20 backdrop-blur-sm rounded-full hover:bg-purple-600 transition-all duration-300 transform hover:scale-110"
+                      className="group/btn p-4 glass-button rounded-full hover:bg-purple-600 apple-transition apple-hover"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="View live demo"
                     >
-                      <ExternalLink size={20} className="text-white group-hover/btn:scale-110 transition-transform duration-300" />
+                      <ExternalLink size={20} className="text-white group-hover/btn:scale-110 apple-transition" />
                     </a>
                     {project.codeLink && (
                       <a 
                         href={project.codeLink} 
-                        className="group/btn p-4 bg-white/20 backdrop-blur-sm rounded-full hover:bg-pink-600 transition-all duration-300 transform hover:scale-110"
+                        className="group/btn p-4 glass-button rounded-full hover:bg-pink-600 apple-transition apple-hover"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="View source code"
                       >
-                        <Github size={20} className="text-white group-hover/btn:scale-110 transition-transform duration-300" />
+                        <Github size={20} className="text-white group-hover/btn:scale-110 apple-transition" />
                       </a>
                     )}
                   </div>
@@ -227,10 +227,10 @@ const Projects: React.FC = () => {
                 {/* Content */}
                 <div className="p-8">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 apple-transition" style={{ fontFamily: 'Playfair Display, serif' }}>
                       {project.title}
                     </h3>
-                    <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-medium">
+                    <span className="px-3 py-1 glass-button text-purple-600 dark:text-purple-400 rounded-full text-sm font-medium">
                       {project.category}
                     </span>
                   </div>
@@ -244,7 +244,7 @@ const Projects: React.FC = () => {
                     {project.technologies.map((tech, i) => (
                       <span 
                         key={i} 
-                        className="px-3 py-1 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium hover:scale-105 transition-transform duration-200"
+                        className="px-3 py-1 glass-button text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium apple-hover apple-transition"
                       >
                         {tech}
                       </span>
@@ -254,12 +254,12 @@ const Projects: React.FC = () => {
                   {/* CTA */}
                   <a 
                     href={project.demoLink}
-                    className="group/cta inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:text-pink-600 dark:hover:text-pink-400 transition-colors duration-300"
+                    className="group/cta inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:text-pink-600 dark:hover:text-pink-400 apple-transition"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     Explore Project
-                    <ArrowRight size={18} className="ml-2 group-hover/cta:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight size={18} className="ml-2 group-hover/cta:translate-x-1 apple-transition" />
                   </a>
                 </div>
               </div>
@@ -268,17 +268,17 @@ const Projects: React.FC = () => {
         </div>
 
         {/* View More CTA */}
-        <div className={`text-center mt-16 transition-all duration-1000 delay-700 ${
+        <div className={`text-center mt-16 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <a 
             href="https://spslabs.vercel.app" 
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:from-pink-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25"
+            className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:from-pink-600 hover:to-purple-600 apple-transition apple-hover shadow-2xl"
           >
             <span>View All Projects</span>
-            <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+            <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 apple-transition" />
           </a>
         </div>
       </div>

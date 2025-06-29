@@ -47,9 +47,9 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 apple-transition ${
         isScrolled 
-          ? 'glass-effect py-2 shadow-2xl' 
+          ? 'glass-navbar py-2 shadow-2xl' 
           : 'bg-transparent py-4'
       }`}
     >
@@ -59,12 +59,12 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
           <div className="flex-shrink-0">
             <a 
               href="#hero" 
-              className="flex items-center space-x-3 group"
+              className="flex items-center space-x-3 group apple-transition"
             >
               <div className="relative">
                 <Terminal 
                   size={32} 
-                  className="text-indigo-600 dark:text-indigo-400 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors duration-300" 
+                  className="text-indigo-600 dark:text-indigo-400 group-hover:text-purple-500 dark:group-hover:text-purple-400 apple-transition" 
                 />
               </div>
               <div className="flex flex-col">
@@ -85,14 +85,14 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`relative px-4 py-2 rounded-full font-medium transition-all duration-300 group ${
+                  className={`relative px-4 py-2 rounded-full font-medium apple-transition group ${
                     activeSection === item.href.slice(1)
                       ? 'text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg'
                       : 'text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
                   }`}
                 >
                   {item.label}
-                  <span className={`absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                  <span className={`absolute inset-0 rounded-full glass-button opacity-0 group-hover:opacity-100 apple-transition ${
                     activeSection === item.href.slice(1) ? 'opacity-0' : ''
                   }`}></span>
                 </a>
@@ -101,14 +101,14 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
               {/* Theme Toggle */}
               <button 
                 onClick={toggleTheme} 
-                className="ml-4 p-3 rounded-full glass-effect hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-all duration-300 group"
+                className="ml-4 p-3 rounded-full glass-button apple-hover apple-transition group"
                 aria-label="Toggle theme"
               >
                 <div className="relative">
                   {isDarkMode ? (
-                    <Sun size={20} className="text-yellow-500 group-hover:rotate-180 transition-transform duration-500" />
+                    <Sun size={20} className="text-yellow-500 group-hover:rotate-180 apple-transition" />
                   ) : (
-                    <Moon size={20} className="text-indigo-600 group-hover:rotate-12 transition-transform duration-300" />
+                    <Moon size={20} className="text-indigo-600 group-hover:rotate-12 apple-transition" />
                   )}
                 </div>
               </button>
@@ -119,7 +119,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
           <div className="md:hidden flex items-center space-x-2">
             <button 
               onClick={toggleTheme} 
-              className="p-2 rounded-full glass-effect hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-all duration-300"
+              className="p-2 rounded-full glass-button apple-hover apple-transition"
               aria-label="Toggle theme"
             >
               {isDarkMode ? (
@@ -131,19 +131,19 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
             
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-full glass-effect hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-all duration-300"
+              className="p-2 rounded-full glass-button apple-hover apple-transition"
               aria-expanded="false"
             >
               <div className="relative w-6 h-6">
                 <Menu 
                   size={24} 
-                  className={`absolute inset-0 transition-all duration-300 ${
+                  className={`absolute inset-0 apple-transition ${
                     isMenuOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'
                   }`} 
                 />
                 <X 
                   size={24} 
-                  className={`absolute inset-0 transition-all duration-300 ${
+                  className={`absolute inset-0 apple-transition ${
                     isMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-180'
                   }`} 
                 />
@@ -154,20 +154,20 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden transition-all duration-500 ease-in-out ${
+      <div className={`md:hidden apple-transition ${
         isMenuOpen 
           ? 'max-h-96 opacity-100' 
           : 'max-h-0 opacity-0 overflow-hidden'
       }`}>
-        <div className="px-4 pt-2 pb-6 space-y-2 glass-effect mt-2 mx-4 rounded-2xl">
+        <div className="px-4 pt-2 pb-6 space-y-2 glass-card mt-2 mx-4 rounded-2xl">
           {navItems.map((item, index) => (
             <a
               key={item.href}
               href={item.href}
-              className={`block px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
+              className={`block px-4 py-3 rounded-xl font-medium apple-transition apple-hover ${
                 activeSection === item.href.slice(1)
                   ? 'text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/30'
+                  : 'text-gray-700 dark:text-gray-300 glass-button'
               }`}
               onClick={() => setIsMenuOpen(false)}
               style={{ animationDelay: `${index * 0.1}s` }}

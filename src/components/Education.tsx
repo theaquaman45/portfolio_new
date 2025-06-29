@@ -75,7 +75,7 @@ const Education: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${
+        <div className={`text-center mb-20 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-gradient bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent" style={{ fontFamily: 'Inter, sans-serif', fontWeight: '800' }}>
@@ -92,12 +92,13 @@ const Education: React.FC = () => {
           {educationList.map((edu, index) => (
             <div 
               key={index} 
-              className={`transition-all duration-1000 delay-${index * 300} ${
+              className={`apple-transition ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
+              style={{ transitionDelay: `${index * 300}ms` }}
             >
               <div 
-                className={`group glass-effect rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-2 cursor-pointer ${
+                className={`group glass-card rounded-3xl overflow-hidden shadow-xl apple-hover apple-transition cursor-pointer ${
                   activeCard === index ? 'ring-2 ring-blue-500/50' : ''
                 }`}
                 onMouseEnter={() => setActiveCard(index)}
@@ -120,13 +121,13 @@ const Education: React.FC = () => {
                         edu.status === 'ongoing' 
                           ? 'from-emerald-500 to-teal-500' 
                           : 'from-blue-500 to-indigo-500'
-                      } rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-2xl`}>
+                      } rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 apple-transition shadow-2xl`}>
                         <GraduationCap size={36} className="text-white" />
                       </div>
                       
                       {/* GPA/Score */}
                       {edu.gpa && (
-                        <div className="glass-effect rounded-2xl px-4 py-2 text-center">
+                        <div className="glass-card rounded-2xl px-4 py-2 text-center">
                           <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Score</div>
                           <div className="text-lg font-bold text-gray-900 dark:text-white">{edu.gpa}</div>
                         </div>
@@ -135,7 +136,7 @@ const Education: React.FC = () => {
 
                     {/* Center: Main Content */}
                     <div className="lg:col-span-2">
-                      <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300" style={{ fontFamily: 'Inter, sans-serif' }}>
+                      <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 apple-transition" style={{ fontFamily: 'Inter, sans-serif' }}>
                         {edu.degree}
                       </h3>
                       
@@ -174,7 +175,7 @@ const Education: React.FC = () => {
                             {edu.highlights.map((highlight, i) => (
                               <span 
                                 key={i} 
-                                className="px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium hover:scale-105 transition-transform duration-200"
+                                className="px-4 py-2 glass-button text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium apple-hover apple-transition"
                               >
                                 {highlight}
                               </span>
@@ -184,13 +185,6 @@ const Education: React.FC = () => {
                       )}
                     </div>
                   </div>
-                  
-                  {/* Hover Effect Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${
-                    edu.status === 'ongoing' 
-                      ? 'from-emerald-500/5 to-teal-500/5' 
-                      : 'from-blue-500/5 to-indigo-500/5'
-                  } rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}></div>
                 </div>
               </div>
             </div>
@@ -198,7 +192,7 @@ const Education: React.FC = () => {
         </div>
 
         {/* Academic Stats */}
-        <div className={`mt-20 transition-all duration-1000 delay-1000 ${
+        <div className={`mt-20 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -209,10 +203,10 @@ const Education: React.FC = () => {
             ].map((stat, index) => (
               <div 
                 key={stat.label}
-                className="group glass-effect rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-500 transform hover:scale-105"
+                className="group glass-card rounded-2xl p-8 text-center apple-hover apple-transition shadow-xl"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 apple-transition`}>
                   <stat.icon size={24} className="text-white" />
                 </div>
                 <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2" style={{ fontFamily: 'Inter, sans-serif' }}>

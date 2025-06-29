@@ -92,7 +92,7 @@ const Skills: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+        <div className={`text-center mb-16 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-gradient-exotic" style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -105,17 +105,17 @@ const Skills: React.FC = () => {
         </div>
 
         {/* Category Tabs */}
-        <div className={`flex flex-wrap justify-center gap-4 mb-12 transition-all duration-1000 delay-300 ${
+        <div className={`flex flex-wrap justify-center gap-4 mb-12 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           {categories.map((category, index) => (
             <button
               key={category.name}
               onClick={() => setActiveCategory(category.name)}
-              className={`group relative px-6 py-3 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 ${
+              className={`group relative px-6 py-3 rounded-2xl font-semibold apple-transition apple-hover ${
                 activeCategory === category.name
                   ? `bg-gradient-to-r ${category.color} text-white shadow-xl`
-                  : 'glass-effect text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20'
+                  : 'glass-card text-gray-700 dark:text-gray-300'
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -124,46 +124,46 @@ const Skills: React.FC = () => {
                 {category.name}
               </span>
               {activeCategory !== category.name && (
-                <div className={`absolute inset-0 bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-10 rounded-2xl apple-transition`}></div>
               )}
             </button>
           ))}
         </div>
 
         {/* Skills Grid */}
-        <div className={`transition-all duration-1000 delay-500 ${
+        <div className={`apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredSkills.map((skill, index) => (
               <div 
                 key={skill.name}
-                className="group glass-effect rounded-2xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2"
+                className="group glass-card rounded-2xl p-6 apple-hover apple-transition shadow-xl"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-3">
                     <span className="text-2xl">{skill.icon}</span>
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 apple-transition">
                       {skill.name}
                     </h4>
                   </div>
-                  <span className="text-sm font-bold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">
+                  <span className="text-sm font-bold text-purple-600 dark:text-purple-400 glass-button px-3 py-1 rounded-full">
                     {skill.level}%
                   </span>
                 </div>
                 
                 <div className="relative">
-                  <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-3 overflow-hidden">
+                  <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-3 overflow-hidden glass-input">
                     <div 
-                      className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-1000 ease-out transform origin-left"
+                      className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full apple-transition transform origin-left"
                       style={{ 
                         width: isVisible ? `${skill.level}%` : '0%',
                         transitionDelay: `${index * 0.1}s`
                       }}
                     ></div>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full opacity-0 group-hover:opacity-100 apple-transition"></div>
                 </div>
               </div>
             ))}
@@ -171,13 +171,13 @@ const Skills: React.FC = () => {
         </div>
 
         {/* Achievement Cards */}
-        <div className={`mt-20 transition-all duration-1000 delay-700 ${
+        <div className={`mt-20 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="group glass-effect rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+            <div className="group glass-card rounded-3xl p-8 apple-hover apple-transition shadow-xl">
               <div className="flex items-start space-x-6">
-                <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform duration-300">
+                <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center text-white text-2xl group-hover:scale-110 apple-transition">
                   🏆
                 </div>
                 <div>
@@ -191,9 +191,9 @@ const Skills: React.FC = () => {
               </div>
             </div>
             
-            <div className="group glass-effect rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+            <div className="group glass-card rounded-3xl p-8 apple-hover apple-transition shadow-xl">
               <div className="flex items-start space-x-6">
-                <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform duration-300">
+                <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white text-2xl group-hover:scale-110 apple-transition">
                   🥇
                 </div>
                 <div>

@@ -159,7 +159,7 @@ const Certifications: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+        <div className={`text-center mb-16 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-gradient bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent" style={{ fontFamily: 'Inter, sans-serif', fontWeight: '800' }}>
@@ -172,10 +172,10 @@ const Certifications: React.FC = () => {
         </div>
 
         {/* Tab Navigation */}
-        <div className={`flex justify-center mb-12 transition-all duration-1000 delay-300 ${
+        <div className={`flex justify-center mb-12 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <div className="glass-effect rounded-2xl p-2">
+          <div className="glass-card rounded-2xl p-2">
             <div className="flex space-x-2">
               {[
                 { id: 'certifications', label: 'Certifications', icon: Award },
@@ -184,10 +184,10 @@ const Certifications: React.FC = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  className={`flex items-center px-6 py-3 rounded-xl font-semibold apple-transition ${
                     activeTab === tab.id
                       ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-amber-100 dark:hover:bg-amber-900/20'
+                      : 'text-gray-700 dark:text-gray-300 glass-button'
                   }`}
                 >
                   <tab.icon size={18} className="mr-2" />
@@ -199,7 +199,7 @@ const Certifications: React.FC = () => {
         </div>
 
         {/* Content */}
-        <div className={`transition-all duration-1000 delay-500 ${
+        <div className={`apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           {activeTab === 'certifications' ? (
@@ -209,7 +209,7 @@ const Certifications: React.FC = () => {
                 return (
                   <div 
                     key={index} 
-                    className={`group glass-effect rounded-2xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 cursor-pointer ${
+                    className={`group glass-card rounded-2xl p-6 apple-hover apple-transition shadow-xl cursor-pointer ${
                       hoveredCard === index ? 'ring-2 ring-amber-500/50' : ''
                     }`}
                     onMouseEnter={() => setHoveredCard(index)}
@@ -218,7 +218,7 @@ const Certifications: React.FC = () => {
                   >
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
-                      <div className={`w-12 h-12 bg-gradient-to-r ${getCategoryColor(cert.category)} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <div className={`w-12 h-12 bg-gradient-to-r ${getCategoryColor(cert.category)} rounded-xl flex items-center justify-center group-hover:scale-110 apple-transition`}>
                         <CategoryIcon size={20} className="text-white" />
                       </div>
                       <span className={`px-3 py-1 bg-gradient-to-r ${getCategoryColor(cert.category)} text-white rounded-full text-xs font-semibold`}>
@@ -227,7 +227,7 @@ const Certifications: React.FC = () => {
                     </div>
                     
                     {/* Content */}
-                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-300">
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 apple-transition">
                       {cert.title}
                     </h4>
                     <p className="text-amber-600 dark:text-amber-400 font-semibold mb-1">{cert.issuer}</p>
@@ -237,14 +237,11 @@ const Certifications: React.FC = () => {
                       href={cert.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-sm font-medium text-amber-600 dark:text-amber-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors group-hover:translate-x-1 duration-300"
+                      className="inline-flex items-center text-sm font-medium text-amber-600 dark:text-amber-400 hover:text-orange-600 dark:hover:text-orange-400 apple-transition group-hover:translate-x-1"
                     >
                       View Certificate
                       <ExternalLink size={14} className="ml-2" />
                     </a>
-                    
-                    {/* Hover Effect */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${getCategoryColor(cert.category)} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300 pointer-events-none`}></div>
                   </div>
                 );
               })}
@@ -254,13 +251,13 @@ const Certifications: React.FC = () => {
               {achievements.map((achievement, index) => (
                 <div 
                   key={index} 
-                  className="group glass-effect rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-2"
+                  className="group glass-card rounded-3xl p-8 apple-hover apple-transition shadow-xl"
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
                   <div className="flex items-start space-x-6">
                     {/* Icon & Metric */}
                     <div className="flex-shrink-0">
-                      <div className="w-20 h-20 bg-gradient-to-r from-amber-500 to-orange-500 rounded-3xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-2xl">
+                      <div className="w-20 h-20 bg-gradient-to-r from-amber-500 to-orange-500 rounded-3xl flex items-center justify-center mb-4 group-hover:scale-110 apple-transition shadow-2xl">
                         <achievement.icon size={32} className="text-white" />
                       </div>
                       {achievement.metric && (
@@ -274,7 +271,7 @@ const Certifications: React.FC = () => {
                     
                     {/* Content */}
                     <div className="flex-1">
-                      <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-300" style={{ fontFamily: 'Inter, sans-serif' }}>
+                      <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 apple-transition" style={{ fontFamily: 'Inter, sans-serif' }}>
                         {achievement.title}
                       </h4>
                       <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
@@ -283,7 +280,7 @@ const Certifications: React.FC = () => {
                       {achievement.link && (
                         <a 
                           href={achievement.link} 
-                          className="inline-flex items-center font-medium text-amber-600 dark:text-amber-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors group-hover:translate-x-1 duration-300"
+                          className="inline-flex items-center font-medium text-amber-600 dark:text-amber-400 hover:text-orange-600 dark:hover:text-orange-400 apple-transition group-hover:translate-x-1"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -295,7 +292,7 @@ const Certifications: React.FC = () => {
                   </div>
                   
                   {/* Decorative Elements */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 apple-transition">
                     <Star className="text-amber-400" size={24} />
                   </div>
                 </div>
@@ -305,7 +302,7 @@ const Certifications: React.FC = () => {
         </div>
 
         {/* Stats Section */}
-        <div className={`mt-20 transition-all duration-1000 delay-700 ${
+        <div className={`mt-20 apple-transition ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -316,10 +313,10 @@ const Certifications: React.FC = () => {
             ].map((stat, index) => (
               <div 
                 key={stat.label}
-                className="group glass-effect rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-500 transform hover:scale-105"
+                className="group glass-card rounded-2xl p-8 text-center apple-hover apple-transition shadow-xl"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 apple-transition`}>
                   <stat.icon size={24} className="text-white" />
                 </div>
                 <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2" style={{ fontFamily: 'Inter, sans-serif' }}>
