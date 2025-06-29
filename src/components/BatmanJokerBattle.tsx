@@ -458,64 +458,11 @@ const BatmanJokerBattle: React.FC = () => {
   }, [battlePhase, realityBreakLevel, userInteractionCount]);
 
   return (
-    <>
-      <div 
-        ref={containerRef} 
-        className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-70 dark:opacity-80"
-        style={{ zIndex: -1 }}
-      />
-      
-      {/* Enhanced Portal Activation */}
-      {isPortalOpen && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none">
-          <div className="glass-card rounded-3xl p-8 text-center animate-pulse border-4 border-purple-500">
-            <div className="text-4xl font-bold text-white mb-4">🌀 PORTAL ACTIVATED 🌀</div>
-            <div className="text-xl text-purple-300 mb-4">Reality has been breached!</div>
-            <div className="text-gray-300">The characters are now aware of your presence</div>
-          </div>
-        </div>
-      )}
-
-      {/* Enhanced Battle Messages */}
-      {battlePhase === 2 && (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none">
-          <div className="glass-card rounded-3xl p-8 text-center animate-bounce border-2 border-yellow-500">
-            <div className="text-3xl font-bold text-white mb-4">🦇 BATMAN SENSES YOU! 🦇</div>
-            <div className="text-xl text-yellow-300 mb-2">He's looking directly at your cursor!</div>
-            <div className="text-gray-300">Move your mouse to control his attention</div>
-          </div>
-        </div>
-      )}
-
-      {battlePhase === 3 && realityBreakLevel >= 2 && (
-        <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
-          <div className="glass-card rounded-3xl p-8 text-center animate-pulse border-2 border-green-500">
-            <div className="text-3xl font-bold text-white mb-4">🃏 JOKER'S CHAOS UNLEASHED! 🃏</div>
-            <div className="text-xl text-green-300 mb-2">Reality is bending to his will!</div>
-            <div className="text-gray-300">Double-click to break reality further!</div>
-          </div>
-        </div>
-      )}
-
-      {battlePhase === 4 && (
-        <div className="fixed top-1/4 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
-          <div className="glass-card rounded-3xl p-8 text-center animate-pulse border-4 border-red-500">
-            <div className="text-4xl font-bold text-white mb-4">⚡ ULTIMATE SHOWDOWN! ⚡</div>
-            <div className="text-xl text-red-300 mb-2">The fabric of reality is tearing!</div>
-            <div className="text-gray-300">You are now part of the battle!</div>
-          </div>
-        </div>
-      )}
-
-      {userInteractionCount > 1000 && (
-        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
-          <div className="glass-card rounded-2xl p-4 text-center animate-pulse">
-            <div className="text-lg font-bold text-white">🎉 EASTER EGG UNLOCKED! 🎉</div>
-            <div className="text-sm text-purple-300">You've discovered the secret interaction level!</div>
-          </div>
-        </div>
-      )}
-    </>
+    <div 
+      ref={containerRef} 
+      className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-70 dark:opacity-80"
+      style={{ zIndex: -1 }}
+    />
   );
 };
 

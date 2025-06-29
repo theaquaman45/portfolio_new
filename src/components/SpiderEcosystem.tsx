@@ -559,95 +559,11 @@ const SpiderEcosystem: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <div 
-        ref={containerRef} 
-        className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-90 dark:opacity-95"
-        style={{ zIndex: 10 }}
-      />
-      
-      {/* SPIDER STATUS HUD */}
-      <div className="fixed top-20 right-4 z-50 space-y-3 pointer-events-none">
-        <div className="glass-card rounded-2xl p-4">
-          <div className="text-sm font-bold text-white mb-2 flex items-center">
-            🕷️ SPIDER STATUS
-          </div>
-          <div className="space-y-2">
-            <div className="flex justify-between items-center">
-              <span className="text-gray-300 text-xs">State:</span>
-              <span className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                spiderState === 'hunting' ? 'bg-red-500 text-white' :
-                spiderState === 'eating' ? 'bg-orange-500 text-white' :
-                spiderState === 'webbing' ? 'bg-blue-500 text-white' :
-                'bg-green-500 text-white'
-              }`}>
-                {spiderState.toUpperCase()}
-              </span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-300 text-xs">Bugs Eaten:</span>
-              <span className="text-yellow-400 font-bold text-sm">{bugsEaten}</span>
-            </div>
-            {spiderState === 'webbing' && (
-              <div className="flex justify-between items-center">
-                <span className="text-gray-300 text-xs">Web:</span>
-                <span className="text-cyan-400 font-bold text-sm">{webSize}%</span>
-              </div>
-            )}
-          </div>
-        </div>
-        
-        <div className="glass-card rounded-2xl p-4">
-          <div className="text-sm font-bold text-white mb-2">🎮 INTERACTION</div>
-          <div className="text-xs text-gray-300 space-y-1">
-            <div>• Move mouse to attract spider</div>
-            <div>• Click to make spider hunt</div>
-            <div>• Spider follows your scroll</div>
-            <div>• Watch it break the 4th wall!</div>
-          </div>
-        </div>
-      </div>
-
-      {/* SPIDER BEHAVIOR MESSAGES */}
-      {spiderState === 'hunting' && (
-        <div className="fixed top-1/3 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
-          <div className="glass-card rounded-3xl p-6 text-center animate-pulse border-2 border-red-500">
-            <div className="text-2xl font-bold text-white mb-2">🕷️ SPIDER IS HUNTING! 🕷️</div>
-            <div className="text-lg text-red-300 mb-2">It's tracking your cursor movement!</div>
-            <div className="text-gray-300 text-sm">The spider has broken the 4th wall and sees you!</div>
-          </div>
-        </div>
-      )}
-
-      {spiderState === 'eating' && (
-        <div className="fixed bottom-1/3 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
-          <div className="glass-card rounded-3xl p-6 text-center animate-bounce border-2 border-orange-500">
-            <div className="text-2xl font-bold text-white mb-2">🍽️ SPIDER IS FEEDING! 🍽️</div>
-            <div className="text-lg text-orange-300 mb-2">Caught a delicious bug!</div>
-            <div className="text-gray-300 text-sm">Nature's perfect predator at work</div>
-          </div>
-        </div>
-      )}
-
-      {spiderState === 'webbing' && (
-        <div className="fixed top-1/2 right-8 z-50 pointer-events-none">
-          <div className="glass-card rounded-3xl p-6 text-center animate-pulse border-2 border-blue-500">
-            <div className="text-2xl font-bold text-white mb-2">🕸️ BUILDING WEB! 🕸️</div>
-            <div className="text-lg text-blue-300 mb-2">Creating a masterpiece trap</div>
-            <div className="text-gray-300 text-sm">Web Progress: {webSize}%</div>
-          </div>
-        </div>
-      )}
-
-      {bugsEaten >= 5 && (
-        <div className="fixed bottom-4 right-1/2 transform translate-x-1/2 z-50 pointer-events-none">
-          <div className="glass-card rounded-2xl p-4 text-center animate-pulse border-2 border-yellow-500">
-            <div className="text-lg font-bold text-white">🏆 MASTER HUNTER! 🏆</div>
-            <div className="text-sm text-yellow-300">Spider has eaten {bugsEaten} bugs!</div>
-          </div>
-        </div>
-      )}
-    </>
+    <div 
+      ref={containerRef} 
+      className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-90 dark:opacity-95"
+      style={{ zIndex: 10 }}
+    />
   );
 };
 
