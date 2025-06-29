@@ -9,8 +9,6 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Education from './components/Education';
 import Certifications from './components/Certifications';
-import Background3D from './components/Background3D';
-import BatmanJokerBattle from './components/BatmanJokerBattle';
 import LiquidFlowEffect from './components/LiquidFlowEffect';
 
 function App() {
@@ -69,8 +67,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white/80 dark:bg-slate-900/80 text-gray-800 dark:text-gray-200 apple-transition relative overflow-x-hidden">
-      <Background3D />
-      <BatmanJokerBattle />
       <LiquidFlowEffect />
       <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <Hero />
