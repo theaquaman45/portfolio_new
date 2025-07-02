@@ -9,15 +9,9 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Education from './components/Education';
 import Certifications from './components/Certifications';
-import LiquidFlowEffect from './components/LiquidFlowEffect';
-import PhysicsEngine from './components/PhysicsEngine';
-import FloatingElements from './components/FloatingElements';
-import InteractiveParticles from './components/InteractiveParticles';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-  const [physicsMode, setPhysicsMode] = useState<'liquid' | 'physics' | 'particles'>('liquid');
-  const [showConnections, setShowConnections] = useState<boolean>(true);
 
   useEffect(() => {
     // Check user's preference from localStorage or system preference
@@ -70,29 +64,11 @@ function App() {
     }
   };
 
-  const handlePhysicsModeChange = (mode: 'liquid' | 'physics' | 'particles') => {
-    setPhysicsMode(mode);
-  };
-
-  const toggleConnections = () => {
-    setShowConnections(!showConnections);
-  };
-
   return (
-    <div className="min-h-screen bg-white/80 dark:bg-slate-900/80 text-gray-800 dark:text-gray-200 apple-transition relative overflow-x-hidden">
-      {/* Background Effects */}
-      {physicsMode === 'liquid' && <LiquidFlowEffect />}
-      {physicsMode === 'physics' && <PhysicsEngine />}
-      {physicsMode === 'particles' && <InteractiveParticles showConnections={showConnections} />}
-      <FloatingElements />
-      
+    <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 apple-transition relative overflow-x-hidden">
       <Navbar 
         toggleTheme={toggleTheme} 
         isDarkMode={isDarkMode}
-        physicsMode={physicsMode}
-        onPhysicsModeChange={handlePhysicsModeChange}
-        showConnections={showConnections}
-        onToggleConnections={toggleConnections}
       />
       <Hero />
       <About />
