@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Github, Star, ArrowRight, Smartphone, Globe, Chrome } from 'lucide-react';
+import { ExternalLink, Github, Star, ArrowRight, Smartphone, Globe, Chrome, Monitor } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -39,7 +39,7 @@ const Projects: React.FC = () => {
       title: 'Tutor Box',
       description: 'Next-generation mobile application for educators to record professional-quality teaching sessions with split-screen interface and real-time recording capabilities.',
       image: 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-      technologies: ['Flutter', 'FFmpeg', 'OpenAI Whisper', 'Firebase'],
+      technologies: ['Flutter', 'FFmpeg', 'OpenAI Whisper', 'Firebase', 'Razorpay'],
       demoLink: 'https://spslabs.vercel.app/products/tutor-box',
       featured: true,
       category: 'Mobile App'
@@ -57,7 +57,7 @@ const Projects: React.FC = () => {
       title: 'Form Guard',
       description: 'AI-powered fitness companion using advanced pose estimation for real-time exercise form analysis and injury prevention.',
       image: 'https://images.pexels.com/photos/4162451/pexels-photo-4162451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-      technologies: ['Flutter', 'TensorFlow', 'MediaPipe', 'Firebase'],
+      technologies: ['Flutter', 'TensorFlow', 'MediaPipe', 'Firebase', 'Python'],
       demoLink: 'https://spslabs.vercel.app/products/formguard',
       category: 'Mobile App'
     },
@@ -65,7 +65,7 @@ const Projects: React.FC = () => {
       title: 'Cross Share',
       description: 'Lightning-fast file sharing solution enabling seamless transfers between PC and mobile devices over local Wi-Fi.',
       image: 'https://images.pexels.com/photos/7014766/pexels-photo-7014766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      technologies: ['React Native', 'Node.js', 'WebSocket', 'QR Code'],
+      technologies: ['React Native', 'Node.js', 'WebSocket', 'QR Code', 'Encryption'],
       demoLink: 'https://spslabs.vercel.app/products/cross-share',
       category: 'Desktop App'
     },
@@ -73,16 +73,32 @@ const Projects: React.FC = () => {
       title: 'Algo Sphere',
       description: 'Innovative Chrome extension that transforms coding challenges into immersive visual experiences with dynamic flowcharts.',
       image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      technologies: ['React.js', 'D3.js', 'Node.js', 'Chrome API'],
+      technologies: ['React.js', 'D3.js', 'Node.js', 'Chrome API', 'NLP'],
       demoLink: 'https://spslabs.vercel.app/products/algo-sphere',
+      category: 'Extension'
+    },
+    {
+      title: 'Logify',
+      description: 'Universal chat export solution supporting WhatsApp, Messenger, Slack, Discord, and ChatGPT with privacy-first local processing.',
+      image: 'https://images.pexels.com/photos/4126724/pexels-photo-4126724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      technologies: ['JavaScript', 'Chrome API', 'jsPDF', 'FileSaver.js', 'Razorpay'],
+      demoLink: 'https://spslabs.vercel.app/products/logify',
       category: 'Extension'
     },
     {
       title: 'Price Scout',
       description: 'Comprehensive price comparison platform aggregating data from multiple food delivery and ride-sharing services.',
       image: 'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      technologies: ['React Native', 'Node.js', 'MongoDB', 'Google Maps API'],
+      technologies: ['React Native', 'Node.js', 'MongoDB', 'Redis', 'Google Maps API'],
       demoLink: 'https://spslabs.vercel.app/products/price-scout',
+      category: 'Mobile App'
+    },
+    {
+      title: 'Partner Hub',
+      description: 'Centralized notification aggregator for delivery partners across multiple platforms with intelligent route optimization.',
+      image: 'https://images.pexels.com/photos/7709285/pexels-photo-7709285.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+      technologies: ['React Native', 'Node.js', 'Express', 'MongoDB', 'Google Maps API'],
+      demoLink: 'https://spslabs.vercel.app/products/partner-hub',
       category: 'Mobile App'
     }
   ];
@@ -91,7 +107,8 @@ const Projects: React.FC = () => {
     { name: 'All', icon: Star },
     { name: 'Web App', icon: Globe },
     { name: 'Mobile App', icon: Smartphone },
-    { name: 'Extension', icon: Chrome }
+    { name: 'Extension', icon: Chrome },
+    { name: 'Desktop App', icon: Monitor }
   ];
 
   const filteredProjects = activeFilter === 'All' 

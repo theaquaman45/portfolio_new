@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Briefcase, Calendar, MapPin, ExternalLink, Award, Users, Code } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, ExternalLink, Award, Users, Code, TrendingUp } from 'lucide-react';
 
 interface ExperienceItem {
   title: string;
@@ -72,6 +72,21 @@ const Experience: React.FC = () => {
         'Built scalable backend systems with focus on clean code and efficient architecture',
         'Helped 100+ students with their academic projects and technical challenges'
       ]
+    },
+    {
+      title: 'Senior Developer',
+      company: 'SGN Designer',
+      period: 'Apr 2020 – Dec 2021',
+      location: 'Remote',
+      type: 'senior',
+      description: [
+        'Led the development of full-stack projects using React.js, Django, Flutter, and Python',
+        'Designed and implemented scalable web and mobile applications',
+        'Architected backend services with REST APIs, authentication systems, and database management',
+        'Improved code quality through peer reviews, testing, and clean architecture practices',
+        'Mentored junior developers and collaborated with cross-functional teams',
+        'Ensured on-time delivery of high-quality products following Agile methodologies'
+      ]
     }
   ];
 
@@ -126,9 +141,11 @@ const Experience: React.FC = () => {
                   <div className={`px-4 py-2 rounded-lg text-sm font-semibold ${
                     exp.type === 'founder' 
                       ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white'
+                      : exp.type === 'senior'
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
                       : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
                   }`}>
-                    {exp.type === 'founder' ? 'Founder' : 'Developer'}
+                    {exp.type === 'founder' ? 'Founder' : exp.type === 'senior' ? 'Senior' : 'Developer'}
                   </div>
                 </div>
                 
@@ -160,11 +177,12 @@ const Experience: React.FC = () => {
 
         {/* Stats Section */}
         <div className={`mt-20 fade-in ${isVisible ? 'visible' : ''}`}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
               { icon: Award, label: 'Companies Founded', value: '2' },
               { icon: Users, label: 'Years Experience', value: '4+' },
-              { icon: Code, label: 'Projects Delivered', value: '50+' }
+              { icon: Code, label: 'Projects Delivered', value: '50+' },
+              { icon: TrendingUp, label: 'Leadership Roles', value: '2' }
             ].map((stat, index) => (
               <div 
                 key={stat.label}
