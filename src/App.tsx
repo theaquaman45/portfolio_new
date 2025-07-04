@@ -8,6 +8,8 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Certifications from './components/Certifications';
+import SmoothScroll from './components/SmoothScroll';
+import PerformanceOptimizer from './components/PerformanceOptimizer';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
@@ -48,6 +50,13 @@ function App() {
       ]
     });
     document.head.appendChild(schemaScript);
+
+    // Performance optimization: Preload critical resources
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'style';
+    preloadLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap';
+    document.head.appendChild(preloadLink);
   }, []);
 
   const toggleTheme = () => {
@@ -65,17 +74,25 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 smooth-transition relative overflow-x-hidden">
+      {/* Performance optimizations */}
+      <PerformanceOptimizer />
+      <SmoothScroll />
+      
       <Navbar 
         toggleTheme={toggleTheme} 
         isDarkMode={isDarkMode}
       />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Certifications />
-      <Contact />
+      
+      <main className="scroll-section">
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Certifications />
+        <Contact />
+      </main>
+      
       <Footer />
     </div>
   );
