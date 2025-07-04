@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Github, Sparkles, Zap, Star, ArrowRight, Video, Users, BookOpen, Smartphone } from 'lucide-react';
+import { ExternalLink, Github, Star, ArrowRight, Smartphone, Globe, Chrome } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -15,7 +15,6 @@ interface Project {
 const Projects: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeFilter, setActiveFilter] = useState('All');
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -38,213 +37,176 @@ const Projects: React.FC = () => {
   const projects: Project[] = [
     {
       title: 'Tutor Box',
-      description: 'Next-generation mobile application for educators to record professional-quality teaching sessions. Features split-screen interface with front camera and interactive whiteboard, multi-slide scene management, real-time recording with auto-subtitles, and comprehensive branding tools.',
+      description: 'Next-generation mobile application for educators to record professional-quality teaching sessions with split-screen interface and real-time recording capabilities.',
       image: 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-      technologies: ['Flutter', 'FFmpeg', 'OpenAI Whisper', 'Firebase', 'Razorpay'],
+      technologies: ['Flutter', 'FFmpeg', 'OpenAI Whisper', 'Firebase'],
       demoLink: 'https://spslabs.vercel.app/products/tutor-box',
       featured: true,
-      category: 'Mobile App & Web App'
+      category: 'Mobile App'
     },
     {
       title: 'Zap Dine',
-      description: 'Revolutionary cloud-based restaurant management platform featuring QR/NFC ordering, seamless UPI payments via Razorpay, and real-time order tracking. Includes dynamic menu management and subscription-based revenue model.',
+      description: 'Revolutionary cloud-based restaurant management platform featuring QR/NFC ordering, seamless UPI payments, and real-time order tracking.',
       image: 'https://images.pexels.com/photos/6177645/pexels-photo-6177645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       technologies: ['Next.js', 'Django', 'AWS', 'Razorpay', 'PostgreSQL'],
       demoLink: 'https://spslabs.vercel.app/products/zap-dine',
       featured: true,
-      category: 'Web App & Mobile App'
+      category: 'Web App'
     },
     {
       title: 'Form Guard',
-      description: 'AI-powered fitness companion using advanced pose estimation with MediaPipe and TensorFlow. Provides real-time exercise form analysis, rep counting, and injury prevention through intelligent audio/visual feedback.',
+      description: 'AI-powered fitness companion using advanced pose estimation for real-time exercise form analysis and injury prevention.',
       image: 'https://images.pexels.com/photos/4162451/pexels-photo-4162451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-      technologies: ['Flutter', 'TensorFlow', 'MediaPipe', 'Firebase', 'Python'],
+      technologies: ['Flutter', 'TensorFlow', 'MediaPipe', 'Firebase'],
       demoLink: 'https://spslabs.vercel.app/products/formguard',
       category: 'Mobile App'
     },
     {
       title: 'Cross Share',
-      description: 'Lightning-fast file sharing solution enabling seamless transfers between PC and mobile devices over local Wi-Fi. Features QR code connectivity, end-to-end encryption, and real-time progress tracking.',
+      description: 'Lightning-fast file sharing solution enabling seamless transfers between PC and mobile devices over local Wi-Fi.',
       image: 'https://images.pexels.com/photos/7014766/pexels-photo-7014766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      technologies: ['React Native', 'Node.js', 'WebSocket', 'QR Code', 'Encryption'],
+      technologies: ['React Native', 'Node.js', 'WebSocket', 'QR Code'],
       demoLink: 'https://spslabs.vercel.app/products/cross-share',
-      category: 'PC Software'
+      category: 'Desktop App'
     },
     {
       title: 'Algo Sphere',
-      description: 'Innovative Chrome extension that transforms coding challenges into immersive visual experiences. Features dynamic flowcharts, decision trees, and NLP-powered algorithmic insights for enhanced learning.',
+      description: 'Innovative Chrome extension that transforms coding challenges into immersive visual experiences with dynamic flowcharts.',
       image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      technologies: ['React.js', 'D3.js', 'Node.js', 'Chrome API', 'NLP'],
+      technologies: ['React.js', 'D3.js', 'Node.js', 'Chrome API'],
       demoLink: 'https://spslabs.vercel.app/products/algo-sphere',
       category: 'Extension'
     },
     {
-      title: 'Logify',
-      description: 'Universal chat export solution supporting WhatsApp, Messenger, Slack, Discord, and ChatGPT. Features privacy-first local processing, multiple export formats, and intuitive drag-and-drop interface.',
-      image: 'https://images.pexels.com/photos/4126724/pexels-photo-4126724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      technologies: ['JavaScript', 'Chrome API', 'jsPDF', 'FileSaver.js', 'Razorpay'],
-      demoLink: 'https://spslabs.vercel.app/products/logify',
-      category: 'Extension'
-    },
-    {
       title: 'Price Scout',
-      description: 'Comprehensive price comparison platform aggregating data from Zomato, Swiggy, Uber, and Ola. Features intelligent geolocation-based results, personalized filters, and real-time price alerts.',
+      description: 'Comprehensive price comparison platform aggregating data from multiple food delivery and ride-sharing services.',
       image: 'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      technologies: ['React Native', 'Node.js', 'MongoDB', 'Redis', 'Google Maps API'],
+      technologies: ['React Native', 'Node.js', 'MongoDB', 'Google Maps API'],
       demoLink: 'https://spslabs.vercel.app/products/price-scout',
-      category: 'Mobile App & Web App'
-    },
-    {
-      title: 'Partner Hub',
-      description: 'Centralized notification aggregator for delivery partners across multiple platforms. Features intelligent route optimization, comprehensive earnings tracking, and advanced task management capabilities.',
-      image: 'https://images.pexels.com/photos/7709285/pexels-photo-7709285.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-      technologies: ['React Native', 'Node.js', 'Express', 'MongoDB', 'Google Maps API'],
-      demoLink: 'https://spslabs.vercel.app/products/partner-hub',
       category: 'Mobile App'
     }
   ];
 
-  const categories = ['All', 'Web App', 'Mobile App', 'Extension'];
+  const categories = [
+    { name: 'All', icon: Star },
+    { name: 'Web App', icon: Globe },
+    { name: 'Mobile App', icon: Smartphone },
+    { name: 'Extension', icon: Chrome }
+  ];
+
   const filteredProjects = activeFilter === 'All' 
     ? projects 
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section ref={sectionRef} id="projects" className="py-20 bg-gradient-to-br from-slate-50 via-purple-50/30 to-pink-50/30 dark:from-slate-900 dark:via-purple-900/10 dark:to-pink-900/10 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full filter blur-3xl floating"></div>
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-cyan-400/10 to-blue-400/10 rounded-full filter blur-3xl floating-delayed"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section ref={sectionRef} id="projects" className="py-20 bg-white dark:bg-slate-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className={`text-center mb-16 apple-transition ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 text-gradient-exotic" style={{ fontFamily: 'Playfair Display, serif' }}>
-            Featured Projects
+        <div className={`text-center mb-16 fade-in ${isVisible ? 'visible' : ''}`}>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+            Featured <span className="gradient-text">Projects</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto mb-6 rounded-full"></div>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Showcasing innovative solutions that blend creativity with cutting-edge technology
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 rounded-full"></div>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Showcasing innovative solutions built with modern technologies
           </p>
         </div>
 
         {/* Filter Tabs */}
-        <div className={`flex flex-wrap justify-center gap-4 mb-12 apple-transition ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`flex flex-wrap justify-center gap-4 mb-12 fade-in ${isVisible ? 'visible' : ''}`}>
           {categories.map((category, index) => (
             <button
-              key={category}
-              onClick={() => setActiveFilter(category)}
-              className={`group relative px-6 py-3 rounded-2xl font-semibold apple-transition apple-hover ${
-                activeFilter === category
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-xl'
-                  : 'glass-card text-gray-700 dark:text-gray-300'
+              key={category.name}
+              onClick={() => setActiveFilter(category.name)}
+              className={`px-6 py-3 rounded-lg font-semibold smooth-transition ${
+                activeFilter === category.name
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                  : 'glass text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <span className="flex items-center">
-                {category === 'All' && <Star size={18} className="mr-2" />}
-                {category === 'Web App' && <Zap size={18} className="mr-2" />}
-                {category === 'Mobile App' && <Smartphone size={18} className="mr-2" />}
-                {category === 'Extension' && <ExternalLink size={18} className="mr-2" />}
-                {category}
+                <category.icon size={18} className="mr-2" />
+                {category.name}
               </span>
             </button>
           ))}
         </div>
 
         {/* Projects Grid */}
-        <div className={`apple-transition ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`fade-in ${isVisible ? 'visible' : ''}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {filteredProjects.map((project, index) => (
               <div 
                 key={project.title}
-                className={`group relative glass-card rounded-3xl overflow-hidden shadow-xl apple-hover apple-transition ${
-                  project.featured ? 'ring-2 ring-purple-500/50' : ''
+                className={`group glass rounded-lg overflow-hidden hover-lift smooth-transition fade-in ${isVisible ? 'visible' : ''} ${
+                  project.featured ? 'ring-2 ring-blue-500/50' : ''
                 }`}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Featured Badge */}
                 {project.featured && (
-                  <div className="absolute top-4 left-4 z-20 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">
+                  <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">
                     <Star size={14} className="mr-1" />
                     Featured
                   </div>
                 )}
 
-                {/* Special Badge for TutorBox */}
-                {project.title === 'TutorBox' && (
-                  <div className="absolute top-4 right-4 z-20 bg-gradient-to-r from-emerald-400 to-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">
-                    <Video size={14} className="mr-1" />
-                    EdTech
-                  </div>
-                )}
-
-                {/* Image Container */}
-                <div className="relative h-64 overflow-hidden">
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-full object-cover apple-transition group-hover:scale-110"
+                    className="w-full h-full object-cover group-hover:scale-110 smooth-transition"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 apple-transition"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   
                   {/* Hover Overlay */}
-                  <div className={`absolute inset-0 flex items-center justify-center space-x-4 apple-transition ${
-                    hoveredIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                  }`}>
+                  <div className="absolute inset-0 flex items-center justify-center space-x-4 opacity-0 group-hover:opacity-100 smooth-transition">
                     <a 
                       href={project.demoLink} 
-                      className="group/btn p-4 glass-button rounded-full hover:bg-purple-600 apple-transition apple-hover"
+                      className="p-3 glass rounded-lg hover:bg-blue-600 smooth-transition"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="View live demo"
+                      aria-label="View demo"
                     >
-                      <ExternalLink size={20} className="text-white group-hover/btn:scale-110 apple-transition" />
+                      <ExternalLink size={20} className="text-white" />
                     </a>
                     {project.codeLink && (
                       <a 
                         href={project.codeLink} 
-                        className="group/btn p-4 glass-button rounded-full hover:bg-pink-600 apple-transition apple-hover"
+                        className="p-3 glass rounded-lg hover:bg-purple-600 smooth-transition"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="View source code"
+                        aria-label="View code"
                       >
-                        <Github size={20} className="text-white group-hover/btn:scale-110 apple-transition" />
+                        <Github size={20} className="text-white" />
                       </a>
                     )}
                   </div>
                 </div>
                 
                 {/* Content */}
-                <div className="p-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 apple-transition" style={{ fontFamily: 'Playfair Display, serif' }}>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 smooth-transition">
                       {project.title}
                     </h3>
-                    <span className="px-3 py-1 glass-button text-purple-600 dark:text-purple-400 rounded-full text-sm font-medium">
+                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
                       {project.category}
                     </span>
                   </div>
                   
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                     {project.description}
                   </p>
                   
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, i) => (
                       <span 
                         key={i} 
-                        className="px-3 py-1 glass-button text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium apple-hover apple-transition"
+                        className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm"
                       >
                         {tech}
                       </span>
@@ -254,12 +216,12 @@ const Projects: React.FC = () => {
                   {/* CTA */}
                   <a 
                     href={project.demoLink}
-                    className="group/cta inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:text-pink-600 dark:hover:text-pink-400 apple-transition"
+                    className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-purple-600 dark:hover:text-purple-400 smooth-transition"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Explore Project
-                    <ArrowRight size={18} className="ml-2 group-hover/cta:translate-x-1 apple-transition" />
+                    View Project
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 smooth-transition" />
                   </a>
                 </div>
               </div>
@@ -268,17 +230,15 @@ const Projects: React.FC = () => {
         </div>
 
         {/* View More CTA */}
-        <div className={`text-center mt-16 apple-transition ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`text-center mt-16 fade-in ${isVisible ? 'visible' : ''}`}>
           <a 
             href="https://spslabs.vercel.app" 
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:from-pink-600 hover:to-purple-600 apple-transition apple-hover shadow-2xl"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover-lift smooth-transition"
           >
             <span>View All Projects</span>
-            <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 apple-transition" />
+            <ArrowRight size={20} className="ml-2" />
           </a>
         </div>
       </div>

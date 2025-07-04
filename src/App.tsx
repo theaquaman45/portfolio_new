@@ -7,8 +7,6 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Education from './components/Education';
-import Certifications from './components/Certifications';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
@@ -30,8 +28,8 @@ function App() {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Sohard Pratap Singh",
-      "jobTitle": "Full Stack Developer",
-      "description": "Full Stack Developer specializing in Next.js, Django, Flutter, and security",
+      "jobTitle": "Computer Science Student & Full Stack Developer",
+      "description": "Computer Science student specializing in Next.js, Django, Flutter, and security",
       "url": "https://sohardpratapsingh.netlify.app",
       "sameAs": [
         "https://github.com/sohardpratap",
@@ -41,7 +39,7 @@ function App() {
       "knowsAbout": [
         "Web Development",
         "Mobile App Development",
-        "Cybersecurity",
+        "Computer Science",
         "Full Stack Development",
         "Next.js",
         "Django",
@@ -65,7 +63,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 apple-transition relative overflow-x-hidden">
+    <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 smooth-transition relative overflow-x-hidden">
       <Navbar 
         toggleTheme={toggleTheme} 
         isDarkMode={isDarkMode}
@@ -74,9 +72,7 @@ function App() {
       <About />
       <Skills />
       <Experience />
-      <Education />
       <Projects />
-      <Certifications />
       <Contact />
       <Footer />
     </div>
