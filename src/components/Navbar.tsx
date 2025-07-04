@@ -15,7 +15,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
+      const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'certifications', 'contact'];
       const scrollPosition = window.scrollY + 100;
       
       for (const section of sections) {
@@ -41,6 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
     { href: '#skills', label: 'Skills' },
     { href: '#experience', label: 'Experience' },
     { href: '#projects', label: 'Projects' },
+    { href: '#certifications', label: 'Achievements' },
     { href: '#contact', label: 'Contact' }
   ];
 
@@ -50,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDarkMode }) => {
         ? 'glass shadow-lg py-2' 
         : 'bg-transparent py-4'
     }`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
