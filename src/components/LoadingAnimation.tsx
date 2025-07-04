@@ -74,7 +74,16 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-1000 ${
       isComplete ? 'opacity-0 scale-110 pointer-events-none' : 'opacity-100 scale-100'
-    }`}>
+    }`} style={{ 
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      height: '100vh',
+      width: '100vw',
+      overflow: 'hidden'
+    }}>
       {/* Ultra-dynamic gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 via-pink-900 to-rose-900 animate-gradient-shift"></div>
       
@@ -135,12 +144,19 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
         ))}
       </div>
 
-      {/* Main loading content */}
-      <div className="relative z-10 text-center max-w-lg mx-auto px-8">
+      {/* Main loading content - Perfectly centered */}
+      <div className="relative z-10 text-center max-w-lg mx-auto px-8" style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 'auto',
+        maxWidth: '90vw'
+      }}>
         {/* Spectacular logo with multiple effects */}
-        <div className="mb-12 relative">
+        <div className="mb-8 relative">
           <div 
-            className="w-32 h-32 mx-auto bg-gradient-to-br from-cyan-400 via-blue-500 via-purple-600 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl relative overflow-hidden transform transition-transform duration-300"
+            className="w-28 h-28 mx-auto bg-gradient-to-br from-cyan-400 via-blue-500 via-purple-600 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl relative overflow-hidden transform transition-transform duration-300"
             style={{ 
               transform: `scale(${pulseIntensity})`,
               filter: 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.8))'
@@ -154,47 +170,47 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
             <div className="absolute inset-4 border border-white/30 rounded-xl animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }}></div>
             
             {/* Central icon with breathing effect */}
-            <Code2 size={40} className="text-white relative z-10 animate-pulse" style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.8))' }} />
+            <Code2 size={36} className="text-white relative z-10 animate-pulse" style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.8))' }} />
             
             {/* Floating sparkles */}
             <Sparkles 
-              size={20} 
-              className="absolute top-3 right-3 text-yellow-300 animate-bounce" 
+              size={18} 
+              className="absolute top-2 right-2 text-yellow-300 animate-bounce" 
               style={{ animationDelay: '0.5s', filter: 'drop-shadow(0 0 5px rgba(255,255,0,0.8))' }}
             />
             <Heart 
-              size={16} 
-              className="absolute bottom-3 left-3 text-pink-300 animate-pulse" 
+              size={14} 
+              className="absolute bottom-2 left-2 text-pink-300 animate-pulse" 
               style={{ animationDelay: '1s', filter: 'drop-shadow(0 0 5px rgba(255,192,203,0.8))' }}
             />
             <Star 
-              size={18} 
-              className="absolute top-3 left-3 text-cyan-300 animate-spin" 
+              size={16} 
+              className="absolute top-2 left-2 text-cyan-300 animate-spin" 
               style={{ animationDelay: '1.5s', animationDuration: '3s', filter: 'drop-shadow(0 0 5px rgba(0,255,255,0.8))' }}
             />
           </div>
           
           {/* Hypnotic pulsing aura */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-40 h-40 border-2 border-cyan-400/40 rounded-full animate-ping"></div>
-            <div className="absolute w-48 h-48 border border-purple-400/30 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
-            <div className="absolute w-56 h-56 border border-pink-400/20 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+            <div className="w-36 h-36 border-2 border-cyan-400/40 rounded-full animate-ping"></div>
+            <div className="absolute w-44 h-44 border border-purple-400/30 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute w-52 h-52 border border-pink-400/20 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
           </div>
         </div>
 
         {/* Seductive brand name */}
-        <h1 className="text-5xl font-bold text-white mb-3 relative">
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 relative">
           <span className="bg-gradient-to-r from-cyan-400 via-blue-500 via-purple-600 to-pink-500 bg-clip-text text-transparent animate-gradient-shift">
             Sohard
           </span>
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 via-purple-600 to-pink-500 bg-clip-text text-transparent blur-sm opacity-50 animate-pulse"></div>
         </h1>
-        <p className="text-gray-200 mb-10 text-xl font-light tracking-wide">Portfolio Experience</p>
+        <p className="text-gray-200 mb-8 text-lg md:text-xl font-light tracking-wide">Portfolio Experience</p>
 
         {/* Mesmerizing progress section */}
-        <div className="mb-8">
+        <div className="mb-6">
           {/* Progress bar with liquid effect */}
-          <div className="w-full h-3 bg-gray-800/50 rounded-full overflow-hidden shadow-inner mb-6 backdrop-blur-sm border border-white/10">
+          <div className="w-full h-2.5 bg-gray-800/50 rounded-full overflow-hidden shadow-inner mb-4 backdrop-blur-sm border border-white/10">
             <div 
               className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 via-purple-600 to-pink-500 rounded-full transition-all duration-500 ease-out relative overflow-hidden"
               style={{ width: `${progress}%` }}
@@ -218,10 +234,10 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
         </div>
 
         {/* Dynamic phase indicator */}
-        <div className="h-12 flex items-center justify-center mb-6">
-          <div className="flex items-center space-x-3 bg-black/20 backdrop-blur-sm rounded-full px-6 py-3 border border-white/10">
+        <div className="h-10 flex items-center justify-center mb-6">
+          <div className="flex items-center space-x-3 bg-black/20 backdrop-blur-sm rounded-full px-5 py-2 border border-white/10">
             <CurrentPhaseIcon 
-              size={20} 
+              size={18} 
               className="text-cyan-400 animate-pulse" 
               style={{ filter: 'drop-shadow(0 0 5px rgba(0,255,255,0.8))' }}
             />
@@ -232,11 +248,11 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
         </div>
 
         {/* Seductive animated dots */}
-        <div className="flex justify-center space-x-3">
+        <div className="flex justify-center space-x-2">
           {[0, 1, 2, 3, 4].map((i) => (
             <div
               key={i}
-              className="w-3 h-3 rounded-full animate-bounce-sexy"
+              className="w-2.5 h-2.5 rounded-full animate-bounce-sexy"
               style={{ 
                 background: `hsl(${180 + i * 40}, 70%, 60%)`,
                 animationDelay: `${i * 0.15}s`,
@@ -248,11 +264,11 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
         </div>
       </div>
 
-      {/* Elegant corner decorations with glow */}
-      <div className="absolute top-8 left-8 w-20 h-20 border-l-2 border-t-2 border-cyan-400/50 rounded-tl-2xl animate-pulse" style={{ filter: 'drop-shadow(0 0 10px rgba(0,255,255,0.5))' }}></div>
-      <div className="absolute top-8 right-8 w-20 h-20 border-r-2 border-t-2 border-purple-400/50 rounded-tr-2xl animate-pulse" style={{ animationDelay: '0.5s', filter: 'drop-shadow(0 0 10px rgba(139,92,246,0.5))' }}></div>
-      <div className="absolute bottom-8 left-8 w-20 h-20 border-l-2 border-b-2 border-pink-400/50 rounded-bl-2xl animate-pulse" style={{ animationDelay: '1s', filter: 'drop-shadow(0 0 10px rgba(236,72,153,0.5))' }}></div>
-      <div className="absolute bottom-8 right-8 w-20 h-20 border-r-2 border-b-2 border-blue-400/50 rounded-br-2xl animate-pulse" style={{ animationDelay: '1.5s', filter: 'drop-shadow(0 0 10px rgba(59,130,246,0.5))' }}></div>
+      {/* Elegant corner decorations with glow - Adjusted for mobile */}
+      <div className="absolute top-4 left-4 w-16 h-16 border-l-2 border-t-2 border-cyan-400/50 rounded-tl-2xl animate-pulse" style={{ filter: 'drop-shadow(0 0 10px rgba(0,255,255,0.5))' }}></div>
+      <div className="absolute top-4 right-4 w-16 h-16 border-r-2 border-t-2 border-purple-400/50 rounded-tr-2xl animate-pulse" style={{ animationDelay: '0.5s', filter: 'drop-shadow(0 0 10px rgba(139,92,246,0.5))' }}></div>
+      <div className="absolute bottom-4 left-4 w-16 h-16 border-l-2 border-b-2 border-pink-400/50 rounded-bl-2xl animate-pulse" style={{ animationDelay: '1s', filter: 'drop-shadow(0 0 10px rgba(236,72,153,0.5))' }}></div>
+      <div className="absolute bottom-4 right-4 w-16 h-16 border-r-2 border-b-2 border-blue-400/50 rounded-br-2xl animate-pulse" style={{ animationDelay: '1.5s', filter: 'drop-shadow(0 0 10px rgba(59,130,246,0.5))' }}></div>
 
       {/* Custom ultra-smooth animations */}
       <style jsx>{`
@@ -277,7 +293,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
             opacity: 0.7;
           }
           50% { 
-            transform: translateY(-15px) scale(1.2); 
+            transform: translateY(-12px) scale(1.2); 
             opacity: 1;
           }
         }
