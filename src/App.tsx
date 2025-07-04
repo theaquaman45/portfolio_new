@@ -10,9 +10,11 @@ import Footer from './components/Footer';
 import Certifications from './components/Certifications';
 import SmoothScroll from './components/SmoothScroll';
 import PerformanceOptimizer from './components/PerformanceOptimizer';
+import LoadingAnimation from './components/LoadingAnimation';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     // Check user's preference from localStorage or system preference
@@ -72,29 +74,41 @@ function App() {
     }
   };
 
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 smooth-transition relative overflow-x-hidden">
-      {/* Performance optimizations */}
-      <PerformanceOptimizer />
-      <SmoothScroll />
+    <>
+      {/* Loading Animation */}
+      {isLoading && <LoadingAnimation onComplete={handleLoadingComplete} />}
       
-      <Navbar 
-        toggleTheme={toggleTheme} 
-        isDarkMode={isDarkMode}
-      />
-      
-      <main className="scroll-section">
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Certifications />
-        <Contact />
-      </main>
-      
-      <Footer />
-    </div>
+      {/* Main Application */}
+      <div className={`min-h-screen bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 smooth-transition relative overflow-x-hidden ${
+        isLoading ? 'opacity-0' : 'opacity-100'
+      }`}>
+        {/* Performance optimizations */}
+        <PerformanceOptimizer />
+        <SmoothScroll />
+        
+        <Navbar 
+          toggleTheme={toggleTheme} 
+          isDarkMode={isDarkMode}
+        />
+        
+        <main className="scroll-section">
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Certifications />
+          <Contact />
+        </main>
+        
+        <Footer />
+      </div>
+    </>
   );
 }
 

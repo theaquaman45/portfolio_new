@@ -195,6 +195,23 @@
     -webkit-backdrop-filter: blur(20px);
     will-change: backdrop-filter;
   }
+
+  /* Loading animation specific styles */
+  .loading-pulse {
+    animation: loading-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .loading-bounce {
+    animation: loading-bounce 1s infinite;
+  }
+
+  .loading-spin {
+    animation: loading-spin 1s linear infinite;
+  }
+
+  .loading-glow {
+    animation: loading-glow 2s ease-in-out infinite alternate;
+  }
 }
 
 /* High-performance keyframe animations */
@@ -254,6 +271,56 @@
   100% {
     transform: scale(1) translateZ(0);
     opacity: 1;
+  }
+}
+
+/* Loading animation keyframes */
+@keyframes loading-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes loading-bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-glow {
+  0% {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(102, 126, 234, 0.8), 0 0 60px rgba(102, 126, 234, 0.4);
+  }
+}
+
+@keyframes slide-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
   }
 }
 
@@ -336,6 +403,13 @@ html, body, #root {
   }
   
   .gradient-text {
+    animation: none;
+  }
+  
+  .loading-pulse,
+  .loading-bounce,
+  .loading-spin,
+  .loading-glow {
     animation: none;
   }
 }
