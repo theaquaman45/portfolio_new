@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Code, Database, Tool, Shield, Zap, Globe } from 'lucide-react';
+import { Code, Database, PenTool as Tool, Shield, Zap, Globe } from 'lucide-react';
 
 interface Skill {
   name: string;
